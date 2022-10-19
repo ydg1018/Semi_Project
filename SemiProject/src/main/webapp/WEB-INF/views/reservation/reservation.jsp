@@ -40,11 +40,11 @@ div#hosLeft {
 }
 
 fieldset {
-	height: 550px;
+	height: 600px;
 }
 
 tr {
-	height: 70px;
+	height: 65px;
 }
 
 th {
@@ -63,8 +63,11 @@ label {
  	width: 500px;
 }
 
-input, textarea {
-/* 	width: 300px; */
+button {
+    margin: 0px 60px 0px 60px;
+    width: 110px;
+    height: 40px;
+    font-size: 20px;
 }
 
 </style>
@@ -111,6 +114,15 @@ input, textarea {
 	<th>진료항목 : </th>
 	<td>00과, 00과</td>
 </tr>
+<tr>
+	<th>주차 정보 : </th>
+	<td>가능/불가능</td>
+</tr>
+<tr>
+	<th>교통 정보 : </th>
+	<td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
+</tr>
+
 
 </table>
 
@@ -139,12 +151,20 @@ input, textarea {
 </div>
 
 <div>
-	<label>반려동물명 : <input type="text" name="petName"></label><br><br>
+	<label>펫이름 : <input type="text" name="petName"></label><br><br>
 </div>
 
 <div>
-	<label>성별 : <input type="radio" name="petGender" value="m" checked>남
+	<label>펫 나이 : <input type="text" name="petAge"></label><br><br>
+</div>
+
+<div>
+	<label>펏성별 : <input type="radio" name="petSex" value="m" checked>남
 	<input type="radio" name="petGender" value="f">여</label><br><br>
+</div>
+
+<div>
+	<label>펫 종류 : <input type="text" name="petType"></label><br><br>
 </div>
 
 <div>
@@ -153,7 +173,7 @@ input, textarea {
 </div>
 
 <div>
-	<label>진료내용 : <textarea rows="10" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
+	<label>진료내용 : <textarea rows="8" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
 </div>
 
 <div style="text-align: center;">

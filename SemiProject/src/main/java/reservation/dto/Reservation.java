@@ -7,26 +7,26 @@ public class Reservation {
 	private int resNo;
 	private Date resDate;
 	private String resDetail;
-	private int userNo;
+	private int ownerNo;
 	private int petNo;
 	private int hosNo;
 	
 	public Reservation() {}
 
-	public Reservation(int resNo, Date resDate, String resDetail, int userNo, int petNo, int hosNo) {
+	public Reservation(int resNo, Date resDate, String resDetail, int ownerNo, int petNo, int hosNo) {
 		super();
 		this.resNo = resNo;
 		this.resDate = resDate;
 		this.resDetail = resDetail;
-		this.userNo = userNo;
+		this.ownerNo = ownerNo;
 		this.petNo = petNo;
 		this.hosNo = hosNo;
 	}
 
 	@Override
 	public String toString() {
-		return "ReservationDto [resNo=" + resNo + ", resDate=" + resDate + ", resDetail=" + resDetail + ", userNo="
-				+ userNo + ", petNo=" + petNo + ", hosNo=" + hosNo + "]";
+		return "Reservation [resNo=" + resNo + ", resDate=" + resDate + ", resDetail=" + resDetail + ", ownerNo="
+				+ ownerNo + ", petNo=" + petNo + ", hosNo=" + hosNo + "]";
 	}
 
 	public int getResNo() {
@@ -53,12 +53,12 @@ public class Reservation {
 		this.resDetail = resDetail;
 	}
 
-	public int getUserNo() {
-		return userNo;
+	public int getOwnerNo() {
+		return ownerNo;
 	}
 
-	public void setUserNo(int userNo) {
-		this.userNo = userNo;
+	public void setOwnerNo(int ownerNo) {
+		this.ownerNo = ownerNo;
 	}
 
 	public int getPetNo() {
@@ -76,5 +76,7 @@ public class Reservation {
 	public void setHosNo(int hosNo) {
 		this.hosNo = hosNo;
 	}
+	
+	
 	
 }
