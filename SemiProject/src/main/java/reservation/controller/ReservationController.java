@@ -15,6 +15,9 @@ public class ReservationController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
+		
+		
+		
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);
 		
 	}

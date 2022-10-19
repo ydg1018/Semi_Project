@@ -2,7 +2,7 @@ package reservation.dto;
 
 import java.util.Date;
 
-public class ReservationDto {
+public class Reservation {
 
 	private int resNo;
 	private Date resDate;
@@ -11,9 +11,9 @@ public class ReservationDto {
 	private int petNo;
 	private int hosNo;
 	
-	public ReservationDto() {}
+	public Reservation() {}
 
-	public ReservationDto(int resNo, Date resDate, String resDetail, int userNo, int petNo, int hosNo) {
+	public Reservation(int resNo, Date resDate, String resDetail, int userNo, int petNo, int hosNo) {
 		super();
 		this.resNo = resNo;
 		this.resDate = resDate;
