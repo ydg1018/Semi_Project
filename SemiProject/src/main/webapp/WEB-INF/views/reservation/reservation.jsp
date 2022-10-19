@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+
 <style type="text/css">
 
 #mainDiv {
@@ -146,7 +148,7 @@ input, textarea {
 
 <div style="text-align: center;">
 	<button id="btnBack">뒤로가기</button>
-	<button id="btnPay">결제하기</button>
+	<button id="btnPay" onclick="requestPay()">결제하기</button>
 </div>
 
 </fieldset>
