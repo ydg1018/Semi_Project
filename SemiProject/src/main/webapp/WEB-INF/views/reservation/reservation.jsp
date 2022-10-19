@@ -6,6 +6,18 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript">
+function goBack() {
+	console.log("#btnbtnBack click")
+	
+	window.history.back();
+}
+
+
+</script>
+
 <style type="text/css">
 
 #mainDiv {
@@ -108,7 +120,7 @@ input, textarea {
 
 <div id="ownerRight">
 
-<form action="<%=request.getContextPath() %>/reservation/input" method="post">
+<form action="<%=request.getContextPath() %>/reservation" method="post">
 
 <fieldset>
 	
@@ -145,7 +157,7 @@ input, textarea {
 </div>
 
 <div style="text-align: center;">
-	<button id="btnBack">뒤로가기</button>
+	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
 	<button id="btnPay">결제하기</button>
 </div>
 
