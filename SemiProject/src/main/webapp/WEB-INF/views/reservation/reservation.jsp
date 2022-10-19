@@ -28,7 +28,7 @@ div#hosLeft {
 }
 
 fieldset {
-	height: 500px;
+	height: 550px;
 }
 
 tr {
@@ -37,6 +37,22 @@ tr {
 
 th {
 	width: 100px;
+}
+
+legend {
+/* 	display: inline-block; */
+	font-size: 30px;
+	font-weight: bold;
+}
+
+label {
+	display: inline-block;
+	text-align: center;
+ 	width: 500px;
+}
+
+input, textarea {
+/* 	width: 300px; */
 }
 
 </style>
@@ -84,7 +100,6 @@ th {
 	<td>00과, 00과</td>
 </tr>
 
-
 </table>
 
 </fieldset>
@@ -99,23 +114,40 @@ th {
 	
 <legend>예약자 정보</legend>
 
-<label>보호자명 : <input type="text" name="ownerName"></label><br><br>
+<div>
+	<label>보호자명 : <input type="text" name="ownerName"></label><br><br>
+</div>
 
+<div>
 <label>전화번호 : <input type="text" name="ownerPhone"></label><br><br>
+</div>
 
-<label>주소 : <input type="text" name="ownerAddress"></label><br><br>
+<div>
+	<label>주소 : <input type="text" name="ownerAddress"></label><br><br>
+</div>
 
-<label>반려동물명 : <input type="text" name="petName"></label><br><br>
+<div>
+	<label>반려동물명 : <input type="text" name="petName"></label><br><br>
+</div>
 
-<label>성별 : <input type="radio" name="petGender" value="m" checked>남
-<input type="radio" name="petGender" value="f">여</label><br><br>
+<div>
+	<label>성별 : <input type="radio" name="petGender" value="m" checked>남
+	<input type="radio" name="petGender" value="f">여</label><br><br>
+</div>
 
-<label>방문일자 : <input type="date" name="visitDate"></label>
-<input type="time" name="visitTime"><br><br>
+<div>
+	<label>방문일자 : <input type="date" name="visitDate">
+	<input type="time" name="visitTime"></label><br><br>
+</div>
 
-<label>진료내용 : <textarea rows="10" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
+<div>
+	<label>진료내용 : <textarea rows="10" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
+</div>
 
-<button id="btnBack">뒤로가기</button><button id="btnPay">결제하기</button>
+<div style="text-align: center;">
+	<button id="btnBack">뒤로가기</button>
+	<button id="btnPay">결제하기</button>
+</div>
 
 </fieldset>
 
