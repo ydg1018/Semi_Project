@@ -10,7 +10,7 @@
 	String mKey = SignatureUtil.hash(signKey, "SHA-256");
 
 	String timestamp			= SignatureUtil.getTimestamp();			// util에 의해서 자동생성
-	String orderNumber			= SignatureUtil.getTimestamp();	// 가맹점 주문번호(가맹점에서 직접 설정)
+	String orderNumber			= SignatureUtil.getTimestamp();		// 가맹점 주문번호(가맹점에서 직접 설정)
 	String price				= "1000";								// 상품가격(특수기호 제외, 가맹점에서 직접 설정)
 
 
@@ -141,8 +141,8 @@
                                 <input type="text" name="resDate" value="0000~0000">
                             </label>
 
-				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/payjsp/INIstdpay_pc_req.jsp">
-                            <input type="hidden" name="closeUrl" value="http://localhost:8888/payjsp/INIstdpay_pc_req.jsp">
+				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/resources/INIstdpay_pc_return.jsp">
+                            <input type="hidden" name="closeUrl" value="http://localhost:8888/resources/INIstdpay_pc_return.jsp">
                             
 				    		<label class="col-10 col-sm-2 input param" style="border:none; display:none;">결제방법</label>
                             <label class="col-10 col-sm-9 input" style="display: none;">

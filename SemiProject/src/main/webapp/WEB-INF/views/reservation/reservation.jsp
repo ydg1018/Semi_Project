@@ -20,7 +20,7 @@ function goBack() {
 function btnPay() {
 	console.log("#btnPay click")
 	
-	location.href="/payjsp/INIstdpay_pc_req.jsp"
+	location.href="/WEB-INF/views/payment/INIstdpay_pc_req.jsp"
 }
 
 </script>
@@ -71,7 +71,7 @@ label {
 }
 
 button {
-    margin: 0px 200px 0px 200px;
+    margin: 0px 60px 0px 60px;
     width: 110px;
     height: 40px;
     font-size: 20px;
@@ -135,7 +135,6 @@ button {
 
 </fieldset>
 <br>
-	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
  
 </div><!-- hosLeft -->
 
@@ -188,10 +187,11 @@ button {
 <div style="text-align: center;">
 </div>
 
+	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
+	<button onclick="btnPay()">결제하기</button>
 </fieldset>
 </form>
 <br>
-	<button onclick="btnPay()">결제하기</button>
 
 </div><!-- ownerRight -->
 
