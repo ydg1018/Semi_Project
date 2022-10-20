@@ -178,12 +178,12 @@ button {
 
 <div style="text-align: center;">
 	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
-	<button id="btnPay">결제하기</button>
 </div>
 
+</form>
+	<button onclick="requestPay()">결제하기</button>
 </fieldset>
 
-</form>
 
 </div><!-- ownerRight -->
 
