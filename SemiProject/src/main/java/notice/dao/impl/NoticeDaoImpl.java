@@ -10,7 +10,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import notice.dao.face.NoticeDao;
 import notice.dto.Notice;
-import notice.utill.Paging;
+import util.Paging;
 
 public class NoticeDaoImpl implements NoticeDao {
 	

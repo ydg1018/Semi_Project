@@ -9,7 +9,7 @@ import notice.dao.face.NoticeDao;
 import notice.dao.impl.NoticeDaoImpl;
 import notice.dto.Notice;
 import notice.service.face.NoticeService;
-import notice.utill.Paging;
+import util.Paging;
 
 public class NoticeServiceImpl implements NoticeService {
 
