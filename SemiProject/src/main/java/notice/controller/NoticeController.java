@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import notice.dto.Notice;
 import notice.service.face.NoticeService;
 import notice.service.impl.NoticeServiceImpl;
-import notice.utill.Paging;
+import util.Paging;
 
 
 @WebServlet("/notice/list")
