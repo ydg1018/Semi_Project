@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.List;
 
 import notice.dto.Notice;
-import notice.utill.Paging;
+import util.Paging;
 
 public interface NoticeDao {
 	
