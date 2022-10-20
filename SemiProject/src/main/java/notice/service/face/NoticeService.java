@@ -5,7 +5,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import notice.dto.Notice;
-import notice.utill.Paging;
+import util.Paging;
 
 public interface NoticeService {
 	
