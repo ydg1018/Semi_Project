@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import reservation.dto.Reservation;
 import reservation.service.face.ReservationService;
 import reservation.service.impl.ReservationServiceImpl;
 
@@ -31,6 +32,19 @@ public class ReservationController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/reservation [POST]");
 		//doGet()에서 넘어온 정보로 결제창 넘어가기
+		String name = req.getParameter("ownerName");
+		String phone = req.getParameter("ownerPhone");
+		String add = req.getParameter("ownerAddress");
+		String pet = req.getParameter("petName");
+		String age = req.getParameter("petAge");
+		String sex = req.getParameter("petSex");
+		String type = req.getParameter("petType");
+		String date = req.getParameter("visitDate");
+		String time = req.getParameter("visitTime");
+		String detail = req.getParameter("reserDetail");
+		
+		//reservation에 insert하기 - 
+//		Reservation input = reservationService.inputReservation();
 		
 		
 		
