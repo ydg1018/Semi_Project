@@ -34,20 +34,6 @@ public interface SearchReserDao {
 	 * @param hosName - 조회할 병원의 hosName을 가진 DTO 객체
 	 * @return hosInfo - 조회된 병원의 상세정보 DTO 객체
 	 */
-	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName, Paging paging);
-
-
-	/**
-	 * 검색된 병원 수 조회
-	 * 
-	 * @param connection
-	 * @return int - 테이블의 전체 행수 
-	 */
-	public int selectCntName(Connection connection, HosInfo hosName);
-
-
-
-
-
+	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName);
 
 }

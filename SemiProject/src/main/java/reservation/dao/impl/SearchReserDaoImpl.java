@@ -93,7 +93,7 @@ public class SearchReserDaoImpl implements SearchReserDao {
 	}
 	
 	@Override
-	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName, Paging paging) {
+	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName) {
 		
 		String sql = "";
 		sql += "SELECT * FROM (";
@@ -103,7 +103,6 @@ public class SearchReserDaoImpl implements SearchReserDao {
 		sql += "		ORDER BY hos_code";
 		sql += " 	)H";
 		sql += " )hos";
-		sql += " WHERE rnum BETWEEN ? AND ?";
 		
 		List<HosInfo> hosInfo = new ArrayList<>();
 		
@@ -111,8 +110,6 @@ public class SearchReserDaoImpl implements SearchReserDao {
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, hosName.getHosName());
-			ps.setInt(2, paging.getStartNo());
-			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
@@ -140,37 +137,4 @@ public class SearchReserDaoImpl implements SearchReserDao {
 		return hosInfo;
 	}
 	
-	@Override
-	public int selectCntName(Connection conn, HosInfo hosName) {
-
-		String sql = "";
-		sql += "SELECT count(*) cnt FROM (";
-		sql += "	SELECT rownum rnum, H.* FROM (";
-		sql += "	        SELECT * FROM hosinfo";
-		sql += "	        WHERE INSTR(hos_name, ? ) > 0";
-		sql += "		ORDER BY hos_code";
-		sql += " 	)H";
-		sql += " )hos";
-		
-		int count = 0;
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, hosName.getHosName());
-			rs = ps.executeQuery();
-			
-			while( rs.next() ) {
-				count = rs.getInt("cnt");
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		
-		return count;
-		
-	}
 }
