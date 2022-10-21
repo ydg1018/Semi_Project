@@ -77,7 +77,7 @@ form {
 	
 	<td><%=detail.get(i).getHosAdd() %></td>
 	<td><%=detail.get(i).getHosZip() %></td>
-	<td><button>예약하기</button></td>
+	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=detail.get(i).getHosCode() %>'">예약하기</button></td>
 </tr>
 <%	} %>
 

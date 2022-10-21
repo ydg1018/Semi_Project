@@ -97,38 +97,46 @@ button {
 <div id="hosLeft">
 
 <fieldset>
-	
+
 <legend><%=hos.getHosName() %>병원 정보</legend>
 
 <table>
+
 <tr>
 	<th>병원명 : </th>
 	<td><%=hos.getHosName() %></td>
 </tr>
+
 <tr>
 	<th>주소 : </th>
 	<td><%=hos.getHosAdd() %></td>
 </tr>
+
 <tr>
 	<th>전화번호 : </th>
 	<td><%=hos.getHosCall() %></td>
 </tr>
+
 <tr>
 	<th>우편번호 : </th>
 	<td><%=hos.getHosZip() %></td>
 </tr>
+
 <tr>
 	<th>진료시간 : </th>
 	<td><%=hos.getHosTime() %></td>
 </tr>
+
 <tr>
 	<th>교통정보</th>
 	<td><%=hos.getHosTrans() %></td>
 </tr>
+
 <tr>
 	<th>주차 정보 : </th>
 	<td><%=hos.getHosPark() %></td>
 </tr>
+
 <tr>
 	<th>중성화 가격 : </th>
 	<td><%=hos.getHosPrice() %></td>
