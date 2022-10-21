@@ -1,5 +1,6 @@
 package reservation.service.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,6 +40,29 @@ public class SearchReserServiceImpl implements SearchReserService {
 		Paging paging = new Paging(totalCount, curPage);
 		
 		return paging;
+	}
+	
+	@Override
+	public HosInfo getHosName(HttpServletRequest req) {
+		
+		HosInfo hosName = new HosInfo();
+		
+		String param = req.getParameter("hosname");
+		if( null != param && !"".equals(param) ) {
+			hosName.setHosName(param);
+		}
+		
+		return hosName;
+	}
+	
+	@Override
+	public HosInfo detail(HosInfo hosName) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		HosInfo hosInfo = searchReserDao.selectHosInfoByHosName(conn, hosName); 
+		
+		return hosInfo;
 	}
 	
 }

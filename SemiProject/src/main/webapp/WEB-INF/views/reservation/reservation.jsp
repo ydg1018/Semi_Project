@@ -198,6 +198,7 @@ button {
 <div style="clear:both;"></div>
 
 </div>  <!-- body end -->
+
 <footer>
 <h1>풋터부분</h1>
 </footer>

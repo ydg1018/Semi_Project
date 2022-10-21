@@ -43,4 +43,24 @@ public class SearchReserController extends HttpServlet {
 		
 	}
 	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		System.out.println("/search/reser [POST]");
+		
+		System.out.println("SearchReserController doPost() - hosname : " + req.getParameter("hosname"));
+		
+		//객체 얻어오기
+		HosInfo hosName = searchReserService.getHosName(req);
+		System.out.println("SearchReserController doPost() - hosname객체 : " + hosName);
+		
+		//조회결과 얻어오기
+		HosInfo detail = searchReserService.detail(hosName);
+		System.out.println("SearchReserController doPost() - detail : " + detail);
+		
+		req.setAttribute("detailHos", detail);
+		
+		req.getRequestDispatcher("WEB-INF/views/reservation/hosDetail.jsp").forward(req, resp);
+		
+	}
+	
 }

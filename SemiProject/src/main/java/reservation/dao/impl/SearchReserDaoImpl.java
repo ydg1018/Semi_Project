@@ -89,9 +89,46 @@ public class SearchReserDaoImpl implements SearchReserDao {
 			JDBCTemplate.close(ps);
 		}
 		
-		
-		
 		return count;
+	}
+	
+	@Override
+	public HosInfo selectHosInfoByHosName(Connection conn, HosInfo hosName) {
+		
+		String sql = "";
+		sql += "SELECT * FROM hosinfo";
+		sql += " WHERE hos_name LIKE '%?%'";
+		sql += " ORDER BY hos_code";
+		
+		HosInfo hosInfo = null;
+		
+		try {
+			
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, hosName.getHosName());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				hosInfo = new HosInfo();
+				
+				hosInfo.setHosCode( rs.getInt("hos_code"));
+				hosInfo.setHosName( rs.getString("hos_name"));
+				hosInfo.setHosAdd( rs.getString("hos_add"));
+				hosInfo.setHosZip( rs.getInt("hos_zip"));
+				hosInfo.setHosCall( rs.getString("hos_call"));
+				hosInfo.setHosTime( rs.getString("hos_time"));
+				hosInfo.setHosTrans( rs.getString("hos_trans"));
+				hosInfo.setHosPark( rs.getString("hos_park"));
+				hosInfo.setHosPrice( rs.getInt("hos_price"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+				
+		return hosInfo;
 	}
 	
 }
