@@ -132,6 +132,9 @@ public class SearchReserDaoImpl implements SearchReserDao {
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
 		}
 				
 		return hosInfo;

@@ -1,5 +1,9 @@
+<%@page import="hosInfo.dto.HosInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%	HosInfo hos = (HosInfo) request.getAttribute("hosInfo"); %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -94,40 +98,40 @@ button {
 
 <fieldset>
 	
-<legend>병원 정보</legend>
+<legend><%=hos.getHosName() %>병원 정보</legend>
 
 <table>
 <tr>
 	<th>병원명 : </th>
-	<td>00병원</td>
+	<td><%=hos.getHosName() %></td>
 </tr>
 <tr>
 	<th>주소 : </th>
-	<td>서울 00시 00동 000-000</td>
+	<td><%=hos.getHosAdd() %></td>
 </tr>
 <tr>
 	<th>전화번호 : </th>
-	<td>000-0000-0000</td>
+	<td><%=hos.getHosCall() %></td>
 </tr>
 <tr>
-	<th>담당의 : </th>
-	<td> 000</td>
+	<th>우편번호 : </th>
+	<td><%=hos.getHosZip() %></td>
 </tr>
 <tr>
 	<th>진료시간 : </th>
-	<td>00:00~00:00</td>
+	<td><%=hos.getHosTime() %></td>
 </tr>
 <tr>
-	<th>진료항목 : </th>
-	<td>00과, 00과</td>
+	<th>교통정보</th>
+	<td><%=hos.getHosTrans() %></td>
 </tr>
 <tr>
 	<th>주차 정보 : </th>
-	<td>가능/불가능</td>
+	<td><%=hos.getHosPark() %></td>
 </tr>
 <tr>
-	<th>교통 정보 : </th>
-	<td>ㅁㄴㅇㅁㄴㅇㅁㄴㅇ</td>
+	<th>중성화 가격 : </th>
+	<td><%=hos.getHosPrice() %></td>
 </tr>
 
 

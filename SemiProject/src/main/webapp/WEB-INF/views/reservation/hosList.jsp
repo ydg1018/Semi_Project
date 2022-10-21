@@ -78,7 +78,7 @@ form {
 	
 	<td><%=hList.get(i).getHosAdd() %></td>
 	<td><%=hList.get(i).getHosZip() %></td>
-	<td><button>예약하기</button></td>
+	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=hList.get(i).getHosCode() %>'">예약하기</button></td>
 </tr>
 <%	} %>
 
