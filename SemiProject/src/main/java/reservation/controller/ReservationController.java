@@ -22,6 +22,8 @@ public class ReservationController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/reservation [GET]");
 		
+		//회원정보에서 예약시 미리 정보를 사용할 수 있게 처리
+		
 		//선택된 병원 이름,(hos_no)를 이용해서 정보 조회한 후 병원 정보 보여주기
 		String hosCode = req.getParameter("hosCode");
 		System.out.println("/reservation [GET] hosCode : " + hosCode);
