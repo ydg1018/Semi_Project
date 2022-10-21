@@ -54,7 +54,11 @@ th, td{
 	<% for(int i=0; i<noticeList.size(); i++) { %>
 	</tr>
 		<td><%=noticeList.get(i).getNoticeIdx() %></td>
-		<td><%=noticeList.get(i).getNoticeTitle() %></td>
+		<td>
+			<a href="./view?noticeidx=<%=noticeList.get(i).getNoticeIdx() %>">
+				<%=noticeList.get(i).getNoticeTitle() %>
+			</a>
+		</td>
 		<td><%=noticeList.get(i).getNoticeDate() %></td>
 		<td><%=noticeList.get(i).getNoticeHit() %></td>
 	<tr>
