@@ -56,13 +56,32 @@ public class SearchReserServiceImpl implements SearchReserService {
 	}
 	
 	@Override
-	public HosInfo detail(HosInfo hosName) {
+	public List<HosInfo> detail(HosInfo hosName, Paging paging) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		HosInfo hosInfo = searchReserDao.selectHosInfoByHosName(conn, hosName); 
+		List<HosInfo> hosInfo = searchReserDao.selectHosInfoByHosName(conn, hosName, paging); 
 		
 		return hosInfo;
+	}
+	
+	@Override
+	public Paging getdetailePaging(HttpServletRequest req, HosInfo hosName) {
+		
+		//총 게시글 수 조회하기
+		int totalCount = searchReserDao.selectCntName(JDBCTemplate.getConnection(), hosName);
+		
+		//전달 파라미터 curPage 추출하기
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		}
+		
+		//Paging 객체 생성
+		Paging dPaging = new Paging(totalCount, curPage);
+		
+		return dPaging;
 	}
 	
 }

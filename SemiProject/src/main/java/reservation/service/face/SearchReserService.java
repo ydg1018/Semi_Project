@@ -39,7 +39,15 @@ public interface SearchReserService {
 	 * @param hosName - 조회할 hosName을 가진 DTO 객체
 	 * @return HosInfo
 	 */
-	public HosInfo detail(HosInfo hosName);
+	public List<HosInfo> detail(HosInfo hosName, Paging paging);
+
+	/**
+	 * 검색 목록 페이징 조회
+	 * 
+	 * @param req - 요청 정보
+	 * @return dPaging - 계산 완료 객체
+	 */
+	public Paging getdetailePaging(HttpServletRequest req, HosInfo hosName);
 
 	
 }

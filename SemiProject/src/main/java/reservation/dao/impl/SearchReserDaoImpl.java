@@ -93,34 +93,43 @@ public class SearchReserDaoImpl implements SearchReserDao {
 	}
 	
 	@Override
-	public HosInfo selectHosInfoByHosName(Connection conn, HosInfo hosName) {
+	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName, Paging paging) {
 		
 		String sql = "";
-		sql += "SELECT * FROM hosinfo";
-		sql += " WHERE hos_name LIKE '%?%'";
-		sql += " ORDER BY hos_code";
+		sql += "SELECT * FROM (";
+		sql += "	SELECT rownum rnum, H.* FROM (";
+		sql += "	        SELECT * FROM hosinfo";
+		sql += "	        WHERE INSTR(hos_name, ? ) > 0";
+		sql += "		ORDER BY hos_code";
+		sql += " 	)H";
+		sql += " )hos";
+		sql += " WHERE rnum BETWEEN ? AND ?";
 		
-		HosInfo hosInfo = null;
+		List<HosInfo> hosInfo = new ArrayList<>();
 		
 		try {
 			
 			ps = conn.prepareStatement(sql);
 			ps.setString(1, hosName.getHosName());
+			ps.setInt(2, paging.getStartNo());
+			ps.setInt(3, paging.getEndNo());
 			
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
-				hosInfo = new HosInfo();
+				HosInfo hos = new HosInfo();
 				
-				hosInfo.setHosCode( rs.getInt("hos_code"));
-				hosInfo.setHosName( rs.getString("hos_name"));
-				hosInfo.setHosAdd( rs.getString("hos_add"));
-				hosInfo.setHosZip( rs.getInt("hos_zip"));
-				hosInfo.setHosCall( rs.getString("hos_call"));
-				hosInfo.setHosTime( rs.getString("hos_time"));
-				hosInfo.setHosTrans( rs.getString("hos_trans"));
-				hosInfo.setHosPark( rs.getString("hos_park"));
-				hosInfo.setHosPrice( rs.getInt("hos_price"));
+				hos.setHosCode( rs.getInt("hos_code"));
+				hos.setHosName( rs.getString("hos_name"));
+				hos.setHosAdd( rs.getString("hos_add"));
+				hos.setHosZip( rs.getInt("hos_zip"));
+				hos.setHosCall( rs.getString("hos_call"));
+				hos.setHosTime( rs.getString("hos_time"));
+				hos.setHosTrans( rs.getString("hos_trans"));
+				hos.setHosPark( rs.getString("hos_park"));
+				hos.setHosPrice( rs.getInt("hos_price"));
+				
+				hosInfo.add(hos);
 				
 			}
 			
@@ -131,4 +140,37 @@ public class SearchReserDaoImpl implements SearchReserDao {
 		return hosInfo;
 	}
 	
+	@Override
+	public int selectCntName(Connection conn, HosInfo hosName) {
+
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM (";
+		sql += "	SELECT rownum rnum, H.* FROM (";
+		sql += "	        SELECT * FROM hosinfo";
+		sql += "	        WHERE INSTR(hos_name, ? ) > 0";
+		sql += "		ORDER BY hos_code";
+		sql += " 	)H";
+		sql += " )hos";
+		
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, hosName.getHosName());
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
+		
+	}
 }

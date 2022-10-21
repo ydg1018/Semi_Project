@@ -24,6 +24,8 @@ public class SearchReserController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/search/reser [GET]");
 		
+		req.setCharacterEncoding("UTF-8");
+		
 		//전달파라미터에서 현재 페이징 객체 계산하기
 		Paging paging = searchReserService.getPaging(req);
 		System.out.println("[TEST] " + paging);
@@ -47,19 +49,27 @@ public class SearchReserController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/search/reser [POST]");
 		
+		req.setCharacterEncoding("UTF-8");
+		
 		System.out.println("SearchReserController doPost() - hosname : " + req.getParameter("hosname"));
 		
 		//객체 얻어오기
 		HosInfo hosName = searchReserService.getHosName(req);
 		System.out.println("SearchReserController doPost() - hosname객체 : " + hosName);
 		
+		
+		Paging paging = searchReserService.getdetailePaging(req, hosName);
+		
+		//v페이징 객체를 MODEL값 전달
+		req.setAttribute("paging", paging);
+
 		//조회결과 얻어오기
-		HosInfo detail = searchReserService.detail(hosName);
+		List<HosInfo> detail = (List<HosInfo>) searchReserService.detail(hosName, paging);
 		System.out.println("SearchReserController doPost() - detail : " + detail);
 		
 		req.setAttribute("detailHos", detail);
 		
-		req.getRequestDispatcher("WEB-INF/views/reservation/hosDetail.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/reservation/hosDetail.jsp").forward(req, resp);
 		
 	}
 	
