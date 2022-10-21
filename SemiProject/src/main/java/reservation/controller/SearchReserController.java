@@ -30,11 +30,15 @@ public class SearchReserController extends HttpServlet {
 		//v페이징 객체를 MODEL값 전달
 		req.setAttribute("paging", paging);
 		
-		//게시글 전체 조회
-//				List<Board> list = boardService.getList();
-		
 		//게시글 페이징 전체 조회
 		List<HosInfo> list = searchReserService.getList( paging );
+		
+		//[TEST] 조회결과 확인
+		for(HosInfo h : list ) System.out.println(h);
+		
+		req.setAttribute("hosList", list);
+		
+		req.getRequestDispatcher("/WEB-INF/views/reservation/hosList.jsp").forward(req, resp);
 		
 	}
 	
