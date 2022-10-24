@@ -55,7 +55,7 @@ th, td{
 	</tr>
 		<td><%=noticeList.get(i).getNoticeIdx() %></td>
 		<td>
-			<a href="./view?noticeidx=<%=noticeList.get(i).getNoticeIdx() %>">
+			<a href="./view?noticeIdx=<%=noticeList.get(i).getNoticeIdx() %>">
 				<%=noticeList.get(i).getNoticeTitle() %>
 			</a>
 		</td>

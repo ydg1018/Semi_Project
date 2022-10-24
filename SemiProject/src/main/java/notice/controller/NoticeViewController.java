@@ -22,7 +22,7 @@ public class NoticeViewController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/notice/view [GET]");
 	
-		System.out.println("NoticeViewController doGet() - noticeidx : " + req.getParameter("noticeidx"));
+		System.out.println("NoticeViewController doGet() - noticeidx : " + req.getParameter("noticeIdx"));
 	
 		//전달파라미터 객체 얻어오기
 		Notice noticeIdx = noticeService.getNoticeIdx(req);
@@ -32,6 +32,11 @@ public class NoticeViewController extends HttpServlet {
 		Notice viewNotice = noticeService.view(noticeIdx);
 		System.out.println("NoticeViewController doGet() - viewNotice : " + viewNotice);
 		
+		//조회결과를 MODEL값으로 전달
+		req.setAttribute("viewNotice", viewNotice);
+		
+		//View 지정 및 응답
+		req.getRequestDispatcher("/WEB-INF/views/notice/view.jsp").forward(req, resp);
 	
 	}
 
