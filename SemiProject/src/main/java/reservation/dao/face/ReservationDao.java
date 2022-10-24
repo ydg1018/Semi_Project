@@ -3,6 +3,7 @@ package reservation.dao.face;
 import java.sql.Connection;
 
 import hosInfo.dto.HosInfo;
+import reservation.dto.Pet;
 
 public interface ReservationDao {
 
@@ -14,5 +15,22 @@ public interface ReservationDao {
 	 * @return HosInfo
 	 */
 	public HosInfo selectHosByHosCode(Connection conn, HosInfo hosCode);
+
+	/**
+	 * pet_seq의 nextval 조회
+	 * 
+	 * @param conn - DB연결객체
+	 * @return
+	 */
+	public int selectNextPetNo(Connection conn);
+
+	/**
+	 * 전달된 파라미터 값을 테이블에 삽입한다
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param pet
+	 * @return
+	 */
+	public int insert(Connection conn, Pet pet);
 
 }

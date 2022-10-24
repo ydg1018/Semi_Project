@@ -55,4 +55,32 @@ public class ReservationDaoImpl implements ReservationDao {
 		return hosInfo;
 	}
 	
+	//----------------------------------------doPost----------------------------
+	
+	
+	@Override
+	public int selectNextPetNo(Connection conn) {
+		
+		String sql = "SELECT pet_seq.nextval FROM dual";
+		
+		int nextval = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			nextval = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextval;
+	}
+	
 }

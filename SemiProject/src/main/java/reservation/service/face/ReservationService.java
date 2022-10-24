@@ -3,6 +3,7 @@ package reservation.service.face;
 import javax.servlet.http.HttpServletRequest;
 
 import hosInfo.dto.HosInfo;
+import reservation.dto.Pet;
 
 public interface ReservationService {
 
@@ -16,6 +17,22 @@ public interface ReservationService {
 	 * @return hosInfo
 	 */
 	public HosInfo getInfo(HttpServletRequest req, HosInfo info);
+
+	/**
+	 * pet 파라미터 가져오기
+	 * 
+	 * @param req  - 요청 정보 객체
+	 * @return petparam
+	 */
+	public Pet petparam(HttpServletRequest req);
+
+	/**
+	 * 펫 정보 DB 삽입하기
+	 * 
+	 * @param petparam - 펫 DTO
+	 * @return
+	 */
+	public Pet insertPet(Pet pet);
 
 
 }

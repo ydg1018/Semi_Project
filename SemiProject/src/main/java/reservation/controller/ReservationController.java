@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import hosInfo.dto.HosInfo;
+import reservation.dto.Pet;
 import reservation.service.face.ReservationService;
 import reservation.service.impl.ReservationServiceImpl;
 
@@ -49,27 +50,37 @@ public class ReservationController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		//doGet()에서 넘어온 정보로 결제창 넘어가기
-		String name = req.getParameter("ownerName");
-		String phone = req.getParameter("ownerPhone");
-		String add = req.getParameter("ownerAddress");
-		String pet = req.getParameter("petName");
-		String age = req.getParameter("petAge");
-		String sex = req.getParameter("petSex");
-		String type = req.getParameter("petType");
-		String date = req.getParameter("visitDate");
-		String time = req.getParameter("visitTime");
-		String detail = req.getParameter("reserDetail");
-		String hosCode = req.getParameter("hosCode");
-		System.out.println(name + phone + add + pet + age + sex + type + date + time + detail + "hoscode : " + hosCode);
+//		String name = req.getParameter("ownerName");
+//		String phone = req.getParameter("ownerPhone");
+//		String add = req.getParameter("ownerAddress");
+//		String pet = req.getParameter("petName");
+//		String age = req.getParameter("petAge");
+//		String sex = req.getParameter("petSex");
+//		String type = req.getParameter("petType");
+//		String date = req.getParameter("visitDate");
+//		String time = req.getParameter("visitTime");
+//		String detail = req.getParameter("reserDetail");
+//		String hosCode = req.getParameter("hosCode");
+//		System.out.println(name + phone + add + pet + age + sex + type + date + time + detail + "hoscode : " + hosCode);
 		
 		//세션통해서 유저 정보 가져오기 
 		
 		//펫 정보 DTO 저장 -> DB 저장
 		
+		//펫 파라미터 가져오기
+		Pet pet = reservationService.petparam(req);
+		
+		//파라미터로 DB Insert
+		Pet result = reservationService.insertPet(pet);
+		
+		
+		//hoscode통해 hos 가져오기
+		
 		//reservation에 insert하기 - 
 		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(ownerName으로 찾기), 병원번호(hos_code로 찾기) 
 		
-		
+		//결제창에서 필요한 컬럼
+		//보호자명, 전화번호, 이메일, 예약 일시
 		
 		//결제창 이후 결제 및 예약 내역 확인하기
 		req.getRequestDispatcher("/resources/payment/INIstdpay_pc_req.jsp").forward(req, resp);
