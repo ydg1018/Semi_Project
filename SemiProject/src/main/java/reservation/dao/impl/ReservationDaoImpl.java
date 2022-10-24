@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
 import reservation.dao.face.ReservationDao;
+import reservation.dto.Pet;
 
 public class ReservationDaoImpl implements ReservationDao {
 
@@ -81,6 +82,34 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		
 		return nextval;
+	}
+	
+	@Override
+	public int insert(Connection conn, Pet pet) {
+
+		String sql = "";
+		sql += "INSERT INTO pet (pet_no, pet_name, pet_age, pet_sex ,pet_type)";
+		sql += " VALUES( ?, ?, ?, ?, ? )";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(1, pet.getPetNo());
+			ps.setString(2, pet.getPetName());
+			ps.setInt(3, pet.getPetAge());
+			ps.setString(4, pet.getPetSex());
+			ps.setString(5, pet.getPetType());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
 	}
 	
 }

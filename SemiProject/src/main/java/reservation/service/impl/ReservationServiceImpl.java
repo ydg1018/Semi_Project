@@ -68,7 +68,14 @@ public class ReservationServiceImpl implements ReservationService {
 		//완성된 member객체를 DB에 삽입
 		int result = reservationDao.insert(conn, pet);
 		
-		return null;
+		if( result > 0) {
+			JDBCTemplate.commit(conn);
+			return pet;
+		} else {
+			JDBCTemplate.commit(conn);
+			return null;
+		}
+		
 	}
 	
 }

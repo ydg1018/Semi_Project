@@ -28,8 +28,8 @@ public interface ReservationDao {
 	 * 전달된 파라미터 값을 테이블에 삽입한다
 	 * 
 	 * @param conn - DB 연결 객체
-	 * @param pet
-	 * @return
+	 * @param pet - 테이블에 삽입할 정보 객체
+	 * @return insert 수행결과 ( 0- 삽입 실패, 1-삽입성공 )
 	 */
 	public int insert(Connection conn, Pet pet);
 
