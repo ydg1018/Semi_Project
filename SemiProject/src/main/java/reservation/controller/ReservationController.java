@@ -49,18 +49,20 @@ public class ReservationController extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		
 		//doGet()에서 넘어온 정보로 결제창 넘어가기
-		String name = req.getParameter("ownerName");
-		String phone = req.getParameter("ownerPhone");
-		String add = req.getParameter("ownerAddress");
-		String pet = req.getParameter("petName");
-		String age = req.getParameter("petAge");
-		String sex = req.getParameter("petSex");
-		String type = req.getParameter("petType");
-		String date = req.getParameter("visitDate");
-		String time = req.getParameter("visitTime");
-		String detail = req.getParameter("reserDetail");
+//		String name = req.getParameter("ownerName");
+//		String phone = req.getParameter("ownerPhone");
+//		String add = req.getParameter("ownerAddress");
+//		String pet = req.getParameter("petName");
+//		String age = req.getParameter("petAge");
+//		String sex = req.getParameter("petSex");
+//		String type = req.getParameter("petType");
+//		String date = req.getParameter("visitDate");
+//		String time = req.getParameter("visitTime");
+//		String detail = req.getParameter("reserDetail");
+//		System.out.println(name + phone + add + pet + age + sex + type + date + time + detail);
 		
-		System.out.println(name + phone + add + pet + age + sex + type + date + time + detail);
+		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(ownerName으로 찾기), 병원번호(hos_code로 찾기) 
+		
 		
 		//reservation에 insert하기 - 
 //		Reservation input = reservationService.inputReservation();

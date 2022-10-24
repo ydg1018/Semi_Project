@@ -159,7 +159,7 @@ button {
 <legend>예약자 정보</legend>
 
 <div>
-	<label>보호자명 : <input type="text" name="ownerName"></label><br><br>
+	<label>보호자명 : <input type="text" name="ownerName" placeholder="윤대건"></label><br><br>
 </div>
 
 <div>
@@ -196,12 +196,18 @@ button {
 	<label>진료내용 : <textarea rows="8" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
 </div>
 
+<div>
+	<label>병원 번호 : <input type="text" name="hosCode" placeholder="<%=hos.getHosCode() %>"></label>
+</div>
+
 <div style="text-align: center;">
 </div>
 
 	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
 	<button onclick="btnPay()">결제하기</button>
+
 </fieldset>
+
 </form>
 <br>
 
