@@ -45,6 +45,9 @@ public class ReservationController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/reservation [POST]");
+		
+		req.setCharacterEncoding("UTF-8");
+		
 		//doGet()에서 넘어온 정보로 결제창 넘어가기
 		String name = req.getParameter("ownerName");
 		String phone = req.getParameter("ownerPhone");
@@ -56,6 +59,8 @@ public class ReservationController extends HttpServlet {
 		String date = req.getParameter("visitDate");
 		String time = req.getParameter("visitTime");
 		String detail = req.getParameter("reserDetail");
+		
+		System.out.println(name + phone + add + pet + age + sex + type + date + time + detail);
 		
 		//reservation에 insert하기 - 
 //		Reservation input = reservationService.inputReservation();
