@@ -46,8 +46,14 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		Pet petparam = new Pet();
 		
+		String Age = req.getParameter("petAge");
+		int petAge = 0;
+		if( null!=Age && !"".equals(Age)) {
+			petAge = Integer.parseInt(Age);
+		}
+
 		petparam.setPetName( req.getParameter("petName") );
-		petparam.setPetAge( Integer.parseInt( req.getParameter("petAge")) );
+		petparam.setPetAge(petAge);
 		petparam.setPetSex(req.getParameter("petSex"));
 		petparam.setPetType(req.getParameter("petType"));
 		

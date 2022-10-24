@@ -66,18 +66,24 @@ public class ReservationController extends HttpServlet {
 		//세션통해서 유저 정보 가져오기 
 		
 		//펫 정보 DTO 저장 -> DB 저장
-		
 		//펫 파라미터 가져오기
 		Pet pet = reservationService.petparam(req);
+		System.out.println("/reservation [POST] pet : " + pet);
 		
 		//파라미터로 DB Insert
 		Pet result = reservationService.insertPet(pet);
+		System.out.println("/reservation [POST] result " + result);
 		
+		HosInfo info = reservationService.getHosCode(req);
+		System.out.println("/reservation [POST] info : " + info);
 		
 		//hoscode통해 hos 가져오기
+		HosInfo hosInfo = reservationService.getInfo(req, info);
+		System.out.println("/reservation [POST] hosinfo : " + hosInfo);
 		
-		//reservation에 insert하기 - 
+		//reservation에 insert하기 -  resNo, resDate, resDetail, ownerNo, petNo, hosNo;
 		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(ownerName으로 찾기), 병원번호(hos_code로 찾기) 
+		
 		
 		//결제창에서 필요한 컬럼
 		//보호자명, 전화번호, 이메일, 예약 일시
