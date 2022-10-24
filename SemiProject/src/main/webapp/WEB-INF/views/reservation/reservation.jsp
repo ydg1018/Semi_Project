@@ -24,7 +24,7 @@ function goBack() {
 function btnPay() {
 	console.log("#btnPay click")
 	
-	location.href="/WEB-INF/views/payment/INIstdpay_pc_req.jsp"
+	location.href="/resources/payment/INIstdpay_pc_req.jsp"
 }
 
 </script>
@@ -82,6 +82,13 @@ button {
 }
 
 </style>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	$('input[name=hosCode]').attr('value', <%=hos.getHosCode() %>);
+})
+
+</script>
 
 </head>
 <body>
@@ -196,8 +203,8 @@ button {
 	<label>진료내용 : <textarea rows="8" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
 </div>
 
-<div>
-	<label>병원 번호 : <input type="text" name="hosCode" placeholder="<%=hos.getHosCode() %>"></label>
+<div style="display: none;">
+	<label>병원 번호 : <input type="text" name="hosCode"></label>
 </div>
 
 <div style="text-align: center;">

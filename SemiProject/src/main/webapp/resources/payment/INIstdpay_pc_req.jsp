@@ -141,8 +141,8 @@
                                 <input type="text" name="resDate" value="0000~0000">
                             </label>
 
-				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/resources/INIstdpay_pc_return.jsp">
-                            <input type="hidden" name="closeUrl" value="http://localhost:8888/resources/INIstdpay_pc_return.jsp">
+				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/resources/payment/INIstdpay_pc_return.jsp">
+                            <input type="hidden" name="closeUrl" value="http://localhost:8888/resources/payment/INIstdpay_pc_return.jsp">
                             
 				    		<label class="col-10 col-sm-2 input param" style="border:none; display:none;">결제방법</label>
                             <label class="col-10 col-sm-9 input" style="display: none;">
