@@ -20,30 +20,28 @@ var IMP = window.IMP; // 생략 가능
 IMP.init("imp50844488"); // 예: imp00000000
 
 function requestPay() {
+	
+	console.log("requestPay click")
+	
 	IMP.request_pay({
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
-	    merchant_uid: "order_no_0001", // 상점에서 관리하는 주문 번호
-	    name : '주문명:결제테스트',
-	    amount : 14000,
-	    buyer_email : 'iamport@siot.do',
-	    buyer_name : '구매자이름',
-	    buyer_tel : '010-1234-5678',
-	    buyer_addr : '서울특별시 강남구 삼성동',
-	    buyer_postcode : '123-456'
+	    merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
+	    name : "<%=hos.getHos_name() %> 예약금",
+	    amount : 100,
+	    buyer_email : $('input[name=ownerEmail]').val(),
+	    buyer_name : $('input[name=ownerName]').val(),
+	    buyer_tel : $('input[name=ownerPhone]').val(),
+	    buyer_addr : $('input[name=ownerAddress]').val(),
 	}, function(rsp) {
 	    if ( rsp.success ) {
 	    	//[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
 	    	jQuery.ajax({
-	    		url: "/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
+	    		url: "http://localhost:8888/payments/complete", //cross-domain error가 발생하지 않도록 주의해주세요
 	    		type: 'POST',
 	    		dataType: 'json',
 	    		data: {
 		    		imp_uid : rsp.imp_uid
-		    		merchant_uid : rsp.merchant_uid
-		    		paid_amount : rsp.paid_amount
-		    		
-		    		
 		    		//기타 필요한 데이터가 있으면 추가 전달
 	    		}
 	    	}).done(function(data) {
@@ -54,6 +52,13 @@ function requestPay() {
 	    			msg += '\n상점 거래ID : ' + rsp.merchant_uid;
 	    			msg += '\결제 금액 : ' + rsp.paid_amount;
 	    			msg += '카드 승인번호 : ' + rsp.apply_num;
+	    			
+	    			console.log(msg)
+	    			
+	    			console.log("---------------")
+	    			
+	    			$("form").submit();
+	    			console.log("form submit")
 	    			
 	    			alert(msg);
 	    		} else {
@@ -145,7 +150,7 @@ button {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('input[name=hosCode]').attr('value', <%=hos.getHosCode() %>);
+	$('input[name=hosCode]').attr('value', <%=hos.getHos_code() %>);
 })
 
 </script> 
@@ -165,48 +170,48 @@ $(document).ready(function() {
 
 <fieldset>
 
-<legend><%=hos.getHosName() %>병원 정보</legend>
+<legend><%=hos.getHos_name() %> 정보</legend>
 
 <table>
 
 <tr>
 	<th>병원명 : </th>
-	<td><%=hos.getHosName() %></td>
+	<td id="hosName"><%=hos.getHos_name() %></td>
 </tr>
 
 <tr>
 	<th>주소 : </th>
-	<td><%=hos.getHosAdd() %></td>
+	<td><%=hos.getHos_add() %></td>
 </tr>
 
 <tr>
 	<th>전화번호 : </th>
-	<td><%=hos.getHosCall() %></td>
+	<td><%=hos.getHos_call() %></td>
 </tr>
 
 <tr>
 	<th>우편번호 : </th>
-	<td><%=hos.getHosZip() %></td>
+	<td><%=hos.getHos_zip() %></td>
 </tr>
 
 <tr>
 	<th>진료시간 : </th>
-	<td><%=hos.getHosTime() %></td>
+	<td><%=hos.getHos_time() %></td>
 </tr>
 
 <tr>
 	<th>교통정보</th>
-	<td><%=hos.getHosTrans() %></td>
+	<td><%=hos.getHos_trans() %></td>
 </tr>
 
 <tr>
 	<th>주차 정보 : </th>
-	<td><%=hos.getHosPark() %></td>
+	<td><%=hos.getHos_park() %></td>
 </tr>
 
 <tr>
 	<th>중성화 가격 : </th>
-	<td><%=hos.getHosPrice() %></td>
+	<td><%=hos.getHos_price() %></td>
 </tr>
 
 
@@ -235,6 +240,10 @@ $(document).ready(function() {
 
 <div>
 	<label>주소 : <input type="text" name="ownerAddress"></label><br><br>
+</div>
+
+<div>
+	<label>이메일 : <input type="text" name="ownerEmail"></label><br><br>
 </div>
 
 <div>
