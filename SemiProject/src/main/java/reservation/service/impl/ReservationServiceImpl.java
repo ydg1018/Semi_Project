@@ -22,7 +22,7 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		String param = req.getParameter("hosCode");
 		if( null !=param && !"".equals(param) ) {
-			hosInfo.setHosCode( Integer.parseInt(param));
+			hosInfo.setHos_code( Integer.parseInt(param));
 		}
 		
 		return hosInfo;
