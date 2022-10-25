@@ -25,7 +25,7 @@ function requestPay() {
         pg: "html5_inicis",
         pay_method: "card",
         merchant_uid: "ORD20180131-0000011",
-        name: <%=hos.getHosName() %> 예약금,
+        name: "예약금",
         amount: 100,
         buyer_email: "romasity@naver.com",
         buyer_name: "윤대건",
