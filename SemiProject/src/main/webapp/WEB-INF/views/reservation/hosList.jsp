@@ -5,8 +5,6 @@
 
 <%	List<HosInfo> hList = (List) request.getAttribute("hosList"); %>    
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -35,7 +33,6 @@ form {
 	text-align: center;
 }
 
-
 </style>
 
 </head>
@@ -44,7 +41,6 @@ form {
 <header>
 <h1>헤더부분</h1>
 </header>
-
 
 <h1 style="text-align: center;">병원 목록</h1>
 <hr>
