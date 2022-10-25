@@ -14,7 +14,7 @@ import util.Paging;
 
 public class NoticeServiceImpl implements NoticeService {
 
-	//DAO객체
+		//DAO객체
 		private NoticeDao noticeDao = new NoticeDaoImpl();
 
 		 @Override
@@ -54,38 +54,5 @@ public class NoticeServiceImpl implements NoticeService {
 			 return paging;
 		}
 		 
-		 @Override
-		public Notice getNoticeIdx(HttpServletRequest req) {
-			
-			//전달파라미터를 저장할 객체 생성
-			Notice notice = new Notice();
-			
-			//전달파라미터 noticeIdx 추출(파싱)
-			String param = req.getParameter("noticeIdx");
-			if ( null != param && !"".equals(param) ) {	//전달파라미터가 null 또는 "" 빈문자열이 아닐 때 처리
-				notice.setNoticeIdx(Integer.parseInt(param));
-			}
-			return notice;
-		}
-	
-		@Override
-		public Notice view(Notice noticeIdx) {
-			
-			//DB연결 객체
-			Connection conn = JDBCTemplate.getConnection();
-			
-			//조회수 증가
-			if( noticeDao.updateHit(conn, noticeIdx) > 0) {
-				JDBCTemplate.commit(conn);
-			} else {
-				JDBCTemplate.rollback(conn);
-			}
-			
-			//게시글 조회
-			Notice notice = noticeDao.selectNoticeByNoticeIdx(conn, noticeIdx);
-			
-			//조회된 게시글 리턴
-			return notice;
-		} 
-		 
+		
 }

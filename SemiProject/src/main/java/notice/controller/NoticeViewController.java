@@ -16,24 +16,19 @@ import notice.service.impl.NoticeServiceImpl;
 public class NoticeViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private NoticeService noticeService = new NoticeServiceImpl();
+	
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/notice/view [GET]");
 	
-		System.out.println("NoticeViewController doGet() - noticeidx : " + req.getParameter("noticeIdx"));
-	
+		System.out.println("NoticeViewController doGet() - noticeIdx : " + req.getParameter("noticeidx"));
+		
 		//전달파라미터 객체 얻어오기
-		Notice noticeIdx = noticeService.getNoticeIdx(req);
-		System.out.println("NoticeViewController doGet() - noticeidx객체 :  " + noticeIdx);
 		
 		//게시글 상세보기 조회 결과 얻어오기
-		Notice viewNotice = noticeService.view(noticeIdx);
-		System.out.println("NoticeViewController doGet() - viewNotice : " + viewNotice);
 		
 		//조회결과를 MODEL값으로 전달
-		req.setAttribute("viewNotice", viewNotice);
 		
 		//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/notice/view.jsp").forward(req, resp);

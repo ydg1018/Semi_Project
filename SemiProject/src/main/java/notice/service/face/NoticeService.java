@@ -39,7 +39,6 @@ public interface NoticeService {
 	 * @param req - 요청 정보 객체
 	 * @return Notice - 전달파라미터 noticeIdx를 저장한 DTO객체
 	 */
-	public Notice getNoticeIdx(HttpServletRequest req);
 	
 	/**
 	 * 전달된 noticeIdx를 이용하여 게시글을 조회한다.
@@ -48,6 +47,5 @@ public interface NoticeService {
 	 * @param noticeIdx - 조회할 noticeIdx를 가진 DTO객체
 	 * @return notice - 조회된 게시글 정보
 	 */
-	public Notice view(Notice noticeIdx);
 
 }

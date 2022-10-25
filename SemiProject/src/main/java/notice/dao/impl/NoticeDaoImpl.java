@@ -148,8 +148,8 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		String sql = "";
 		sql += "UPDATE notice";
-		sql += " 	SET hit = hit + 1";
-		sql += " WHERE noticeIdx = ?";
+		sql += " 	SET notice_hit = notice_hit + 1";
+		sql += " WHERE notice_idx = ?";
 		
 		int res = 0;
 		
@@ -173,27 +173,27 @@ public class NoticeDaoImpl implements NoticeDao {
 		
 		String sql="";
 		sql += "SELECT";
-		sql += "	noticeIdx, noticeTitle, noticeContent";
-		sql += "	noticeDate, noticeHit";
+		sql += "	notice_idx, notice_title, notice_content";
+		sql += "	notice_date, notice_hit";
 		sql += " FROM notice";
-		sql += " WHERE noticeIdx = ? ";
+		sql += " WHERE notice_idx = ? ";
 		
 		Notice notice = null;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, noticeIdx.getNoticeIdx());
+			ps.setInt(2, noticeIdx.getNoticeIdx());
 			
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
 				notice = new Notice();
 				
-				notice.setNoticeIdx(rs.getInt("noticeIdx"));
-				notice.setNoticeTitle(rs.getString("noticeTitle"));
-				notice.setNoticeContent(rs.getString("noticeContent"));
-				notice.setNoticeDate(rs.getDate("noticeDate"));
-				notice.setNoticeHit(rs.getInt("noticeHit"));
+				notice.setNoticeIdx(rs.getInt("notice_idx"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContent(rs.getString("notice_content"));
+				notice.setNoticeDate(rs.getDate("notice_date"));
+				notice.setNoticeHit(rs.getInt("notice_hit"));
 				
 			}
 					

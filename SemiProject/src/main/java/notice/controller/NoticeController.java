@@ -25,6 +25,7 @@ public class NoticeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/notice/list [GET]");
 		
+		
 		//전달파라미터에서 현재 페이징 객체 계산하기
 		Paging paging = noticeService.getPaging(req);
 		System.out.println("[TEST]" + paging);
