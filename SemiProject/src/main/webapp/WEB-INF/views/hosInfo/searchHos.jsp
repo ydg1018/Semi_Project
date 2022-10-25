@@ -5,7 +5,6 @@
     
 <% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %>    
 
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,14 +26,6 @@
   margin: 0 auto;
 }
 
-input {
-  width: 100%;
-  border: 1px solid #bbb;
-  border-radius: 8px;
-  padding: 10px 12px;
-  font-size: 14px;
-}
-
 img {
   position : absolute;
   width: 17px;
@@ -46,91 +37,95 @@ img {
 th, td {
 	text-align: center;
 }
+
 td:nth-child(2) {
 	text-align: justify;
 }
 </style>
+
+<script type="text/javascript">
+
+function hide() {
+	const row = document.getElementById('contents');
+	row.style.display = 'none';
+}
+
+function show() {
+	const row = document.getElementById('contents');
+	row.style.display = '';
+}
+
+</script>
     
 </head>
 <body>
 
-<h1 style="text-align: center;">전체 병원 목록</h1>
+<h1 style="text-align: center;">병원 검색</h1>
 <hr><br>
 
 <div class="search">
-  <input type="text" placeholder="검색어 입력">
-  <img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+	<form method="get" action="./result">
+		<input type="text" placeholder="검색어를 입력하세요" name="hos_name"
+		style="width: 100%;
+		border: 1px solid #bbb;
+		border-radius: 8px;
+		padding: 10px 12px;
+		font-size: 14px;">
+	  	<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
+		<input type="submit" value="검색">
+	</form>	
 </div>
 
 <br><br>
 
-<p style="margin-top:-12px"></p>
-<div id="map" style="width:70%; height:350px; margin: 0 auto;"></div>
+<button class="btn btn-info" onclick="show()">전체목록 보기</button>
+<button class="btn btn-info" onclick="hide()">전체목록 숨기기</button>
 
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8dac43c5806fc51358462c78ce0d3a41"></script>
-<script>
-var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = { 
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 10 // 지도의 확대 레벨 
-    }; 
-
-var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
-
-// HTML5의 geolocation으로 사용할 수 있는지 확인합니다 
-if (navigator.geolocation) {
-    
-    // GeoLocation을 이용해서 접속 위치를 얻어옵니다
-    navigator.geolocation.getCurrentPosition(function(position) {
-        
-        var lat = position.coords.latitude, // 위도
-            lon = position.coords.longitude; // 경도
-        
-        var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
-        
-        // 마커와 인포윈도우를 표시합니다
-        displayMarker(locPosition, message);
-            
-      });
-    
-} else { // HTML5의 GeoLocation을 사용할 수 없을때 마커 표시 위치와 인포윈도우 내용을 설정합니다
-    
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),    
-        message = 'geolocation을 사용할수 없어요..'
-        
-    displayMarker(locPosition, message);
-}
-
-// 지도에 마커와 인포윈도우를 표시하는 함수입니다
-function displayMarker(locPosition, message) {
-
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({  
-        map: map, 
-        position: locPosition
-    }); 
-    
-    var iwContent = message, // 인포윈도우에 표시할 내용
-        iwRemoveable = true;
-
-    // 인포윈도우를 생성합니다
-    var infowindow = new kakao.maps.InfoWindow({
-        content : iwContent,
-        removable : iwRemoveable
-    });
-    
-    // 인포윈도우를 마커위에 표시합니다 
-    infowindow.open(map, marker);
-    
-    // 지도 중심좌표를 접속위치로 변경합니다
-    map.setCenter(locPosition);      
-}    
-</script>
+<button class="btn btn-info">현재 위치</button>
 
 <br><br>
 
-<table class="table table-striped table-hover table-condensed">
+<p style="margin-top:-12px"></p>
+<div id="map" style="width:70%; height:200px; margin: 0 auto;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8dac43c5806fc51358462c78ce0d3a41"></script>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div  
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.413294, 127.269311), // 지도의 중심좌표
+        level: 3 // 지도의 확대 레벨
+    };
+
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
+ 
+// 마커를 표시할 위치와 title 객체 배열입니다 
+var positions = [
+];
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+for (var i = 0; i < positions.length; i ++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+}
+</script>
+
+<br><br>
+<div id="contents">
+<table id="hos" class="table table-striped table-hover table-condensed">
 <tr>
 	<th style="width: 30%;">병원명</th>
 	<th style="width: 30%;">주소</th>
@@ -138,14 +133,19 @@ function displayMarker(locPosition, message) {
 	
 </tr>
 
+
 <%	for(int i=0; i<hosInfo.size(); i++) { %>
-<tr>
+<tr >
 	<td><a href="./detail?hos_name=<%=hosInfo.get(i).getHos_name() %>">
-		<%=hosInfo.get(i).getHos_name() %></td>
-		</a>
+		<%=hosInfo.get(i).getHos_name() %></a></td>
+		
 	<td><%=hosInfo.get(i).getHos_add() %></td>
 	<td><%=hosInfo.get(i).getHos_call() %></td>
 </tr>
 <%	} %>
 
 </table>
+
+<%@ include file="../layout/paging.jsp" %>
+
+</div>

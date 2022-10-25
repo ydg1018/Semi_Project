@@ -24,11 +24,11 @@ public class DepInfoDaoImpl implements DepInfoDao {
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT dep_item, dep_detail FROM depInfo";
-		sql += " ORDER BY dep_code";
+		sql += "SELECT dep_item, dep_detail, det_item, det_detail, trt_item FROM AllInfo";
+		sql += " ORDER BY det_code";
 		
 		//결과 저장할 List
-		List<DepInfo> depInfo = new ArrayList<>();
+		List<DepInfo> list = new ArrayList<DepInfo>();
 		
 		try {
 			ps = conn.prepareStatement(sql); //SQL수행 객체
@@ -37,15 +37,18 @@ public class DepInfoDaoImpl implements DepInfoDao {
 			
 			//조회 결과 처리
 			while(rs.next()) {
-				
+
 				//조회 결과 행 저장 DTO객체
-				DepInfo d = new DepInfo();
+				DepInfo dt = new DepInfo();
 				
-				d.setDep_item(rs.getString("dep_item"));
-				d.setDep_detail(rs.getString("dep_detail"));
+				dt.setDep_item(rs.getString("dep_item"));
+				dt.setDep_detail(rs.getString("dep_detail"));
+				dt.setDet_item(rs.getString("det_item"));
+				dt.setDet_detail(rs.getString("det_detail"));
+				dt.setTrt_item(rs.getString("trt_item"));
 				
 				//리스트에 결과값 저장하기
-				depInfo.add(d);
+				list.add(dt);
 			}
 			
 		} catch (SQLException e) {
@@ -56,7 +59,77 @@ public class DepInfoDaoImpl implements DepInfoDao {
 		}
 		
 		//최종 결과 반환
-		return depInfo;
+		return list;
+	}
+ 
+	@Override
+	public DepInfo selectDetByDetitem(Connection conn, DepInfo det_item) {
+
+		String sql = "";
+		sql += "SELECT det_item, det_detail, trt_item FROM AllInfo";
+		sql += " WHERE det_item = ?";
+		
+		DepInfo dt = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, det_item.getDet_item());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				dt = new DepInfo();
+				
+				dt.setDet_item(rs.getString("det_item"));
+				dt.setDet_detail(rs.getString("det_detail"));
+				dt.setTrt_item(rs.getString("trt_item"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return dt;
+	}
+	
+	@Override
+	public ArrayList<DepInfo> searchDepInfo(String det_detail) {
+		
+		ArrayList<DepInfo> list = new ArrayList<DepInfo>();
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		try {
+			ps = conn.prepareStatement
+				("SELECT det_item, det_detail FROM AllInfo WHERE det_detail like '%" + det_detail + "%'");
+			
+			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				
+				//조회 결과 행 저장 DTO객체
+				DepInfo dt = new DepInfo();
+				
+				dt.setDet_item(rs.getString("det_item"));
+				dt.setDet_detail(rs.getString("det_detail"));
+				
+				//리스트에 결과값 저장하기
+				list.add(dt);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return list;
 	}
 
 }
