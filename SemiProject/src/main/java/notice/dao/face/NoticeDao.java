@@ -32,5 +32,22 @@ public interface NoticeDao {
 	 * @return int - 테이블의 전체 행 수
 	 */
 	public int selectCntAll(Connection conn);
+	
+	/**
+	 * 조회된 게시글의 조회수 증가시키기
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @param noticeIdx - 조회할 게시글의 noticeIdx를 가진 DTO객체
+	 * @return int - UPDATE쿼리 수행 결과
+	 */
+	public int updateHit(Connection conn, Notice noticeIdx);
 
+	/**
+	 * 지정된 noticeIdx의 게시글 조회하기
+	 * @param conn - DB 연결 객체
+	 * @param noticeIdx - 조회할 공지사항의 noticeIdx를 가진 DTO객체
+	 * @return Notice - 조회된 게시글의 상세정보 DTO객체
+	 */
+	public Notice selectNoticeByNoticeIdx(Connection conn, Notice noticeIdx);
+	
 }

@@ -142,5 +142,71 @@ public class NoticeDaoImpl implements NoticeDao {
 		//최종 결과 반환
 		return count;
 	}
+	
+	@Override
+	public int updateHit(Connection conn, Notice noticeIdx) {
+		
+		String sql = "";
+		sql += "UPDATE notice";
+		sql += " 	SET notice_hit = notice_hit + 1";
+		sql += " WHERE notice_idx = ?";
+		
+		int res = 0;
+		
+		try {
+			ps=conn.prepareStatement(sql);
+			ps.setInt(1, noticeIdx.getNoticeIdx());
+			
+			res = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+	
+	@Override
+	public Notice selectNoticeByNoticeIdx(Connection conn, Notice noticeIdx) {
+		
+		String sql="";
+		sql += "SELECT";
+		sql += "	notice_idx, notice_title, notice_content";
+		sql += "	notice_date, notice_hit";
+		sql += " FROM notice";
+		sql += " WHERE notice_idx = ? ";
+		
+		Notice notice = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setInt(2, noticeIdx.getNoticeIdx());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				notice = new Notice();
+				
+				notice.setNoticeIdx(rs.getInt("notice_idx"));
+				notice.setNoticeTitle(rs.getString("notice_title"));
+				notice.setNoticeContent(rs.getString("notice_content"));
+				notice.setNoticeDate(rs.getDate("notice_date"));
+				notice.setNoticeHit(rs.getInt("notice_hit"));
+				
+			}
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		
+		return notice;
+	}
+	
 
 }
