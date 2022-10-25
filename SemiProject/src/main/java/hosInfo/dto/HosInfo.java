@@ -2,109 +2,110 @@ package hosInfo.dto;
 
 public class HosInfo {
 	
-	private int hosCode;
-	private String hosName;
-	private String hosAdd;
-	private int hosZip;
-	private String hosCall;
-	private String hosTime;
-	private String hosTrans;
-	private String hosPark;
-	private int hosPrice;
+	private int hos_code;
+	private String hos_name;
+	private String hos_add;
+	private int hos_zip;
+	private String hos_call;
+	private String hos_time;
+	private String hos_trans;
+	private String hos_park;
+	private int hos_price;
 	
 	public HosInfo() {}
 
-	public HosInfo(int hosCode, String hosName, String hosAdd, int hosZip, String hosCall, String hosTime,
-			String hosTrans, String hosPark, int hosPrice) {
+	public HosInfo(int hos_code, String hos_name, String hos_add, int hos_zip, String hos_call, String hos_time,
+			String hos_trans, String hos_park, int hos_price) {
 		super();
-		this.hosCode = hosCode;
-		this.hosName = hosName;
-		this.hosAdd = hosAdd;
-		this.hosZip = hosZip;
-		this.hosCall = hosCall;
-		this.hosTime = hosTime;
-		this.hosTrans = hosTrans;
-		this.hosPark = hosPark;
-		this.hosPrice = hosPrice;
+		this.hos_code = hos_code;
+		this.hos_name = hos_name;
+		this.hos_add = hos_add;
+		this.hos_zip = hos_zip;
+		this.hos_call = hos_call;
+		this.hos_time = hos_time;
+		this.hos_trans = hos_trans;
+		this.hos_park = hos_park;
+		this.hos_price = hos_price;
 	}
 
 	@Override
 	public String toString() {
-		return "HosInfo [hosCode=" + hosCode + ", hosName=" + hosName + ", hosAdd=" + hosAdd + ", hosZip=" + hosZip
-				+ ", hosCall=" + hosCall + ", hosTime=" + hosTime + ", hosTrans=" + hosTrans + ", hosPark=" + hosPark
-				+ ", hosPrice=" + hosPrice + "]";
+		return "HosInfo [hos_code=" + hos_code + ", hos_name=" + hos_name + ", hos_add=" + hos_add + ", hos_zip="
+				+ hos_zip + ", hos_call=" + hos_call + ", hos_time=" + hos_time + ", hos_trans=" + hos_trans
+				+ ", hos_park=" + hos_park + ", hos_price=" + hos_price + "]";
 	}
 
-	public int getHosCode() {
-		return hosCode;
+	public int getHos_code() {
+		return hos_code;
 	}
 
-	public void setHosCode(int hosCode) {
-		this.hosCode = hosCode;
+	public void setHos_code(int hos_code) {
+		this.hos_code = hos_code;
 	}
 
-	public String getHosName() {
-		return hosName;
+	public String getHos_name() {
+		return hos_name;
 	}
 
-	public void setHosName(String hosName) {
-		this.hosName = hosName;
+	public void setHos_name(String hos_name) {
+		this.hos_name = hos_name;
 	}
 
-	public String getHosAdd() {
-		return hosAdd;
+	public String getHos_add() {
+		return hos_add;
 	}
 
-	public void setHosAdd(String hosAdd) {
-		this.hosAdd = hosAdd;
+	public void setHos_add(String hos_add) {
+		this.hos_add = hos_add;
 	}
 
-	public int getHosZip() {
-		return hosZip;
+	public int getHos_zip() {
+		return hos_zip;
 	}
 
-	public void setHosZip(int hosZip) {
-		this.hosZip = hosZip;
+	public void setHos_zip(int hos_zip) {
+		this.hos_zip = hos_zip;
 	}
 
-	public String getHosCall() {
-		return hosCall;
+	public String getHos_call() {
+		return hos_call;
 	}
 
-	public void setHosCall(String hosCall) {
-		this.hosCall = hosCall;
+	public void setHos_call(String hos_call) {
+		this.hos_call = hos_call;
 	}
 
-	public String getHosTime() {
-		return hosTime;
+	public String getHos_time() {
+		return hos_time;
 	}
 
-	public void setHosTime(String hosTime) {
-		this.hosTime = hosTime;
+	public void setHos_time(String hos_time) {
+		this.hos_time = hos_time;
 	}
 
-	public String getHosTrans() {
-		return hosTrans;
+	public String getHos_trans() {
+		return hos_trans;
 	}
 
-	public void setHosTrans(String hosTrans) {
-		this.hosTrans = hosTrans;
+	public void setHos_trans(String hos_trans) {
+		this.hos_trans = hos_trans;
 	}
 
-	public String getHosPark() {
-		return hosPark;
+	public String getHos_park() {
+		return hos_park;
 	}
 
-	public void setHosPark(String hosPark) {
-		this.hosPark = hosPark;
+	public void setHos_park(String hos_park) {
+		this.hos_park = hos_park;
 	}
 
-	public int getHosPrice() {
-		return hosPrice;
+	public int getHos_price() {
+		return hos_price;
 	}
 
-	public void setHosPrice(int hosPrice) {
-		this.hosPrice = hosPrice;
-	}	
+	public void setHos_price(int hos_price) {
+		this.hos_price = hos_price;
+	}
+
 	
 }
