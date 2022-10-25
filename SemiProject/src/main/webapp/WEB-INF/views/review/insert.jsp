@@ -16,8 +16,8 @@
 $(document).ready(function() {
 	
 	$('#content').summernote({
-		width: 1000,
-		height: 500,
+		width: 800,
+		height: 400,
 		placeholder: '내용을 입력하세요',
 		focus: true,
 		toolbar: [
@@ -27,10 +27,8 @@ $(document).ready(function() {
 		    ['fontsize', ['fontsize']],
 		    ['color', ['color']],
 		    ['para', ['ul', 'ol', 'paragraph']],
-		    ['table', ['table']],
 			['insert', ['link', 'picture', 'video']],
-			['view', ['fullscreen', 'codeview', 'help']],
-		    ['height', ['height']]
+			['view', ['codeview']],
 		  ]
 	});
 
@@ -50,18 +48,23 @@ $(document).ready(function() {
 
 <style type="text/css">
 
-.content-box {
-	text-align: center;
-}
-
 input {
-	width: 800px; 
 	border: 2px solid #ddd;
 }
 
 .note-editor {
-	margin: 0 auto;
+	display: inline-block;
+/* 	margin: 0 auto; */
 }
+
+table {
+	margin: 0 auto; }
+	
+.board-top {
+	text-align: center;
+	padding-bottom: 15px;
+	}
+
 </style>
 </head>
 <body>
@@ -75,12 +78,17 @@ input {
 <br><br><br>
 
 <div class="content-box">
-<form action="./insert" method="post">
+<form action="./insert" method="post" enctype="multipart/form-data">
 
-	<input type="text" name="title" placeholder="제목을 입력하세요"><br><br>
-	<textarea id="content" name="content"></textarea><br>
+<table>
+	<tr><td class="board-top"><%=session.getAttribute("owner_nick") %></td></tr>
+	<tr></tr>
+	<tr><td class="board-top"><input type="text" name="title" placeholder="제목을 입력하세요" style="width: 700px;"></td></tr>
+	<tr><td><textarea id="content" name="content"></textarea></td></tr>
+	<tr><td style="padding-bottom: 15px">첨부파일<input type="file" name="file"></td></tr>
+</table>	
 	
-	<div class="button">
+	<div class="text-center">
 	<button class="btn btn-default" type="submit" id="send">등록</button>
 	<a class="btn btn-default" href="./list" role="button">취소</a>
 	</div>
@@ -88,3 +96,11 @@ input {
 </div>
 </body>
 </html>
+
+
+
+
+
+
+
+

@@ -32,26 +32,21 @@ protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws S
 	System.out.println("/review/insert [POST]");
 
 	//전달 파라미터 한글 인코딩 처리
-	req.setCharacterEncoding("UTF-8");
+//	req.setCharacterEncoding("UTF-8");
 			
-	Review review = new Review();
+//	Review review = new Review();
 	
 	//세션정보 객체
-	HttpSession session = req.getSession();
-	
-	String owner_no = (String) session.getAttribute("owner_no");
-	
-	
-	
-	//테스트 owner_no -> 로그인 구현되면 삭제할 것
-	owner_no = "1";
+//	HttpSession session = req.getSession();
+//	
+//	String owner_no = (String) session.getAttribute("owner_no");
 	
 	
-	review.setBoardTitle(req.getParameter("title"));
-	review.setBoardContent(req.getParameter("content"));
-	review.setOwnerNo(Integer.parseInt(owner_no));
+//	review.setBoardTitle(req.getParameter("title"));
+//	review.setBoardContent(req.getParameter("content"));
+//	review.setOwnerNo(Integer.parseInt(owner_no));
 	
-	reviewService.write(review);
+	reviewService.write(req);
 	
 	resp.sendRedirect("/review/list");
 	
