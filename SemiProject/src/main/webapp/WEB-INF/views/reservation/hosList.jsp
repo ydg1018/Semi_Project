@@ -86,7 +86,7 @@ form {
 
 </div>
 
-<%@ include file="../layout/paging.jsp" %>
+<%@ include file="../layout/reserPaging.jsp" %>
 
 <footer>
 <h1>풋터부분</h1>
