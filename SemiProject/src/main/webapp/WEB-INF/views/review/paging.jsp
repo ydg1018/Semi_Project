@@ -16,7 +16,7 @@
 		
 		<%-- 이전 페이지로 이동 --%>
 		<%	if( paging.getCurPage() != 1 ) { %>
-		<li><a href="./list?curPage=<%=paging.getCurPage() - 1 %>">&lt;</a></li>
+		<li><a href="./list?curPage=<%=paging.getCurPage()-1 %>&f=<%=request.getParameter("f") %>&q=<%=request.getParameter("q") %>">&lt;</a></li>
 		<% } %>
 		
 		
@@ -24,21 +24,21 @@
 		<!-- 현재 보고있는 페이지를 활성화 -->
 		<% for(int i=paging.getStartPage(); i<=paging.getEndPage(); i++) { %>
 		<%		if( i == paging.getCurPage() ) { %>
-		<li class="active"><a href="./list?curPage=<%=i %>"><%=i %></a></li>
+		<li class="active"><a href="./list?curPage=<%=i %>&f=<%=request.getParameter("f") %>&q=<%=request.getParameter("q") %>"><%=i %></a></li>
 		<%		} else { %>
-		<li><a href="./list?curPage=<%=i %>"><%=i %></a></li>
+		<li><a href="./list?curPage=<%=i %>&f=<%=request.getParameter("f") %>&q=<%=request.getParameter("q") %>"><%=i %></a></li>
 		<%		} %>
 		<% 	}%>
 	
 		<%-- 다음 페이지로 이동 --%>
 		<!-- 마지막페이지일때 버튼 안보이게 하기 -->
 		<%	if( paging.getCurPage() != paging.getTotalPage() ) { %>
-		<li><a href="./list?curPage=<%=paging.getCurPage() + 1 %>">&gt;</a></li>
+		<li><a href="./list?curPage=<%=paging.getCurPage()+1 %>&f=<%=request.getParameter("f") %>&q=<%=request.getParameter("q") %>">&gt;</a></li>
 		<% } %>
 		
 		<!-- 마지막 페이지로 이동 -->
 		<%	if( paging.getCurPage() != paging.getTotalPage() ) { %>
-		<li><a href="./list?curPage=<%=paging.getTotalPage() %>">&rarr; 끝</a></li>
+		<li><a href="./list?curPage=<%=paging.getTotalPage() %>&f=<%=request.getParameter("f") %>&q=<%=request.getParameter("q") %>">&rarr; 끝</a></li>
 		<% } %>
 	</ul>
 </div>

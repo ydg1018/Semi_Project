@@ -18,26 +18,20 @@ public class DepInfoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     
 	//서비스 객체
-	private DepInfoService depInfoService = new DepInfoServiceImpl();
+	private DepInfoService ptService = new DepInfoServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/dep/list [GET]");
 		
 		//테이블 전체 조회
-		List<DepInfo> depInfo = depInfoService.getList();
+		List<DepInfo> list = ptService.getList();
 		
 		//조회결과를 MODEL값에 전달
-		req.setAttribute("depInfo", depInfo);
+		req.setAttribute("list", list);
 		
 		//VIEW 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/depInfo/searchDep.jsp").forward(req, resp);
-		
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/dep/list [POST]");
+		req.getRequestDispatcher("/WEB-INF/views/depInfo/searchDepInfo.jsp").forward(req, resp);
 		
 	}
 }

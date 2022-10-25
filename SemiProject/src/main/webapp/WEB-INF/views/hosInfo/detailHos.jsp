@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="hosInfo.dto.HosInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -19,44 +20,15 @@
 
 </head>
 <body>
-<h1>
+<h1 style="text-align: center;">
 <%=detailHosInfo.getHos_name() %>
-<button class="btn btn-primary" onclick="location.href='../hos/list'">병원 전체 목록</button>
+<button class="btn btn-info" onclick="location.href='../hos/list'">병원 전체 목록</button>
 </h1>
 
 <hr>
-
-<table class="table table-bordered">
-
-<tr>
-	<td class="info">주소</td>
-	<td><%=detailHosInfo.getHos_add() %></td>
-</tr>
-<tr>
-	<td class="info">우편번호</td>
-	<td><%=detailHosInfo.getHos_zip() %></td>
-</tr>
-<tr>	
-	<td class="info">전화번호</td>
-	<td><%=detailHosInfo.getHos_call() %></td>
-</tr>
-<tr>
-	<td class="info">진료시간</td>
-	<td><%=detailHosInfo.getHos_time() %></td>
-</tr>
-<tr>
-	<td class="info">오시는 길</td>
-	<td><%=detailHosInfo.getHos_trans() %></td>
-</tr>
-<tr>
-	<td class="info">주차 정보</td>
-	<td><%=detailHosInfo.getHos_park() %></td>
-</tr>
-
-</table>
-
+<br>
 <p style="margin-top:-12px"></p>
-<div id="map" style="width:50%; height:350px;"></div>
+<div id="map" style="width:50%; height:350px; margin: 0 auto;"></div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8dac43c5806fc51358462c78ce0d3a41"></script>
 <script>
@@ -118,4 +90,36 @@ function displayMarker(locPosition, message) {
     map.setCenter(locPosition);      
 }    
 </script>
+
+<br><br>
+
+<table class="table table-bordered">
+
+<tr>
+	<td class="info">주소</td>
+	<td><%=detailHosInfo.getHos_add() %></td>
+</tr>
+<tr>
+	<td class="info">우편번호</td>
+	<td><%=detailHosInfo.getHos_zip() %></td>
+</tr>
+<tr>	
+	<td class="info">전화번호</td>
+	<td><%=detailHosInfo.getHos_call() %></td>
+</tr>
+<tr>
+	<td class="info">진료시간</td>
+	<td><%=detailHosInfo.getHos_time() %></td>
+</tr>
+<tr>
+	<td class="info">오시는 길</td>
+	<td><%=detailHosInfo.getHos_trans() %></td>
+</tr>
+<tr>
+	<td class="info">주차 정보</td>
+	<td><%=detailHosInfo.getHos_park() %></td>
+</tr>
+
+</table>
+
 </body>

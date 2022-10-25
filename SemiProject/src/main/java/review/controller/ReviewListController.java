@@ -24,14 +24,27 @@ public class ReviewListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/review/list [GET]");
 		
+		//임시변수
+		String field_ = req.getParameter("f");
+		String query_ = req.getParameter("q");
+		
+		String field = "board_title";
+		if(field_ != null) 
+			field = field_;
+			
+		String query = "";
+		if(query_ != null) 
+			query = query_;			
+		
+		
 		//페이징객체 생성
 		Paging paging = reviewService.getPaging(req);
 		
 		//페이징 객체를 MODEL값 전달
 		req.setAttribute("paging", paging);
 		
-		//게시글 페이징 목록 조회
-		List<Review> reviewList = reviewService.getList( paging );
+		//게시글 페이징, 검색 목록 조회
+		List<Review> reviewList = reviewService.getList( paging, field, query );
 		
 		//test
 //		for(Review r : reviewList)	System.out.println(r);

@@ -5,12 +5,16 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import review.dto.Review;
+import util.BoardFile;
 import util.Paging;
 
 public interface ReviewService {
 
 	/**
 	 * 게시글 전체 조회
+	 * @param query 
+	 * @param field 
+	 * @param paging 
 	 * @return List<Review> - 게시글 전체 조회 목록
 	 */
 	List<Review> getList();
@@ -21,7 +25,16 @@ public interface ReviewService {
 	 * @param paging - 페이징 정보 객체
 	 * @return List<Review> - 게시글 전체 조회 목록
 	 */
-	List<Review> getList(Paging paging);
+/*	List<Review> getList(Paging paging); */
+
+	/**
+	 * 게시글 페이징 목록 & 검색 결과 조회
+	 * @param paging
+	 * @param field
+	 * @param query
+	 * @return
+	 */
+	List<Review> getList(Paging paging, String field, String query);
 	
 	/**
 	 * 게시글 페이징 객체 생성
@@ -48,9 +61,29 @@ public interface ReviewService {
 	 */
 	Review view(Review boardno);
 
-	public void write(Review review);
-
-	public void update(Review review);
+	public void write(HttpServletRequest req);
+	
+	/**
+	 * 첨부파일 정보 조회하기
+	 * 
+	 * @param viewBoard - 첨부파일과 연결된 게시글의 번호
+	 * @return BoardFile - 첨부파일 정보 DTO객체
+	 */
+	public BoardFile viewFile(Review viewBoard);
+	
+	/**
+	 * 게시글 수정
+	 * 
+	 * @param req - 요청 정보 객체
+	 */
+	public void update(HttpServletRequest req);
+	
+	/**
+	 * 게시글 삭제
+	 * 
+	 * @param board - 삭제할 게시글 번호 객체
+	 */
+	public void delete(Review board);
 	
 	
 }
