@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import review.dto.Review;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
+import util.BoardFile;
 
 @WebServlet("/review/view")
 public class ReviewViewController extends HttpServlet {
@@ -35,6 +36,12 @@ public class ReviewViewController extends HttpServlet {
 		
 		//조회 결과를 MODEL값으로 전달
 		req.setAttribute("viewBoard", viewBoard);
+		
+		//첨부파일 정보 조회
+		BoardFile boardFile = reviewService.viewFile(viewBoard);
+		
+		//첨부파일 정보를 MODEL값 전달
+		req.setAttribute("boardFile", boardFile);
 		
 		//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
