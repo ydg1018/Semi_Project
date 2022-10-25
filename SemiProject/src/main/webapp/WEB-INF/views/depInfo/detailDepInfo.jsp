@@ -1,15 +1,15 @@
-<%@page import="depInfo.dto.TrtInfo"%>
-<%@page import="java.util.List"%>
+<%@page import="depInfo.dto.DepInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<% List<TrtInfo> trtInfo = (List) request.getAttribute("trtInfo"); %>
-
+<%
+DepInfo detail = (DepInfo) request.getAttribute("detail");
+%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>::: 진료항목 정보 :::</title>
+<title> <%=detail.getDet_item() %> 정보</title>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -21,23 +21,24 @@
 
 </head>
 <body>
+<h1 style="text-align: center;">
+<button class="btn btn-info" onclick="location.href='../dep/list'">진료과 전체 목록</button>
+</h1>
 
-<h1 style="text-align: center;">진료항목 정보</h1>
 <hr>
 
-<table class="table table-striped table-hover table-condensed">
+<table class="table table-bordered">
 
 <tr>
-	<th style="width: 10%;">진료항목</th>
+	<td class="info">세부과</td>
+	<td class="info">설명</td>
+	<td class="info">진료항목</td>
 </tr>
-
-<%	for(int i=0; i<trtInfo.size(); i++) { %>
 <tr>
-	<td><strong><%=trtInfo.get(i).getTrt_item() %></strong></td>
+	<td><%=detail.getDet_item() %></td>
+	<td><%=detail.getDet_detail() %></td>
+	<td><%=detail.getTrt_item() %></td>
 </tr>
-<%	} %>
-
 </table>
-
 </body>
 </html>

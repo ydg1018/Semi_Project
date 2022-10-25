@@ -1,7 +1,6 @@
 package depInfo.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,25 +12,28 @@ import depInfo.dto.DepInfo;
 import depInfo.service.face.DepInfoService;
 import depInfo.service.impl.DepInfoServiceImpl;
 
-@WebServlet("/dep/list")
-public class DepInfoController extends HttpServlet {
+@WebServlet("/dep/detail")
+public class DepInfoDetailController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    
+	
 	//서비스 객체
-	private DepInfoService ptService = new DepInfoServiceImpl();
+	private DepInfoService depInfoService = new DepInfoServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/dep/list [GET]");
+		System.out.println("/det/detail [GET]");
 		
-		//테이블 전체 조회
-		List<DepInfo> list = ptService.getList();
+		//전달 파라미터 객체 얻어오기
+		DepInfo det_item = depInfoService.getDet_item(req);
 		
-		//조회결과를 MODEL값에 전달
-		req.setAttribute("list", list);
+		//진료과 정보 상세보기 조회 결과 얻어오기
+		DepInfo detail = depInfoService.view(det_item);
 		
-		//VIEW 지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/depInfo/searchDepInfo.jsp").forward(req, resp);
+		//조회 결과를 MODEL값으로 전달
+		req.setAttribute("detail", detail);
 		
+		//VIEW
+		req.getRequestDispatcher("/WEB-INF/views/depInfo/detailDepInfo.jsp").forward(req, resp);
 	}
+
 }
