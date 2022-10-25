@@ -41,15 +41,15 @@ public class SearchReserDaoImpl implements SearchReserDao {
 			while( rs.next() ) {
 				HosInfo hos = new HosInfo();
 				
-				hos.setHosCode( rs.getInt("hos_code"));
-				hos.setHosName( rs.getString("hos_name"));
-				hos.setHosAdd( rs.getString("hos_add"));
-				hos.setHosZip( rs.getInt("hos_zip"));
-				hos.setHosCall( rs.getString("hos_call"));
-				hos.setHosTime( rs.getString("hos_time"));
-				hos.setHosTrans( rs.getString("hos_trans"));
-				hos.setHosPark( rs.getString("hos_park"));
-				hos.setHosPrice( rs.getInt("hos_price"));
+				hos.setHos_code( rs.getInt("hos_code"));
+				hos.setHos_name( rs.getString("hos_name"));
+				hos.setHos_add( rs.getString("hos_add"));
+				hos.setHos_zip( rs.getInt("hos_zip"));
+				hos.setHos_call( rs.getString("hos_call"));
+				hos.setHos_time( rs.getString("hos_time"));
+				hos.setHos_trans( rs.getString("hos_trans"));
+				hos.setHos_park( rs.getString("hos_park"));
+				hos.setHos_price( rs.getInt("hos_price"));
 				
 				list.add(hos);
 				
@@ -109,22 +109,22 @@ public class SearchReserDaoImpl implements SearchReserDao {
 		try {
 			
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, hosName.getHosName());
+			ps.setString(1, hosName.getHos_name());
 			
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
 				HosInfo hos = new HosInfo();
 				
-				hos.setHosCode( rs.getInt("hos_code"));
-				hos.setHosName( rs.getString("hos_name"));
-				hos.setHosAdd( rs.getString("hos_add"));
-				hos.setHosZip( rs.getInt("hos_zip"));
-				hos.setHosCall( rs.getString("hos_call"));
-				hos.setHosTime( rs.getString("hos_time"));
-				hos.setHosTrans( rs.getString("hos_trans"));
-				hos.setHosPark( rs.getString("hos_park"));
-				hos.setHosPrice( rs.getInt("hos_price"));
+				hos.setHos_code( rs.getInt("hos_code"));
+				hos.setHos_name( rs.getString("hos_name"));
+				hos.setHos_add( rs.getString("hos_add"));
+				hos.setHos_zip( rs.getInt("hos_zip"));
+				hos.setHos_call( rs.getString("hos_call"));
+				hos.setHos_time( rs.getString("hos_time"));
+				hos.setHos_trans( rs.getString("hos_trans"));
+				hos.setHos_park( rs.getString("hos_park"));
+				hos.setHos_price( rs.getInt("hos_price"));
 				
 				hosInfo.add(hos);
 				

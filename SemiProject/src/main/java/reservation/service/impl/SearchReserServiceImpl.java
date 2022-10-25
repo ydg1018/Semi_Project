@@ -49,7 +49,7 @@ public class SearchReserServiceImpl implements SearchReserService {
 		
 		String param = req.getParameter("hosname");
 		if( null != param && !"".equals(param) ) {
-			hosName.setHosName(param);
+			hosName.setHos_name(param);
 		}
 		
 		return hosName;

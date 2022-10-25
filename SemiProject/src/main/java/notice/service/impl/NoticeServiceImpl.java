@@ -1,5 +1,6 @@
 package notice.service.impl;
 
+import java.sql.Connection;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,7 +14,7 @@ import util.Paging;
 
 public class NoticeServiceImpl implements NoticeService {
 
-	//DAO객체
+		//DAO객체
 		private NoticeDao noticeDao = new NoticeDaoImpl();
 
 		 @Override
@@ -52,5 +53,6 @@ public class NoticeServiceImpl implements NoticeService {
 			 
 			 return paging;
 		}
-	
+		 
+		
 }

@@ -19,11 +19,12 @@ import util.Paging;
 public class NoticeController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-private NoticeService noticeService = new NoticeServiceImpl();
+	private NoticeService noticeService = new NoticeServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/notice/list [GET]");
+		
 		
 		//전달파라미터에서 현재 페이징 객체 계산하기
 		Paging paging = noticeService.getPaging(req);
@@ -35,7 +36,7 @@ private NoticeService noticeService = new NoticeServiceImpl();
 		//게시글 페이징 목록 조회
 		List<Notice> noticeList = noticeService.getList(paging);
 		
-		//[TEST]조회결과 확인
+//		[TEST]조회결과 확인
 //		for(Notice n : noticeList) System.out.println(n);
 		
 		//조회결과를 MODEL값 전달

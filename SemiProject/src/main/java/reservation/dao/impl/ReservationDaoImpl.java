@@ -28,22 +28,22 @@ public class ReservationDaoImpl implements ReservationDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, hosCode.getHosCode());
+			ps.setInt(1, hosCode.getHos_code());
 			
 			rs = ps.executeQuery();
 			
 			while( rs.next() ) {
 				hosInfo = new HosInfo();
 				
-				hosInfo.setHosCode( rs.getInt("hos_code"));
-				hosInfo.setHosName( rs.getString("hos_name"));
-				hosInfo.setHosAdd( rs.getString("hos_add"));
-				hosInfo.setHosZip( rs.getInt("hos_zip"));
-				hosInfo.setHosCall( rs.getString("hos_call"));
-				hosInfo.setHosTime( rs.getString("hos_time"));
-				hosInfo.setHosTrans( rs.getString("hos_trans"));
-				hosInfo.setHosPark( rs.getString("hos_park"));
-				hosInfo.setHosPrice( rs.getInt("hos_price"));
+				hosInfo.setHos_code( rs.getInt("hos_code"));
+				hosInfo.setHos_name( rs.getString("hos_name"));
+				hosInfo.setHos_add( rs.getString("hos_add"));
+				hosInfo.setHos_zip( rs.getInt("hos_zip"));
+				hosInfo.setHos_call( rs.getString("hos_call"));
+				hosInfo.setHos_time( rs.getString("hos_time"));
+				hosInfo.setHos_trans( rs.getString("hos_trans"));
+				hosInfo.setHos_park( rs.getString("hos_park"));
+				hosInfo.setHos_price( rs.getInt("hos_price"));
 			}
 			
 		} catch (SQLException e) {
