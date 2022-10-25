@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.websocket.Session;
 
 import hosInfo.dto.HosInfo;
 import reservation.dto.Pet;
@@ -65,14 +66,22 @@ public class ReservationController extends HttpServlet {
 		
 		//세션통해서 유저 정보 가져오기 
 		
+		
+		
 		//펫 정보 DTO 저장 -> DB 저장
 		//펫 파라미터 가져오기
 		Pet pet = reservationService.petparam(req);
 		System.out.println("/reservation [POST] pet : " + pet);
 		
 		//파라미터로 DB Insert
-		Pet result = reservationService.insertPet(pet);
-		System.out.println("/reservation [POST] result " + result);
+//		Pet result = reservationService.insertPet(pet);
+//		System.out.println("/reservation [POST] result " + result);
+//		
+//		req.setAttribute("pet", result);
+		
+		String code = req.getParameter("hosCode");
+		System.out.println(code);
+		
 		
 		HosInfo info = reservationService.getHosCode(req);
 		System.out.println("/reservation [POST] info : " + info);
@@ -80,6 +89,8 @@ public class ReservationController extends HttpServlet {
 		//hoscode통해 hos 가져오기
 		HosInfo hosInfo = reservationService.getInfo(req, info);
 		System.out.println("/reservation [POST] hosinfo : " + hosInfo);
+		
+		req.setAttribute("hosInfo", hosInfo);
 		
 		//reservation에 insert하기 -  resNo, resDate, resDetail, ownerNo, petNo, hosNo;
 		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(ownerName으로 찾기), 병원번호(hos_code로 찾기) 
@@ -89,7 +100,7 @@ public class ReservationController extends HttpServlet {
 		//보호자명, 전화번호, 이메일, 예약 일시
 		
 		//결제창 이후 결제 및 예약 내역 확인하기
-		req.getRequestDispatcher("/resources/payment/INIstdpay_pc_req.jsp").forward(req, resp);
+//		req.getRequestDispatcher("/resources/payment/INIstdpay_pc_req.jsp").forward(req, resp);
 		
 	}
 

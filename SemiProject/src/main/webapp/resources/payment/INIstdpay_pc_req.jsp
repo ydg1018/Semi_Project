@@ -1,4 +1,6 @@
-﻿<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+﻿<%@page import="hosInfo.dto.HosInfo"%>
+<%@page import="reservation.dto.Pet"%>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.inicis.std.util.SignatureUtil"%>
 <%@page import="java.util.*"%>
@@ -23,6 +25,7 @@
 	String signature = SignatureUtil.makeSignature(signParam);
 	
 %>
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -42,6 +45,7 @@
                 INIStdPay.pay('SendPayForm_id');
             }
         </script>
+        
     </head>
 
     <body class="wrap">
@@ -64,6 +68,17 @@
                     <div class="card_tit">
                         <h3>PC 일반결제</h3>
                     </div>
+                    
+                    <div>
+                    <table>
+                    <tr>
+                    	<th>펫 이름</th>
+                    	<td id="petName">
+                    </tr>
+                    
+                    </table>
+                    
+                    </div>
 
                     <!-- 유의사항 -->
                     <div class="card_desc">
@@ -77,7 +92,7 @@
                     <!-- //유의사항 -->
 
 
-                    <form name="" id="SendPayForm_id" method="post" class="mt-5">
+                    <form name="" id="SendPayForm_id" method="post" class="mt-5" style="display: none;">
                         <div class="row g-3 justify-content-between" style="--bs-gutter-x:0rem;">
 				    
                             <!--label class="col-10 col-sm-2 gap-2 input param" style="border:none;">version</label>
@@ -135,14 +150,14 @@
                             <label class="col-10 col-sm-9 input">
                                 <input type="text" name="buyeremail" value="test@test.com">
                             </label>
-				    		
+
 				    		<label class="col-10 col-sm-2 input param" style="border:none;">예약일시</label>
                             <label class="col-10 col-sm-9 input">
                                 <input type="text" name="resDate" value="0000~0000">
                             </label>
 
-				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/resources/payment/INIstdpay_pc_return.jsp">
-                            <input type="hidden" name="closeUrl" value="http://localhost:8888/resources/payment/INIstdpay_pc_return.jsp">
+				    		<input type="hidden" name="returnUrl" value="http://localhost:8888/pay/complete">
+                            <input type="hidden" name="closeUrl" value="http://localhost:8888/pay/complete">
                             
 				    		<label class="col-10 col-sm-2 input param" style="border:none; display:none;">결제방법</label>
                             <label class="col-10 col-sm-9 input" style="display: none;">

@@ -225,7 +225,7 @@
                     </div>
                 </form>
 				
-				<button onclick="" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">홈으로</button>
+				<button onclick="location.href='/search/reser'" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">홈으로</button>
 				<button onclick="" class="btn_solid_pri col-6 mx-auto btn_lg" style="margin-top:50px">마이페이지로</button>
 					
                 </div>
