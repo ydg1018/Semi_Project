@@ -36,4 +36,7 @@ public interface SearchReserDao {
 	 */
 	public List<HosInfo> selectHosInfoByHosName(Connection conn, HosInfo hosName);
 
+
+//	public int selectCntdetail(Connection connection, HosInfo hosName);
+
 }

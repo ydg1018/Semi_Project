@@ -41,4 +41,12 @@ public interface SearchReserService {
 	 */
 	public List<HosInfo> detail(HosInfo hosName);
 
+//	/**
+//	 * 병원 검색 후 목록 페이징 계산
+//	 * 
+//	 * @param req
+//	 * @return
+//	 */
+//	public Paging detailPaging(HttpServletRequest req, HosInfo hosName);
+
 }

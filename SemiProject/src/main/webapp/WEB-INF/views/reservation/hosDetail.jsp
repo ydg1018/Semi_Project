@@ -85,6 +85,8 @@ form {
 
 </div>
 
+
+
 <footer>
 <h1>풋터부분</h1>
 </footer>

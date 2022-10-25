@@ -56,6 +56,11 @@ public class SearchReserController extends HttpServlet {
 		//객체 얻어오기
 		HosInfo hosName = searchReserService.getHosName(req);
 		System.out.println("SearchReserController doPost() - hosname객체 : " + hosName);
+
+//		Paging paging = searchReserService.detailPaging(req, hosName);
+//		System.out.println("[TEST] " + paging);
+		
+//		req.setAttribute("paging", paging);
 		
 		//조회결과 얻어오기
 		List<HosInfo> detail = (List<HosInfo>) searchReserService.detail(hosName);

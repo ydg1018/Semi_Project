@@ -140,4 +140,31 @@ public class SearchReserDaoImpl implements SearchReserDao {
 		return hosInfo;
 	}
 	
+//	@Override
+//	public int selectCntdetail(Connection conn, HosInfo hosName) {
+//		String sql = "";
+//		sql += "SELECT count(*) cnt FROM hosinfo";
+//		sql += " WHERE INSTR(hos_name, ? ) > 0";
+//		
+//		int count = 0;
+//		
+//		try {
+//			ps = conn.prepareStatement(sql);
+//			ps.setString(1, hosName.getHosName() );
+//			rs = ps.executeQuery();
+//			
+//			while( rs.next() ) {
+//				count = rs.getInt("cnt");
+//			}
+//			
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			JDBCTemplate.close(rs);
+//			JDBCTemplate.close(ps);
+//		}
+//		
+//		return count;
+//	}
+	
 }
