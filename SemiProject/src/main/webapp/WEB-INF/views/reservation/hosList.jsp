@@ -68,13 +68,13 @@ form {
 
 <%	for(int i=0; i<hList.size(); i++) { %>
 <tr>
-	<td><%=hList.get(i).getHosCode() %></td>
+	<td><%=hList.get(i).getHos_code() %></td>
 	
-	<td><%=hList.get(i).getHosName() %></td>
+	<td><%=hList.get(i).getHos_name() %></td>
 	
-	<td><%=hList.get(i).getHosAdd() %></td>
-	<td><%=hList.get(i).getHosZip() %></td>
-	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=hList.get(i).getHosCode() %>'">예약하기</button></td>
+	<td><%=hList.get(i).getHos_add() %></td>
+	<td><%=hList.get(i).getHos_zip() %></td>
+	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=hList.get(i).getHos_code() %>'">예약하기</button></td>
 </tr>
 <%	} %>
 

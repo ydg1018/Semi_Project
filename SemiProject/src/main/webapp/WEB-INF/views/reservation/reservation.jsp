@@ -27,7 +27,7 @@ function requestPay() {
 	    pg : 'html5_inicis',
 	    pay_method : 'card',
 	    merchant_uid: "merchant_" + new Date().getTime(), // 상점에서 관리하는 주문 번호
-	    name : "<%=hos.getHosName() %> 예약금",
+	    name : "<%=hos.getHos_name() %> 예약금",
 	    amount : 100,
 	    buyer_email : $('input[name=ownerEmail]').val(),
 	    buyer_name : $('input[name=ownerName]').val(),
@@ -150,7 +150,7 @@ button {
 
 <script type="text/javascript">
 $(document).ready(function() {
-	$('input[name=hosCode]').attr('value', <%=hos.getHosCode() %>);
+	$('input[name=hosCode]').attr('value', <%=hos.getHos_code() %>);
 })
 
 </script> 
@@ -170,48 +170,48 @@ $(document).ready(function() {
 
 <fieldset>
 
-<legend><%=hos.getHosName() %> 정보</legend>
+<legend><%=hos.getHos_name() %> 정보</legend>
 
 <table>
 
 <tr>
 	<th>병원명 : </th>
-	<td id="hosName"><%=hos.getHosName() %></td>
+	<td id="hosName"><%=hos.getHos_name() %></td>
 </tr>
 
 <tr>
 	<th>주소 : </th>
-	<td><%=hos.getHosAdd() %></td>
+	<td><%=hos.getHos_add() %></td>
 </tr>
 
 <tr>
 	<th>전화번호 : </th>
-	<td><%=hos.getHosCall() %></td>
+	<td><%=hos.getHos_call() %></td>
 </tr>
 
 <tr>
 	<th>우편번호 : </th>
-	<td><%=hos.getHosZip() %></td>
+	<td><%=hos.getHos_zip() %></td>
 </tr>
 
 <tr>
 	<th>진료시간 : </th>
-	<td><%=hos.getHosTime() %></td>
+	<td><%=hos.getHos_time() %></td>
 </tr>
 
 <tr>
 	<th>교통정보</th>
-	<td><%=hos.getHosTrans() %></td>
+	<td><%=hos.getHos_trans() %></td>
 </tr>
 
 <tr>
 	<th>주차 정보 : </th>
-	<td><%=hos.getHosPark() %></td>
+	<td><%=hos.getHos_park() %></td>
 </tr>
 
 <tr>
 	<th>중성화 가격 : </th>
-	<td><%=hos.getHosPrice() %></td>
+	<td><%=hos.getHos_price() %></td>
 </tr>
 
 

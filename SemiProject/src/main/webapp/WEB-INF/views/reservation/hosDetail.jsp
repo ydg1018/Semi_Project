@@ -71,13 +71,13 @@ form {
 
 <%	for(int i=0; i<detail.size(); i++) { %>
 <tr>
-	<td><%=detail.get(i).getHosCode() %></td>
+	<td><%=detail.get(i).getHos_code() %></td>
 	
-	<td><%=detail.get(i).getHosName() %></td>
+	<td><%=detail.get(i).getHos_name() %></td>
 	
-	<td><%=detail.get(i).getHosAdd() %></td>
-	<td><%=detail.get(i).getHosZip() %></td>
-	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=detail.get(i).getHosCode() %>'">예약하기</button></td>
+	<td><%=detail.get(i).getHos_add() %></td>
+	<td><%=detail.get(i).getHos_zip() %></td>
+	<td><button type="button" onclick="location.href='/reservation?hosCode=<%=detail.get(i).getHos_code() %>'">예약하기</button></td>
 </tr>
 <%	} %>
 
