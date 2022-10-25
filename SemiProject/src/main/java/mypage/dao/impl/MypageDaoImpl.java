@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import common.JDBCTemplate;
+import login.dto.Hospital;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
 import reservation.dto.Reservation;
@@ -130,7 +131,8 @@ public class MypageDaoImpl implements MypageDao {
 		
 		return result; //최종 결과 반환
 	}
-	
+//----------------------------------------------------------------------
+
 	@Override
 	public Reservation getReservationOnwner(Connection conn, Reservation param) {
 		System.out.println("MypageDao getReservationOnwner() - 시작");
@@ -211,6 +213,122 @@ public class MypageDaoImpl implements MypageDao {
 			JDBCTemplate.close(ps);
 		}
 		System.out.println("MypageDao getReservationHospital() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+//----------------------------------------------------------------------
+	@Override
+	public Hospital getHospital(Connection conn, Hospital param) {
+		System.out.println("MypageDao getHospital() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM hospital";
+		sql += " WHERE hos_no = ?";
+		
+		//결과 저정할 객체
+		Hospital result = new Hospital();
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setInt(1, param.getHosNo());
+			
+			//SQL수행 및 결과 집합 저장
+			rs = ps.executeQuery(); 
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				result.setHosNo(rs.getInt("hos_no"));
+				result.setHosId(rs.getString("hos_id"));
+				result.setHosPw(rs.getString("hos_pw"));
+//				result.setHosLic(rs.getString("hos_lic"));
+				result.setHosCode(rs.getInt("hos_code"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao getHospital() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+	@Override
+	public int updateHospital(Connection conn, Hospital param) {
+		System.out.println("MypageDao updateHospital() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "UPDATE hospital SET ";
+		sql += "  hos_id = ?";
+		sql += " ,hos_pw = ?";
+		sql += " ,hos_lic = ?";
+		sql += " ,hos_code = ?";
+		sql += " WHERE hos_no = ?";
+		
+		//결과 저정할 객체
+		int result = 0;
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+//			ps.setString(1, param.getOwnerName());
+//			ps.setString(2, param.getOwnerEmail());
+//			ps.setInt(3, param.getOwnerCall());
+//			ps.setString(4, param.getOwnerNick());
+//			ps.setInt(5, param.getOwnerNo());
+
+			//SQL수행 및 결과 집합 저장
+			result = ps.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao updateHospital() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+	@Override
+	public int deleteHospital(Connection conn, Hospital param) {
+		System.out.println("MypageDao deleteHospital() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "DELETE FROM hospital";
+		sql += " WHERE hospital_no = ?";
+		
+		//결과 저정할 객체
+		int result = 0;
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setInt(1, param.getHosNo());
+
+			//SQL수행 및 결과 집합 저장
+			result = ps.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao deleteHospital() - 끝");
 		
 		return result; //최종 결과 반환
 	}
