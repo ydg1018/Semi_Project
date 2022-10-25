@@ -100,7 +100,7 @@ public class ReservationController extends HttpServlet {
 		//보호자명, 전화번호, 이메일, 예약 일시
 		
 		//결제창 이후 결제 및 예약 내역 확인하기
-//		req.getRequestDispatcher("/resources/payment/INIstdpay_pc_req.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/reservation/reserResult.jsp").forward(req, resp);
 		
 	}
 
