@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
+<%@ include file="../layout/header.jsp" %>
+    
 <% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %>    
 
 <!DOCTYPE html>
@@ -205,4 +207,7 @@ function displayMarker(locPosition, message) {
 <%@ include file="../layout/paging.jsp" %>
 
 </div>
+
+<%@ include file="../layout/footer.jsp" %>
+
 
