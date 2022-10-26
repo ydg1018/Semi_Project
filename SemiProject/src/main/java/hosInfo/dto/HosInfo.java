@@ -11,11 +11,13 @@ public class HosInfo {
 	private String hos_trans;
 	private String hos_park;
 	private int hos_price;
+	private int hos_x;
+	private int hos_y;
 	
 	public HosInfo() {}
 
 	public HosInfo(int hos_code, String hos_name, String hos_add, int hos_zip, String hos_call, String hos_time,
-			String hos_trans, String hos_park, int hos_price) {
+			String hos_trans, String hos_park, int hos_price, int hos_x, int hos_y) {
 		super();
 		this.hos_code = hos_code;
 		this.hos_name = hos_name;
@@ -26,13 +28,15 @@ public class HosInfo {
 		this.hos_trans = hos_trans;
 		this.hos_park = hos_park;
 		this.hos_price = hos_price;
+		this.hos_x = hos_x;
+		this.hos_y = hos_y;
 	}
 
 	@Override
 	public String toString() {
 		return "HosInfo [hos_code=" + hos_code + ", hos_name=" + hos_name + ", hos_add=" + hos_add + ", hos_zip="
 				+ hos_zip + ", hos_call=" + hos_call + ", hos_time=" + hos_time + ", hos_trans=" + hos_trans
-				+ ", hos_park=" + hos_park + ", hos_price=" + hos_price + "]";
+				+ ", hos_park=" + hos_park + ", hos_price=" + hos_price + ", hos_x=" + hos_x + ", hos_y=" + hos_y + "]";
 	}
 
 	public int getHos_code() {
@@ -107,5 +111,20 @@ public class HosInfo {
 		this.hos_price = hos_price;
 	}
 
-	
+	public int getHos_x() {
+		return hos_x;
+	}
+
+	public void setHos_x(int hos_x) {
+		this.hos_x = hos_x;
+	}
+
+	public int getHos_y() {
+		return hos_y;
+	}
+
+	public void setHos_y(int hos_y) {
+		this.hos_y = hos_y;
+	}
+
 }
