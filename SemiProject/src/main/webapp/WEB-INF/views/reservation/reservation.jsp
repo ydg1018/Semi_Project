@@ -40,7 +40,7 @@ function requestPay() {
 	}, function(rsp) {
 		console.log(rsp)
 	    if ( rsp.success ) {
-	    	$("#merchant_uid").val(rsp.merchant_uid)
+	    	$("#merchant_uid").val(rsp.merchant_uid);
 	    	
 	    	console.log(rsp.success);
 	    	console.log(rsp.merchant_uid)
@@ -323,6 +323,10 @@ button {
 
 </fieldset>
 
+<div style="display:none" id="hiddenDiv">
+<input type="hidden" name="merchant_uid" id="merchant_uid">
+</div>
+
 </form>
 <br>
 
@@ -330,9 +334,6 @@ button {
 	<button type="button" class="btn btn-primary" id="btnPay">결제하기</button>
 
 </div><!-- ownerRight -->
-<div style="display:none" id="hiddenDiv">
-<input type="hidden" name="merchant_uid" id="merchant_uid">
-</div>
 
 <div style="clear:both;"></div>
 
