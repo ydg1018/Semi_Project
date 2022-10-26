@@ -112,7 +112,9 @@ public class ReservationController extends HttpServlet {
 		//Reservation DTO에 resDate redetail 저장
 		Reservation reser = reservationService.reserParam(req);
 		
-		Reservation reserResult = reservationService.insertReser(reser, owner, pet, hosInfo);   
+		Reservation reserResult = reservationService.insertReser(reser, owner, pet, hosInfo);
+		
+		req.setAttribute("reserResult", reserResult);
 		
 		
 		//결제창에서 필요한 컬럼
