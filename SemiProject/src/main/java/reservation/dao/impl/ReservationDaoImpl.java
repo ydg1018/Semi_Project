@@ -7,8 +7,10 @@ import java.sql.SQLException;
 
 import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
+import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dto.Pet;
+import reservation.dto.Reservation;
 
 public class ReservationDaoImpl implements ReservationDao {
 
@@ -100,6 +102,100 @@ public class ReservationDaoImpl implements ReservationDao {
 			ps.setInt(3, pet.getPetAge());
 			ps.setString(4, pet.getPetSex());
 			ps.setString(5, pet.getPetType());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public Owner selectOnwerByOnwerid(Connection conn, String ownerid) {
+		
+		String sql = "";
+		sql += "SELECT * FROM owner";
+		sql += " WHERE owner_id = ?";
+		
+		Owner owner = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, ownerid);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				owner = new Owner();
+				
+				owner.setOwnerNo( rs.getInt("owner_no"));
+				owner.setOwnerId( rs.getString("owner_id"));
+				owner.setOwnerPw( rs.getString("owner_pw"));
+				owner.setOwnerName( rs.getString("owner_name"));
+				owner.setOwnerEmail( rs.getString("owner_email"));
+				owner.setOwnerCall( rs.getInt("owner_call"));
+				owner.setOwnerNick( rs.getString("owner_nick"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return owner;
+	}
+	
+	@Override
+	public int selectNextresNo(Connection conn) {
+		
+		String sql = "SELECT reservation_seq.nextval FROM dual";
+		
+		int nextval = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			nextval = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextval;
+	
+	}
+	
+	@Override
+	public int insertreser(Connection conn, Reservation reser, Owner owner, Pet pet, HosInfo hosInfo) {
+		
+		String sql = "";
+		sql += "INSERT INTO reservation (res_no, res_date, res_detail, owner_no, pet_no, hos_no";
+		sql += " VALUE (?, ?, ?, ?, ?, ? )";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reser.getResNo());
+			ps.setString(2, reser.getResDate());
+			ps.setString(3, reser.getResDetail());
+			ps.setInt(4, owner.getOwnerNo());
+			ps.setInt(5, pet.getPetNo());
+			ps.setInt(6, hosInfo.getHos_code());
 			
 			result = ps.executeUpdate();
 			

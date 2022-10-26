@@ -3,7 +3,9 @@ package reservation.dao.face;
 import java.sql.Connection;
 
 import hosInfo.dto.HosInfo;
+import login.dto.Owner;
 import reservation.dto.Pet;
+import reservation.dto.Reservation;
 
 public interface ReservationDao {
 
@@ -32,5 +34,26 @@ public interface ReservationDao {
 	 * @return insert 수행결과 ( 0- 삽입 실패, 1-삽입성공 )
 	 */
 	public int insert(Connection conn, Pet pet);
+
+	public Owner selectOnwerByOnwerid(Connection conn, String ownerid);
+
+	/**
+	 * reservation_seq의 nextval 조회
+	 * 
+	 * @param conn
+	 * @return
+	 */
+	public int selectNextresNo(Connection conn);
+
+	/**
+	 * 
+	 * 
+	 * @param conn
+	 * @param owner
+	 * @param pet
+	 * @param hosInfo
+	 * @return
+	 */
+	public int insertreser(Connection conn, Reservation reser, Owner owner, Pet pet, HosInfo hosInfo);
 
 }
