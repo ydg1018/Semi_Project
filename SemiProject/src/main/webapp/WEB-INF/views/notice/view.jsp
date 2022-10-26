@@ -3,7 +3,7 @@
     pageEncoding="UTF-8"%>
 
 <% Notice viewNotice = (Notice) request.getAttribute("viewNotice"); %>
-    
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +14,18 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	$("#btnList").click(function() {
+		$(location).attr("href", "./list")
+	})
+	
+})
+</script>
 
 <style type="text/css">
 #header, #footer {
@@ -30,6 +42,8 @@ th, td{
 </style>
 
 </head>
+
+
 <body>
 
 <header id="header" class="text-center">
@@ -38,8 +52,39 @@ th, td{
 
 <div class="container">
 
-<h1><buttontype="button" class="btn">고객센터</button></h1>
+
+
+<h1>고객센터</h1>
 <hr>
+
+<h2>공지사항</h2>
+
+<table class="table table-bordered">
+<tr>
+	<td class="success">제목</td>
+	<td colspan="5"><%=viewNotice.getNoticeTitle() %></td>
+</tr>
+
+<tr>
+	<td class="success">글번호</td>
+	<td><%=viewNotice.getNoticeIdx() %></td>
+	
+	<td class="success">작성일</td>
+	<td><%=viewNotice.getNoticeDate() %></td>
+	
+	<td class="success">조회수</td>
+	<td><%=viewNotice.getNoticeHit() %></td>
+</tr>
+
+<tr>
+	<td colspan="6"><%=viewNotice.getNoticeContent() %></td>
+</tr>
+</table>
+
+<div class="text-right">
+	<button id="btnList" class="btn">목록</button>
+</div>
+
 
 
 </div>
