@@ -25,6 +25,13 @@ $(document).ready(function() {
 	})
 	
 })
+
+$(document).ready(function () {
+	$("#btnNotice").click(function () {
+		$(location).attr("href","./list")
+	})
+})
+
 </script>
 
 <style type="text/css">
@@ -57,7 +64,7 @@ th, td{
 <h1>고객센터</h1>
 <hr>
 
-<h2>공지사항</h2>
+<h2><button id="btnNotice">공지사항</button> <button>FaQ</button></h2>
 
 <table class="table table-bordered">
 <tr>
