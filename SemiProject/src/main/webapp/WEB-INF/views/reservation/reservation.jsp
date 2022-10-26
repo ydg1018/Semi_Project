@@ -10,6 +10,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<!-- 부트스트랩 Bootstrap3 -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js" ></script>
 <!-- iamport.payment.js -->
@@ -81,10 +86,6 @@ function requestPay() {
 
 </script>
 
-
-
-
-
 <script type="text/javascript">
 function goBack() {
 	console.log("#btnbtnBack click")
@@ -107,49 +108,56 @@ function goBack() {
 	margin: 0 auto;
 }
 
-div#hosLeft {
+/* div#hosLeft {
 	float: left;
 	width: 48%;
-}
+} */
 
 #ownerRight {
-	float: right;
-	width: 48%;
-}
+
+	border: 1px solid #58C9B9;
+	text-align: center;
+
+} 
 
 #reserDetail {
 	vertical-align: middle;
 }
 
-fieldset {
-	height: 600px;
-}
+/* fieldset { */
+/* 	height: 640px; */
+/* } */
 
-tr {
-	height: 65px;
-}
+/* tr { */
+/* 	height: 65px; */
+/* } */
 
-th {
-	width: 100px;
-}
+/* th { */
+/* 	width: 100px; */
+/* } */
 
 legend {
 /* 	display: inline-block; */
+	text-align: center;
 	font-size: 30px;
 	font-weight: bold;
 }
 
-label {
+/* label {
 	display: inline-block;
 	text-align: center;
  	width: 500px;
-}
+} */
 
 button {
     margin: 0px 60px 0px 60px;
     width: 110px;
     height: 40px;
     font-size: 20px;
+}
+
+.form-group {
+	margin: 0 auto;
 }
 
 </style>
@@ -178,7 +186,7 @@ $(document).ready(function() {
 
 <legend><%=hos.getHos_name() %> 정보</legend>
 
-<table>
+<table class="table">
 
 <tr>
 	<th>병원명 : </th>
@@ -225,38 +233,39 @@ $(document).ready(function() {
 
 </fieldset>
 <br>
+
  
 </div><!-- hosLeft -->
 
 <div id="ownerRight">
 
-<form action="<%=request.getContextPath() %>/reservation" method="post" id="reservationForm">
+<form action="<%=request.getContextPath() %>/reservation" method="post" id="reservationForm" >
 
 <fieldset>
 	
 <legend>예약자 정보</legend>
 
-<div>
+<div class="form-group form-group-lg">
 	<label>보호자명 : <input type="text" name="ownerName" placeholder="윤대건"></label><br><br>
 </div>
 
-<div>
+<div class="form-group form-group-lg">
 <label>전화번호 : <input type="text" name="ownerPhone"></label><br><br>
 </div>
 
-<div>
-	<label>주소 : <input type="text" name="ownerAddress"></label><br><br>
+<div class="form-group">
+	<label>주소 : <input type="text"  name="ownerAddress"></label><br><br>
 </div>
 
-<div>
-	<label>이메일 : <input type="text" name="ownerEmail"></label><br><br>
+<div class="form-group">
+	<label>이메일 : <input type="text"  name="ownerEmail"></label><br><br>
 </div>
 
-<div>
-	<label>펫이름 : <input type="text" name="petName"></label><br><br>
+<div class="form-group">
+	<label>펫이름 : <input type="text"  name="petName"></label><br><br>
 </div>
 
-<div>
+<div class="form-group">
 	<label>펫 나이 : <select name="petAge" >
 			<option value="1" selected="selected">1</option>
 		<% for(int i=2; i<101; i++) { %>
@@ -264,31 +273,31 @@ $(document).ready(function() {
 		<%	} %>
 			
 		</select></label><br><br>
+	<label>펫성별 : <input type="radio" name="petSex" value="m">남
+	<input type="radio" name="petSex" value="f">여</label><br><br>
 </div>
 
 <div>
-	<label>펏성별 : <input type="radio" name="petSex" value="m" checked>남
-	<input type="radio" name="petGender" value="f">여</label><br><br>
 </div>
 
-<div>
-	<label>펫 종류 : <input type="text" name="petType"></label><br><br>
+<div class="form-group">
+	<label>펫 종류 : <input type="text"  name="petType"></label><br><br>
 </div>
 
-<div>
+<div class="form-group">
 	<label>방문일자 : <input type="date" name="visitDate">
 	<input type="time" name="visitTime"></label><br><br>
 </div>
 
-<div>
-	<label>진료내용 : <textarea rows="8" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
+<div class="form-group">
+	<label>진료내용 : <textarea rows="5" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
 </div>
 
-<div style="display: none;">
+<div style="display: none;" class="form-group">
 	<label>병원 번호 : <input type="text" name="hosCode"></label>
 </div>
 
-<div style="text-align: center;">
+<div style="text-align: center;" class="form-group">
 </div>
 
 </fieldset>
@@ -296,9 +305,10 @@ $(document).ready(function() {
 </form>
 <br>
 
-	<button type="button" id="btnBack" onclick="goBack();">뒤로가기</button>
-	<button type="button" id="btnPay" onclick="requestPay()">결제하기</button>
-	
+	<button type="button" class="btn btn-primary" id="btnBack" onclick="goBack();">뒤로가기</button>
+	<button type="button" class="btn btn-primary" id="btnPay" onclick="requestPay()">결제하기</button>
+
+
 </div><!-- ownerRight -->
 
 <div style="clear:both;"></div>
