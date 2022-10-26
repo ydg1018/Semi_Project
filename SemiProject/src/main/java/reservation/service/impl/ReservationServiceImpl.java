@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
+import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dao.impl.ReservationDaoImpl;
 import reservation.dto.Pet;
@@ -82,6 +83,16 @@ public class ReservationServiceImpl implements ReservationService {
 			return null;
 		}
 		
+	}
+	
+	@Override
+	public Owner getOwnerName(HttpServletRequest req, String ownerid) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerid);
+		
+		return owner;
 	}
 	
 }

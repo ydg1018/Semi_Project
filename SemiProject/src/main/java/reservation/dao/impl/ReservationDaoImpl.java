@@ -7,6 +7,7 @@ import java.sql.SQLException;
 
 import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
+import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dto.Pet;
 
@@ -110,6 +111,44 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		
 		return result;
+	}
+	
+	@Override
+	public Owner selectOnwerByOnwerid(Connection conn, String ownerid) {
+		
+		String sql = "";
+		sql += "SELECT * FROM owner";
+		sql += " WHERE owner_id = ?";
+		
+		Owner owner = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, ownerid);
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				owner = new Owner();
+				
+				owner.setOwnerNo( rs.getInt("owner_no"));
+				owner.setOwnerId( rs.getString("owner_id"));
+				owner.setOwnerPw( rs.getString("owner_pw"));
+				owner.setOwnerName( rs.getString("owner_name"));
+				owner.setOwnerEmail( rs.getString("owner_email"));
+				owner.setOwnerCall( rs.getInt("owner_call"));
+				owner.setOwnerNick( rs.getString("owner_nick"));
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return owner;
 	}
 	
 }

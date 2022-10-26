@@ -36,13 +36,7 @@ public interface ReservationService {
 	public Pet insertPet(Pet pet);
 
 	
-	/**
-	 * 
-	 * 
-	 * @param owner
-	 * @return
-	 */
-	public Owner getOwnerName(Owner owner);
+	public Owner getOwnerName(HttpServletRequest req, String ownerid);
 
 
 }

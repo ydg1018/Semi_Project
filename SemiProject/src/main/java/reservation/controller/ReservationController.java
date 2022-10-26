@@ -74,10 +74,11 @@ public class ReservationController extends HttpServlet {
 		//세션 객체
 		HttpSession session = req.getSession();
 		
-		String id = session.getId();
+		String ownerid = session.getId();
 		
 		//세션id를 이용해서 owner 정보 받아오기
-		Owner owner = reservationService.getOwnerName(owner);
+		Owner owner = reservationService.getOwnerName(req, ownerid);
+		System.out.println("owner : " + owner);
 		
 		
 		//펫 정보 DTO 저장 -> DB 저장
@@ -94,7 +95,6 @@ public class ReservationController extends HttpServlet {
 		String code = req.getParameter("hosCode");
 		System.out.println(code);
 		
-		
 		HosInfo info = reservationService.getHosCode(req);
 		System.out.println("/reservation [POST] info : " + info);
 		
@@ -105,7 +105,7 @@ public class ReservationController extends HttpServlet {
 		req.setAttribute("hosInfo", hosInfo);
 		
 		//reservation에 insert하기 -  resNo, resDate, resDetail, ownerNo, petNo, hosNo;
-		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(ownerName으로 찾기), 병원번호(hos_code로 찾기) 
+		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(owner), 병원번호(hos_code) 
 		
 		
 		
