@@ -66,7 +66,7 @@ public class DepInfoDaoImpl implements DepInfoDao {
 	public DepInfo selectDetByDetitem(Connection conn, DepInfo det_item) {
 
 		String sql = "";
-		sql += "SELECT det_item, det_detail, trt_item FROM AllInfo";
+		sql += "SELECT dep_item, dep_detail, det_item, det_detail, trt_item FROM AllInfo";
 		sql += " WHERE det_item = ?";
 		
 		DepInfo dt = null;
@@ -81,6 +81,8 @@ public class DepInfoDaoImpl implements DepInfoDao {
 				
 				dt = new DepInfo();
 				
+				dt.setDep_item(rs.getString("dep_item"));
+				dt.setDep_detail(rs.getString("dep_detail"));
 				dt.setDet_item(rs.getString("det_item"));
 				dt.setDet_detail(rs.getString("det_detail"));
 				dt.setTrt_item(rs.getString("trt_item"));
@@ -105,7 +107,7 @@ public class DepInfoDaoImpl implements DepInfoDao {
 		
 		try {
 			ps = conn.prepareStatement
-				("SELECT det_item, det_detail FROM AllInfo WHERE det_detail like '%" + det_detail + "%'");
+				("SELECT dep_item, det_item, det_detail FROM AllInfo WHERE det_detail like '%" + det_detail + "%'");
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
 			
@@ -115,6 +117,7 @@ public class DepInfoDaoImpl implements DepInfoDao {
 				//조회 결과 행 저장 DTO객체
 				DepInfo dt = new DepInfo();
 				
+				dt.setDep_item(rs.getString("dep_item"));
 				dt.setDet_item(rs.getString("det_item"));
 				dt.setDet_detail(rs.getString("det_detail"));
 				
