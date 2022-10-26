@@ -3,6 +3,7 @@ package reservation.service.face;
 import javax.servlet.http.HttpServletRequest;
 
 import hosInfo.dto.HosInfo;
+import login.dto.Owner;
 import reservation.dto.Pet;
 
 public interface ReservationService {
@@ -33,6 +34,15 @@ public interface ReservationService {
 	 * @return
 	 */
 	public Pet insertPet(Pet pet);
+
+	
+	/**
+	 * 
+	 * 
+	 * @param owner
+	 * @return
+	 */
+	public Owner getOwnerName(Owner owner);
 
 
 }
