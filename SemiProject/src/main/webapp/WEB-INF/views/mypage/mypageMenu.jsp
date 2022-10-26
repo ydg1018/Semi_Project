@@ -9,7 +9,14 @@
 		<li class='<%=request.getAttribute("path").equals("/mypage/ownerUpdate")? "active" : "" %>'>
 			<a href="/mypage/ownerUpdate">회원정보 수정</a>
 		</li>
+		<li class='<%=request.getAttribute("path").equals("/mypage/hospital")? "active" : "" %>'>
+			<a href="/mypage/hospital">병원회원정보 조회</a>
+		</li>
+		<li class='<%=request.getAttribute("path").equals("/mypage/hospitalUpdate")? "active" : "" %>'>
+			<a href="/mypage/hospitalUpdate">병원회원정보 수정</a>
 	</ul>
+	
+	
 
 	<h2>작성글 관리</h2>
 	<ul>

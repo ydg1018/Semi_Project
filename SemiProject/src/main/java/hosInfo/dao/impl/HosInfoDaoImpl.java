@@ -25,7 +25,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 		
 		//SQL 작성
 		String sql = "";
-		sql += "SELECT hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park FROM hosInfo";
+		sql += "SELECT hos_code, hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park, hos_x, hos_y FROM hosInfo";
 		sql += " ORDER BY hos_price";
 		
 		//결과 저장할 List
@@ -42,6 +42,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				//조회 결과 행 저장 DTO객체
 				HosInfo h = new HosInfo();
 				
+				h.setHos_code(rs.getInt("hos_code"));
 				h.setHos_name(rs.getString("hos_name"));
 				h.setHos_add(rs.getString("hos_add"));
 				h.setHos_zip(rs.getInt("hos_zip"));
@@ -49,6 +50,8 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				h.setHos_time(rs.getString("hos_time"));
 				h.setHos_trans(rs.getString("hos_trans"));
 				h.setHos_park(rs.getString("hos_park"));
+				h.setHos_x(rs.getInt("hos_x"));
+				h.setHos_y(rs.getInt("hos_y"));
 				
 				//리스트에 결과값 저장하기
 				hosInfo.add(h);
@@ -71,7 +74,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 		String sql = "";
 		sql += "SELECT * FROM (";
 		sql += " SELECT rownum rnum, H.* FROM (";
-		sql += " SELECT hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park";
+		sql += " SELECT hos_code, hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park, hos_x, hos_y";
 		sql += " FROM hosInfo";
 		sql += " ORDER BY hos_price";
 		sql += " ) H";
@@ -95,6 +98,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				//조회 결과 행 저장 DTO객체
 				HosInfo h = new HosInfo();
 				
+				h.setHos_code(rs.getInt("hos_code"));
 				h.setHos_name(rs.getString("hos_name"));
 				h.setHos_add(rs.getString("hos_add"));
 				h.setHos_zip(rs.getInt("hos_zip"));
@@ -102,6 +106,8 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				h.setHos_time(rs.getString("hos_time"));
 				h.setHos_trans(rs.getString("hos_trans"));
 				h.setHos_park(rs.getString("hos_park"));
+				h.setHos_x(rs.getInt("hos_x"));
+				h.setHos_y(rs.getInt("hos_y"));
 				
 				//리스트에 결과값 저장하기
 				hosInfo.add(h);
@@ -150,7 +156,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 
 		String sql = "";
 		sql += "SELECT";
-		sql += "	hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park";
+		sql += "	hos_code, hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park, hos_x, hos_y";
 		sql += " FROM HosInfo";
 		sql += " WHERE hos_name = ?";
 		
@@ -167,6 +173,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				//조회 결과 행 저장 DTO객체
 				h = new HosInfo();
 				
+				h.setHos_code(rs.getInt("hos_code"));
 				h.setHos_name(rs.getString("hos_name"));
 				h.setHos_add(rs.getString("hos_add"));
 				h.setHos_zip(rs.getInt("hos_zip"));
@@ -174,7 +181,8 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				h.setHos_time(rs.getString("hos_time"));
 				h.setHos_trans(rs.getString("hos_trans"));
 				h.setHos_park(rs.getString("hos_park"));
-				
+				h.setHos_x(rs.getInt("hos_x"));
+				h.setHos_y(rs.getInt("hos_y"));
 			}
 			
 		} catch (SQLException e) {
@@ -196,7 +204,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 		
 		try {
 			ps = conn.prepareStatement
-				("SELECT hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park FROM HosInfo WHERE hos_name like '%" + hos_name + "%'");
+				("SELECT hos_code, hos_name, hos_add, hos_zip, hos_call, hos_time, hos_trans, hos_park, hos_x, hos_y FROM HosInfo WHERE hos_name like '%" + hos_name + "%'");
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
 			
@@ -206,6 +214,7 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				//조회 결과 행 저장 DTO객체
 				HosInfo h = new HosInfo();
 				
+				h.setHos_code(rs.getInt("hos_code"));
 				h.setHos_name(rs.getString("hos_name"));
 				h.setHos_add(rs.getString("hos_add"));
 				h.setHos_zip(rs.getInt("hos_zip"));
@@ -213,6 +222,8 @@ public class HosInfoDaoImpl implements HosInfoDao {
 				h.setHos_time(rs.getString("hos_time"));
 				h.setHos_trans(rs.getString("hos_trans"));
 				h.setHos_park(rs.getString("hos_park"));
+				h.setHos_x(rs.getInt("hos_x"));
+				h.setHos_y(rs.getInt("hos_y"));
 				
 				//리스트에 결과값 저장하기
 				list.add(h);

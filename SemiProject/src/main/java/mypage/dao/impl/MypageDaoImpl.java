@@ -227,7 +227,7 @@ public class MypageDaoImpl implements MypageDao {
 		sql += "SELECT * FROM hospital";
 		sql += " WHERE hos_no = ?";
 		
-		//결과 저정할 객체
+		//결과 저장할 객체
 		Hospital result = new Hospital();
 		
 		try {
@@ -236,6 +236,7 @@ public class MypageDaoImpl implements MypageDao {
 			
 			//SQL 파라메터 셋팅
 			ps.setInt(1, param.getHosNo());
+			//2.쿼리에 보낼 데이터에 병원꾸러미에 잇는 데이터 넣어주는거지
 			
 			//SQL수행 및 결과 집합 저장
 			rs = ps.executeQuery(); 
@@ -245,8 +246,9 @@ public class MypageDaoImpl implements MypageDao {
 				result.setHosNo(rs.getInt("hos_no"));
 				result.setHosId(rs.getString("hos_id"));
 				result.setHosPw(rs.getString("hos_pw"));
-//				result.setHosLic(rs.getString("hos_lic"));
+				result.setHosLic(rs.getInt("hos_lic"));
 				result.setHosCode(rs.getInt("hos_code"));
+				//1.병원에 데이터 넣어주는거고
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -266,8 +268,8 @@ public class MypageDaoImpl implements MypageDao {
 		//SQL작성
 		String sql = "";
 		sql += "UPDATE hospital SET ";
-		sql += "  hos_id = ?";
-		sql += " ,hos_pw = ?";
+//		sql += "  hos_id = ?";
+		sql += " hos_pw = ?";
 		sql += " ,hos_lic = ?";
 		sql += " ,hos_code = ?";
 		sql += " WHERE hos_no = ?";
@@ -280,11 +282,11 @@ public class MypageDaoImpl implements MypageDao {
 			ps = conn.prepareStatement(sql); 
 			
 			//SQL 파라메터 셋팅
-//			ps.setString(1, param.getOwnerName());
-//			ps.setString(2, param.getOwnerEmail());
-//			ps.setInt(3, param.getOwnerCall());
-//			ps.setString(4, param.getOwnerNick());
-//			ps.setInt(5, param.getOwnerNo());
+			ps.setString(1, param.getHosPw());
+			ps.setInt(2, param.getHosLic());
+			ps.setInt(3, param.getHosCode());
+			ps.setInt(4, param.getHosNo());
+//			ps.setString(2, param.getHosId());
 
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 

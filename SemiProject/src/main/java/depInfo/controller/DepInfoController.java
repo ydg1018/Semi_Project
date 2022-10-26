@@ -25,13 +25,14 @@ public class DepInfoController extends HttpServlet {
 		System.out.println("/dep/list [GET]");
 		
 		//테이블 전체 조회
-		List<DepInfo> list = ptService.getList();
+		List<DepInfo> depInfo = ptService.getList();
 		
 		//조회결과를 MODEL값에 전달
-		req.setAttribute("list", list);
+		req.setAttribute("depInfo", depInfo);
 		
 		//VIEW 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/depInfo/searchDepInfo.jsp").forward(req, resp);
 		
 	}
+
 }
