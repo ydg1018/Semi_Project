@@ -10,6 +10,7 @@ import hosInfo.dto.HosInfo;
 import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dto.Pet;
+import reservation.dto.Reservation;
 
 public class ReservationDaoImpl implements ReservationDao {
 
@@ -149,6 +150,62 @@ public class ReservationDaoImpl implements ReservationDao {
 		}
 		
 		return owner;
+	}
+	
+	@Override
+	public int selectNextresNo(Connection conn) {
+		
+		String sql = "SELECT reservation_seq.nextval FROM dual";
+		
+		int nextval = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			rs = ps.executeQuery();
+			
+			rs.next();
+			
+			nextval = rs.getInt(1);
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return nextval;
+	
+	}
+	
+	@Override
+	public int insertreser(Connection conn, Reservation reser, Owner owner, Pet pet, HosInfo hosInfo) {
+		
+		String sql = "";
+		sql += "INSERT INTO reservation (res_no, res_date, res_detail, owner_no, pet_no, hos_no";
+		sql += " VALUE (?, ?, ?, ?, ?, ? )";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reser.getResNo());
+			ps.setString(2, reser.getResDate());
+			ps.setString(3, reser.getResDetail());
+			ps.setInt(4, owner.getOwnerNo());
+			ps.setInt(5, pet.getPetNo());
+			ps.setInt(6, hosInfo.getHos_code());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
 	}
 	
 }

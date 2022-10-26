@@ -10,6 +10,7 @@ import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dao.impl.ReservationDaoImpl;
 import reservation.dto.Pet;
+import reservation.dto.Reservation;
 import reservation.service.face.ReservationService;
 
 public class ReservationServiceImpl implements ReservationService {
@@ -93,6 +94,44 @@ public class ReservationServiceImpl implements ReservationService {
 		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerid);
 		
 		return owner;
+	}
+	
+	@Override
+	public Reservation reserParam(HttpServletRequest req) {
+		
+		Reservation reservation = new Reservation();
+		
+		String date = req.getParameter("visitDate");
+		String time = req.getParameter("visitTime");
+		String dateTime = date + " " + time;
+
+		String tail = req.getParameter("reserDetail");
+		reservation.setResDate(dateTime);
+		reservation.setResDetail(tail);
+		
+		return reservation;
+	}
+	
+	@Override
+	public Reservation insertReser(Reservation reser, Owner owner, Pet pet, HosInfo hosInfo) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		//reservation nextval 조회하기
+		int next = reservationDao.selectNextresNo(conn);
+		
+		reser.setResNo(next);
+		
+		int result = reservationDao.insertreser(conn, reser, owner, pet, hosInfo);
+		
+		if( result > 0) {
+			JDBCTemplate.commit(conn);
+			return reser;
+		} else {
+			JDBCTemplate.commit(conn);
+			return null;
+		}
+		
 	}
 	
 }

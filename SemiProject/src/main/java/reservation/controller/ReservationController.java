@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 import hosInfo.dto.HosInfo;
 import login.dto.Owner;
 import reservation.dto.Pet;
+import reservation.dto.Reservation;
 import reservation.service.face.ReservationService;
 import reservation.service.impl.ReservationServiceImpl;
 
@@ -64,10 +65,8 @@ public class ReservationController extends HttpServlet {
 		String detail = req.getParameter("reserDetail");
 		String hosCode = req.getParameter("hosCode");
 		System.out.println(name + phone + add + pet1 + age + sex + type + date + time + detail + "hoscode : " + hosCode);
-		
-		resp.setContentType("application/json;charset=utf-8"); //JSON 응답
-		String payNo = req.getParameter("merchant_uid");
-		System.out.println(payNo);
+		System.out.println("date : " + date);
+		System.out.println("Time : " + time);
 		
 		//세션통해서 유저 정보 가져오기 
 		
@@ -80,6 +79,7 @@ public class ReservationController extends HttpServlet {
 		Owner owner = reservationService.getOwnerName(req, ownerid);
 		System.out.println("owner : " + owner);
 		
+		req.setAttribute("owner", owner);
 		
 		//펫 정보 DTO 저장 -> DB 저장
 		//펫 파라미터 가져오기
@@ -92,21 +92,27 @@ public class ReservationController extends HttpServlet {
 		
 		req.setAttribute("pet", result);
 		
+		//파라미터 확인
 		String code = req.getParameter("hosCode");
 		System.out.println(code);
 		
+		//병원코드 가져오기
 		HosInfo info = reservationService.getHosCode(req);
 		System.out.println("/reservation [POST] info : " + info);
 		
-		//hoscode통해 hos 가져오기
+		//hoscode통해 hos정보 가져오기
 		HosInfo hosInfo = reservationService.getInfo(req, info);
 		System.out.println("/reservation [POST] hosinfo : " + hosInfo);
 		
 		req.setAttribute("hosInfo", hosInfo);
 		
 		//reservation에 insert하기 -  resNo, resDate, resDetail, ownerNo, petNo, hosNo;
-		//reservation table 예약날짜 (date + time), 디테일 detail, 오너번호(owner), 병원번호(hos_code) 
+		//reservation table resNo(nextval) 예약날짜 (date + time), 디테일 detail, 오너번호(owner.getOwnerNo), 펫번호(pet.getPetNo) 병원번호(hos_code) 
 		
+		//Reservation DTO에 resDate redetail 저장
+		Reservation reser = reservationService.reserParam(req);
+		
+		Reservation reserResult = reservationService.insertReser(reser, owner, pet, hosInfo);   
 		
 		
 		//결제창에서 필요한 컬럼
