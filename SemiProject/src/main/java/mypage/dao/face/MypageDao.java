@@ -3,7 +3,7 @@ package mypage.dao.face;
 import java.sql.Connection;
 
 import hosInfo.dto.HosInfo;
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import reservation.dto.Reservation;
 
@@ -55,7 +55,7 @@ public interface MypageDao {
 	 * @param conn - DB 연결 객체
 	 * @return Owner - 회원 단건 조회
 	 */
-	public Hospital getHospital(Connection conn, Hospital param);
+	public Hos getHospital(Connection conn, Hos param);
 	
 	/**
 	 * 마이페이지 병원회원 수정
@@ -63,7 +63,7 @@ public interface MypageDao {
 	 * @param conn - DB 연결 객체
 	 * @return Owner - 회원 단건 수정
 	 */
-	public int updateHospital(Connection conn, Hospital param);
+	public int updateHospital(Connection conn, Hos param);
 	
 	/**
 	 * 마이페이지 병원회원 삭제
@@ -71,7 +71,7 @@ public interface MypageDao {
 	 * @param conn - DB 연결 객체
 	 * @return Owner - 회원 단건 삭제
 	 */
-	public int deleteHospital(Connection conn, Hospital param);
+	public int deleteHospital(Connection conn, Hos param);
 	
 	
 	

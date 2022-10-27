@@ -1,7 +1,7 @@
 package mypage.service.face;
 
 import hosInfo.dto.HosInfo;
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import reservation.dto.Reservation;
 
@@ -60,7 +60,7 @@ public interface MypageService {
 	 * @return Owner - 회원 단건 조회
 	 */
 	
-	public Hospital getHospital(Hospital param);
+	public Hos getHos(Hos param);
 
 	
 	/**
@@ -69,7 +69,7 @@ public interface MypageService {
 	 * @return Owner - 회원 수정
 	 */
 	
-	public int updateHospital(Hospital param);
+	public int updateHos(Hos param);
 	
 	
 	/**
@@ -78,7 +78,7 @@ public interface MypageService {
 	 * @return Owner - 회원 삭제
 	 */
 	
-	public int deleteHospital(Hospital param);
+	public int deleteHos(Hos param);
 	
 	
 	
