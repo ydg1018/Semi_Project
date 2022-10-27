@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title> : : : 동물병원을 찾아줘 : : :</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"><style>
+*{
+font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

@@ -3,6 +3,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="../layout/header.jsp" %>
+
 <%List<DepInfo> depInfo = (List) request.getAttribute("depInfo");%>
 
 <!DOCTYPE html>
@@ -53,6 +55,23 @@ button {
 	display: inline;
 }
 
+#input {
+	width: 100%;
+	border: 1px solid #bbb;
+	border-radius: 8px;
+	padding: 10px 12px;
+	font-size: 14px;
+	color: #0dbcaf
+}
+
+#btnsearch {
+	width: 25px;
+	height: 25px;
+	background-image: url(https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png);
+	background-size: 100% 100%;
+	display: none;
+}
+
 </style>
 
 <script type="text/javascript">
@@ -60,10 +79,10 @@ button {
 $(document).ready(function() {
 	
 	//아이디 입력창에 포커스주기
-	$("input").eq(0).focus()
+	$("#input").eq(0).focus()
 	
 	//검색어 입력창에 엔터키 입력 시 submit
-	$("input").eq(1).keydown(function(e) {
+	$("#input").eq(1).keydown(function(e) {
 		if( e.keyCode == 13 ) { //엔터키
 			$("#btnsearch").click();
 		}
@@ -125,24 +144,18 @@ $(function() {
 
 <div class="search">
 	<form method="get" action="./result">
-		<input type="text" placeholder="검색어를 입력하세요" name="det_detail"
-		style="width: 100%;
-		border: 1px solid #bbb;
-		border-radius: 8px;
-		padding: 10px 12px;
-		font-size: 14px;
-		display: inline">
+		<input id="input" type="text" placeholder="진료 항목을 검색하세요" name="det_detail">
 	  	<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-		<input id="btnsearch" style="display: none;" type="submit" value="검색">
+		<input id="btnsearch" type="image" value="">
 	</form>	
 </div>
 
 <br><br>
 
-<table id="table" class="table table-hover table-condensed">
+<table class="table table-hover table-condensed">
 
-<tr class="text-success table-success">
-	<th style="width: 10%;">진료과</th>
+<tr>
+	<th style="width: 20%;">진료과</th>
 	<th style="width: 80%;">설명</th>
 </tr>
 
@@ -269,6 +282,4 @@ $(function() {
 
 </table>
 
-</body>
-
-</html>
+<%@ include file="../layout/footer.jsp" %>

@@ -1,6 +1,9 @@
 <%@page import="depInfo.dto.DepInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+
+<%@ include file="../layout/header.jsp" %>
+
 <%
 DepInfo detail = (DepInfo) request.getAttribute("detail");
 %>    
@@ -40,5 +43,5 @@ DepInfo detail = (DepInfo) request.getAttribute("detail");
 	<td><%=detail.getTrt_item() %></td>
 </tr>
 </table>
-</body>
-</html>
+
+<%@ include file="../layout/footer.jsp" %>
