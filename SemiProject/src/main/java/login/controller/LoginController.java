@@ -8,14 +8,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/login/signup")
-public class SignupController extends HttpServlet {
+@WebServlet("/login/login")
+public class LoginController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/login/signup [GET]");
+		System.out.println("/login/login [GET]");
 		
-		req.getRequestDispatcher("/WEB-INF/views/login/signup.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/login/login.jsp").forward(req, resp);
 	}
 }

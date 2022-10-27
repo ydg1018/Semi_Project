@@ -6,23 +6,125 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import common.JDBCTemplate;
-import login.dto.Hospital;
-import login.dto.Owner;
 import login.dao.face.LoginDao;
+import login.dto.Hos;
+import login.dto.Owner;
 
 public class LoginDaoImpl implements LoginDao {
+
 	private PreparedStatement ps;
 	private ResultSet rs;
-	
+
 	@Override
-	public int selectCntHospitalByUseridUserpw(Connection conn, Hospital hos) {
+	public int selectCntOwnerByUseridUserpw(Connection conn, Owner owner) {
+		
+		System.out.println("LoginDaoImpl() : selectCntOwnerByUseridUserpw - 시작");
 		
 		String sql = "";
-		sql += "SELECT count(*) cnt FROM hospital";
-		sql += " WHERE hos_id = ?";
-		sql += "	AND hos_pw = ?";
+		sql += "SELECT count(*) cnt FROM owner";
+		sql += " WHERE owner_id = ? AND owner_pw = ?";
 		
-		int cnt = 0;
+		int ocnt = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner.getOwnerId());
+			ps.setString(2, owner.getOwnerPw());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				ocnt = rs.getInt("cnt");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("LoginDaoImpl() : selectCntOwnerByUseridUserpw - 끝");
+		return ocnt;
+	}
+	
+	@Override
+	public Owner selectOwnerByUserid(Connection conn, Owner owner) {
+
+		System.out.println("LoginDaoImpl() : selectOwnerByUserid - 시작");
+		
+		String sql = "";
+		sql += "SELECT owner_id, owner_pw, owner_nick FROM owner";
+		sql += " WHERE owner_id = ?";
+		
+		Owner oresult = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			ps.setString(1, owner.getOwnerId());
+			
+			rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				oresult = new Owner();
+				
+				oresult.setOwnerId( rs.getString("owner_id") );
+				oresult.setOwnerPw( rs.getString("owner_pw") );
+				oresult.setOwnerNick( rs.getString("owner_nick") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("LoginDaoImpl() : selectOwnerByUserid - 끝");
+		return oresult;
+	}
+	
+	@Override
+	public int OwnerInsert(Connection conn, Owner owner) {
+		
+		System.out.println("LoginDaoImpl() : OwnerInsert - 시작");
+
+		String sql = "";
+		sql += "INSERT INTO owner ( owner_no, owner_id, owner_pw, owner_name, owner_email, owner_call, owner_nick )";
+		sql += " VALUES ( owner_seq.nextval, ?, ?, ?, ?, ?, ? )";
+		
+		int ores = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner.getOwnerId());
+			ps.setString(2, owner.getOwnerPw());
+			ps.setString(3, owner.getOwnerName());
+			ps.setString(4, owner.getOwnerEmail());
+			ps.setString(5, owner.getOwnerCall());
+			ps.setString(6, owner.getOwnerNick());
+			
+			ores = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("LoginDaoImpl() : OwnerInsert - 끝");
+		return ores;
+	}
+
+	// 펫오너
+	//--------------------------------------------------
+	// 펫병원
+	
+	@Override
+	public int selectCntHosByUseridUserpw(Connection conn, Hos hos) {
+		
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM hos";
+		sql += " WHERE hos_id = ? AND hos_pw = ?";
+		
+		int hcnt = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -32,7 +134,7 @@ public class LoginDaoImpl implements LoginDao {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				cnt = rs.getInt("cnt");
+				hcnt = rs.getInt("cnt");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -40,17 +142,17 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-		return cnt;
+		return hcnt;
 	}
 
 	@Override
-	public Hospital selectHospitalByUserid(Connection conn, Hospital hos) {
+	public Hos selectHosByUserid(Connection conn, Hos hos) {
 
 		String sql = "";
-		sql += "SELECT hos_no, hos_id, hos_pw, hos_lic, hos_code FROM hospital";
+		sql += "SELECT hos_id, hos_pw, hos_lic FROM hos";
 		sql += " WHERE hos_id = ?";
 		
-		Hospital hosres = null;
+		Hos hresult = null;
 		
 		try {
 			ps = conn.prepareStatement(sql);
@@ -59,10 +161,12 @@ public class LoginDaoImpl implements LoginDao {
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				hosres = new Hospital();
+				hresult = new Hos();
 				
-				hosres.setHosId( rs.getString("hos_id") );
-				hosres.setHosPw( rs.getString("hos_pw") );
+				hresult.setHosId( rs.getString("hos_id") );
+				hresult.setHosPw( rs.getString("hos_pw") );
+				hresult.setHosName( rs.getString("hos_name") );
+				hresult.setHosNo( rs.getInt("hos_lic") );
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -70,124 +174,33 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-		return hosres;
+		return hresult;
 	}
-	
+
 	@Override
-	public int hosinsert(Connection conn, Hospital hos) {
+	public int HosInsert(Connection conn, Hos hos) {
 		
 		String sql = "";
-		sql += "INSERT INTO hospital ( hos_no, hos_id, hos_pw, hos_lic, hos_code )";
+		sql += "INSERT INTO hos ( hos_no, hos_id, hos_pw, hos_lic, hos_code )";
 		sql += " VALUES ( hos_seq.nextval, ?, ?, ?, ? )";
 		
-		int hosresult = 0;
+		int hres = 0;
 		
 		try {
 			ps = conn.prepareStatement(sql);
 			
-			ps.setInt(1, hos.getHosNo());
-			ps.setString(2, hos.getHosId());
-			ps.setString(3, hos.getHosPw());
-			ps.setInt(4, hos.getHosLic());
-			ps.setInt(5, hos.getHosCode());
+			ps.setString(1, hos.getHosId());
+			ps.setString(2, hos.getHosPw());
+			ps.setInt(3, hos.getHosLic());
+			ps.setInt(4, hos.getHosCode());
 			
-			hosresult = ps.executeUpdate();
+			hres = ps.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(ps);
 		}
-		return hosresult;
-	}
-
-	@Override
-	public int selectCntOwnerByUseridUserpw(Connection conn, Owner owner) {
-		
-		String sql = "";
-		sql += "SELECT count(*) cnt FROM owner";
-		sql += " WHERE ownerid = ?";
-		sql += "	AND ownerpw = ?";
-		
-		int cnt = 0;
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, owner.getOwnerId());
-			ps.setString(2, owner.getOwnerPw());
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				cnt = rs.getInt("cnt");
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		return cnt;
-	}
-	
-	@Override
-	public Owner selectOwnerByUserid(Connection conn, Owner owner) {
-
-		String sql = "";
-		sql += "SELECT owner_no, owner_id, owner_pw, owner_name, owner_email, owner_call, owner_nick FROM owner";
-		sql += " WHERE ownerid = ?";
-		
-		Owner ownerres = null;
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			ps.setString(1, owner.getOwnerId());
-			
-			rs = ps.executeQuery();
-			
-			while(rs.next()) {
-				ownerres = new Owner();
-				
-				ownerres.setOwnerId( rs.getString("owner_id") );
-				ownerres.setOwnerPw( rs.getString("owner_pw") );
-				ownerres.setOwnerNick( rs.getString("onwer_nick") );
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		return ownerres;
-	}
-	
-	@Override
-	public int ownerinsert(Connection conn, Owner owner) {
-		
-		String sql = "";
-		sql += "INSERT INTO owner ( owner_no, owner_id, owner_pw, owner_name, owner_email, owner_call, owner_nick )";
-		sql += " VALUES ( owner_seq.nextval, ?, ?, ?, ?, ?, ? )";
-		
-		int ownerresult = 0;
-		
-		try {
-			ps = conn.prepareStatement(sql);
-			
-			ps.setInt(1, owner.getOwnerNo());
-			ps.setString(2, owner.getOwnerId());
-			ps.setString(3, owner.getOwnerPw());
-			ps.setString(4, owner.getOwnerName());
-			ps.setString(5, owner.getOwnerEmail());
-			ps.setInt(6, owner.getOwnerCall());
-			ps.setString(7, owner.getOwnerNick());
-			
-			ownerresult = ps.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			JDBCTemplate.close(ps);
-		}
-		return ownerresult;
+		return hres;
 	}
 }
