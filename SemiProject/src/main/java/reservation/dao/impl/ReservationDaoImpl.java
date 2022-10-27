@@ -186,8 +186,8 @@ public class ReservationDaoImpl implements ReservationDao {
 	public int insertreser(Connection conn, Reservation reser, Owner owner, Pet pet, HosInfo hosInfo) {
 		
 		String sql = "";
-		sql += "INSERT INTO reservation (res_no, res_date, res_detail, owner_no, pet_no, hos_no";
-		sql += " VALUE (?, ?, ?, ?, ?, ? )";
+		sql += "INSERT INTO reservation (res_no, res_date, res_detail, owner_no, pet_no, hos_code )";
+		sql += " VALUES (?, ?, ?, ?, ?, ? )";
 		
 		int result = 0;
 		
