@@ -30,6 +30,8 @@ function requestPay() {
 		console.log(rsp)
 	    if ( rsp.success ) {
 	    	$("#merchant_uid").val(rsp.merchant_uid);
+	    	$("#payMoney").val(rsp.paid_amount);
+	    	
 	    	
 	    	console.log(rsp.success);
 	    	console.log(rsp.merchant_uid)
@@ -289,6 +291,8 @@ button {
 
 <div style="display:none" id="hiddenDiv">
 <input type="hidden" name="merchant_uid" id="merchant_uid">
+<input type="hidden" name="payMoney" id="payMoney">
+
 </div>
 
 </form>

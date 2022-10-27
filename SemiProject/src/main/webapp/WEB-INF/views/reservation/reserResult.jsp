@@ -8,13 +8,6 @@
 <%	Owner owner = (Owner) request.getAttribute("owner"); %>
 <%  Reservation reser = (Reservation) request.getAttribute("reserResult"); %>
 
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 <style type="text/css">
 
 th, td {
@@ -33,16 +26,11 @@ button {
 	margin: 0 auto;
 }
 
-
-
 </style>
 
-</head>
 <body>
 
-<header>
-<h1>헤더부분</h1>
-</header>
+<%@ include file="../layout/header.jsp" %>
 
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
 
@@ -92,14 +80,12 @@ button {
 <br><br>
 
 <div style="text-align: center;">
-	<button>홈으로</button>
-	<button>마이페이지로 이동</button>
+	<button type="button" class="btn btn-primary">홈으로</button>
+	<button type="button" class="btn btn-primary">마이페이지로 이동</button>
 </div>
 
 </div>  <!-- body end -->
-<footer>
-<h1>풋터부분</h1>
-</footer>
 
-</body>
-</html>
+<br>
+
+<%@ include file="../layout/footer.jsp" %>

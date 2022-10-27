@@ -9,6 +9,7 @@ import hosInfo.dto.HosInfo;
 import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
 import reservation.dao.impl.ReservationDaoImpl;
+import reservation.dto.Payment;
 import reservation.dto.Pet;
 import reservation.dto.Reservation;
 import reservation.service.face.ReservationService;
@@ -87,19 +88,19 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	@Override
-	public Owner getOwnerName(HttpServletRequest req, int ownerNo) {
+	public Owner getOwnerName(HttpServletRequest req, String ownerid) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		System.out.println("Service ownerNO : " + ownerNo);
+		System.out.println("Service ownerid : " + ownerid);
 		
-		Owner ownerN = new Owner();
+		Owner ownerID = new Owner();
 		
-		ownerN.setOwnerNo(ownerNo);
-		System.out.println("SERVICE ownerN : " + ownerN);
+		ownerID.setOwnerId(ownerid);
+		System.out.println("SERVICE ownerN : " + ownerID);
 		
 		
-		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerN);
+		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerID);
 		
 		System.out.println("Service owner" + owner);
 		
@@ -142,6 +143,38 @@ public class ReservationServiceImpl implements ReservationService {
 			return null;
 		}
 		
+	}
+	
+	@Override
+	public Payment getMerchat(HttpServletRequest req) {
+		
+		Payment pay = new Payment();
+		
+		String merchat = req.getParameter("merchant_uid");
+		String money = req.getParameter("payMoney");
+		pay.setPayNo(merchat);
+		if( null !=money && !"".equals(money) ) {
+			pay.setPayMoney( Integer.parseInt(money));
+		}
+		
+		return pay;
+	}
+	
+	@Override
+	public Payment insertpay(Payment pay, Reservation reserResult, Owner owner, HosInfo hosInfo) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		
+		int result = reservationDao.insertpay(conn, pay, reserResult, owner, hosInfo);
+		
+		if( result > 0) {
+			JDBCTemplate.commit(conn);
+			return pay;
+		} else {
+			JDBCTemplate.commit(conn);
+			return null;
+		}
 	}
 	
 }

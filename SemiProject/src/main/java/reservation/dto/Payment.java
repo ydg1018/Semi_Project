@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Payment {
 
-	private int payNo;
+	private String payNo;
 	private Date payDate;
 	private int payMoney;
 	private int resNo;
@@ -13,7 +13,7 @@ public class Payment {
 	
 	public Payment() {}
 
-	public Payment(int payNo, Date payDate, int payMoney, int resNo, int ownerNo, int hosNo) {
+	public Payment(String payNo, Date payDate, int payMoney, int resNo, int ownerNo, int hosNo) {
 		super();
 		this.payNo = payNo;
 		this.payDate = payDate;
@@ -29,11 +29,11 @@ public class Payment {
 				+ ", ownerNo=" + ownerNo + ", hosNo=" + hosNo + "]";
 	}
 
-	public int getPayNo() {
+	public String getPayNo() {
 		return payNo;
 	}
 
-	public void setPayNo(int payNo) {
+	public void setPayNo(String payNo) {
 		this.payNo = payNo;
 	}
 
@@ -75,8 +75,6 @@ public class Payment {
 
 	public void setHosNo(int hosNo) {
 		this.hosNo = hosNo;
-	}
-	
-	
+	}	
 	
 }

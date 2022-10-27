@@ -9,6 +9,7 @@ import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
 import login.dto.Owner;
 import reservation.dao.face.ReservationDao;
+import reservation.dto.Payment;
 import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
@@ -115,20 +116,20 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 	
 	@Override
-	public Owner selectOnwerByOnwerid(Connection conn, Owner ownerN) {
+	public Owner selectOnwerByOnwerid(Connection conn, Owner ownerID) {
 		
-		System.out.println("DAO ownerN : " + ownerN);
+		System.out.println("DAO ownerID : " + ownerID);
 		
 		String sql = "";
 		sql += "SELECT owner_no, owner_id, owner_pw, owner_name, owner_email, owner_call, owner_nick";
 		sql += " FROM owner";
-		sql += " WHERE owner_no = ?";
+		sql += " WHERE owner_id = ?";
 		
 		Owner owner = null;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, ownerN.getOwnerNo());
+			ps.setString(1, ownerID.getOwnerId());
 			
 			rs = ps.executeQuery();
 			
@@ -200,6 +201,35 @@ public class ReservationDaoImpl implements ReservationDao {
 			ps.setInt(4, owner.getOwnerNo());
 			ps.setInt(5, pet.getPetNo());
 			ps.setInt(6, hosInfo.getHos_code());
+			
+			result = ps.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		
+		return result;
+	}
+	
+	@Override
+	public int insertpay(Connection conn, Payment pay, Reservation reserResult, Owner owner, HosInfo hosInfo) {
+		
+		String sql = "";
+		sql += "INSERT INTO payment";
+		sql += "	VALUES(?, sysdate, ?, ?, ?, ? )";
+		
+		int result = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, pay.getPayNo());
+			ps.setInt(2, pay.getPayMoney());
+			ps.setInt(3, reserResult.getResNo());
+			ps.setInt(4, owner.getOwnerNo());
+			ps.setInt(5, hosInfo.getHos_code());
 			
 			result = ps.executeUpdate();
 			
