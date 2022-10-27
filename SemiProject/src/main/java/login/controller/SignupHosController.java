@@ -8,34 +8,39 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import login.dto.Owner;
+import login.dto.Hos;
 import login.service.face.LoginService;
 import login.service.impl.LoginServiceImpl;
 
-@WebServlet("/signup/ownersignup")
-public class OwnerSignupController extends HttpServlet {
+@WebServlet("/login/signuphos")
+public class SignupHosController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	
+
 	private LoginService loginService = new LoginServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/signup/ownersignup [GET]");
-	
-		req.getRequestDispatcher("/WEB-INF/views/login/signup/ownersignup.jsp").forward(req, resp);
+		System.out.println("/login/signuphos [GET]");
+
+		req.getRequestDispatcher("/WEB-INF/views/login/signuphos.jsp").forward(req, resp);
 	}
 	
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/signup/ownersignup [POST]");
-
-		//회원가입 전달파라미터 추출하기
-		Owner owner = loginService.getJoinOwner(req);
-				
-		//회원가입 처리
-		loginService.ownerJoin(owner);
+		System.out.println("/login/signuphos [POST]");
 		
-		//메인으로 리다이렉트
-		resp.sendRedirect("/main");
+		// 전달 파라미터에 대한 한글 인코딩 설정
+		req.setCharacterEncoding("UTF-8");
+		
+		// 회원가입 전달파라미터 추출하기
+		Hos hos = loginService.getJoinHos(req);
+						
+		// 회원가입 처리
+		loginService.HosJoin(hos);
+		
+		System.out.println("hos : " + hos);
+				
+		// 로그인 화면으로 리다이렉트
+		resp.sendRedirect("/login/login");
 	}
 }

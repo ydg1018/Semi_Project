@@ -7,12 +7,12 @@ public class Owner {
 	private String ownerPw;
 	private String ownerName;
 	private String ownerEmail;
-	private int ownerCall;
+	private String ownerCall;
 	private String ownerNick;
 	
 	public Owner() {}
-	
-	public Owner(int ownerNo, String ownerId, String ownerPw, String ownerName, String ownerEmail, int ownerCall,
+
+	public Owner(int ownerNo, String ownerId, String ownerPw, String ownerName, String ownerEmail, String ownerCall,
 			String ownerNick) {
 		super();
 		this.ownerNo = ownerNo;
@@ -71,11 +71,11 @@ public class Owner {
 		this.ownerEmail = ownerEmail;
 	}
 
-	public int getOwnerCall() {
+	public String getOwnerCall() {
 		return ownerCall;
 	}
 
-	public void setOwnerCall(int ownerCall) {
+	public void setOwnerCall(String ownerCall) {
 		this.ownerCall = ownerCall;
 	}
 

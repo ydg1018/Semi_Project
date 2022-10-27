@@ -1,28 +1,30 @@
 package login.dto;
 
-public class Hospital {
+public class Hos {
 
 	private int hosNo;
 	private String hosId;
 	private String hosPw;
 	private int hosLic;
+	private String hosName;
 	private int hosCode;
 	
-	public Hospital() {}
+	public Hos() {}
 
-	public Hospital(int hosNo, String hosId, String hosPw, int hosLic, int hosCode) {
+	public Hos(int hosNo, String hosId, String hosPw, int hosLic, String hosName, int hosCode) {
 		super();
 		this.hosNo = hosNo;
 		this.hosId = hosId;
 		this.hosPw = hosPw;
 		this.hosLic = hosLic;
+		this.hosName = hosName;
 		this.hosCode = hosCode;
 	}
 
 	@Override
 	public String toString() {
-		return "Hospital [hosNo=" + hosNo + ", hosId=" + hosId + ", hosPw=" + hosPw + ", hosLic=" + hosLic
-				+ ", hosCode=" + hosCode + "]";
+		return "Hos [hosNo=" + hosNo + ", hosId=" + hosId + ", hosPw=" + hosPw + ", hosLic=" + hosLic + ", hosName="
+				+ hosName + ", hosCode=" + hosCode + "]";
 	}
 
 	public int getHosNo() {
@@ -55,6 +57,14 @@ public class Hospital {
 
 	public void setHosLic(int hosLic) {
 		this.hosLic = hosLic;
+	}
+
+	public String getHosName() {
+		return hosName;
+	}
+
+	public void setHosName(String hosName) {
+		this.hosName = hosName;
 	}
 
 	public int getHosCode() {
