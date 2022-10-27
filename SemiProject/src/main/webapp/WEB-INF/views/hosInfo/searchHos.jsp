@@ -105,7 +105,7 @@ $(document).ready(function() {
 			<option value="hos_add">병원 주소</option>
 		</select>
 		<input id="input" type="text" placeholder="병원 정보를 검색하세요" name="keyword">
-		<input id="btnsearch" type="image" value="">
+		<input id="btnsearch" type="submit" value="">
 	</form>	
 </div>
 

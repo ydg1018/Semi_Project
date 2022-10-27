@@ -105,12 +105,12 @@ span {
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="../dep/list">
 						<span>진료과 정보</span>
 					</a>
 				</li>
 				<li>
-					<h5><a href="/">
+					<h5><a href="">
 						<span>동물병원을 찾아줘</span>
 					</a></h5>
 				</li>
