@@ -4,17 +4,6 @@
     
 <%	HosInfo hos = (HosInfo) request.getAttribute("hosInfo"); %>
     
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
-<!-- 부트스트랩 Bootstrap3 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <!-- jQuery -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js" ></script>
 <!-- iamport.payment.js -->
@@ -52,20 +41,15 @@ function requestPay() {
 	        
 	        alert(msg);
 	    }
-	    
-	    
 
 	})
 };
 
-</script>
-
-<script type="text/javascript">
 function goBack() {
 	console.log("#btnbtnBack click")
 	
 	window.history.back();
-}
+};
 
 </script>
 
@@ -121,11 +105,18 @@ $(document).ready(function() {
 			} else {
 				requestPay();
 			}
-	})
+	});
+
+	$('#visitDate').val(new Date().toISOString().substring(0, 10));
+	$('#visitTime').val(new Date().toISOString().slice(11, 16));
+
+	
 })
 
-</script> 
+</script>
 
+<script>
+</script>
 
 <style type="text/css">
 
@@ -133,11 +124,6 @@ $(document).ready(function() {
 	width: 1200px;
 	margin: 0 auto;
 }
-
-/* div#hosLeft {
-	float: left;
-	width: 48%;
-} */
 
 #ownerRight {
 
@@ -150,30 +136,12 @@ $(document).ready(function() {
 	vertical-align: middle;
 }
 
-/* fieldset { */
-/* 	height: 640px; */
-/* } */
-
-/* tr { */
-/* 	height: 65px; */
-/* } */
-
-/* th { */
-/* 	width: 100px; */
-/* } */
-
 legend {
 /* 	display: inline-block; */
 	text-align: center;
 	font-size: 30px;
 	font-weight: bold;
 }
-
-/* label {
-	display: inline-block;
-	text-align: center;
- 	width: 500px;
-} */
 
 button {
     margin: 0px 60px 0px 60px;
@@ -188,14 +156,9 @@ button {
 
 </style>
 
-
-
-</head>
 <body>
 
-<header>
-<h1>헤더부분</h1>
-</header>
+<%@ include file="../layout/header.jsp" %>
 
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
 
@@ -267,23 +230,23 @@ button {
 <legend>예약자 정보</legend>
 
 <div class="form-group form-group-lg">
-	<label>보호자명 : <input type="text" name="ownerName"></label><br><br>
+	<label>보호자명 : <input type="text" name="ownerName"></label><br>
 </div>
 
 <div class="form-group form-group-lg">
-<label>전화번호 : <input type="text" name="ownerPhone"></label><br><br>
+<label>전화번호 : <input type="text" name="ownerPhone"></label><br>
 </div>
 
 <div class="form-group">
-	<label>주소 : <input type="text"  name="ownerAddress"></label><br><br>
+	<label>주소 : <input type="text"  name="ownerAddress"></label><br>
 </div>
 
 <div class="form-group">
-	<label>이메일 : <input type="text"  name="ownerEmail"></label><br><br>
+	<label>이메일 : <input type="text"  name="ownerEmail"></label><br>
 </div>
 
 <div class="form-group">
-	<label>펫이름 : <input type="text"  name="petName"></label><br><br>
+	<label>펫이름 : <input type="text"  name="petName"></label><br>
 </div>
 
 <div class="form-group">
@@ -293,25 +256,26 @@ button {
 			<option value="<%=i %>" ><%=i %></option>
 		<%	} %>
 			
-		</select></label><br><br>
-	<label>펫성별 : <input type="radio" name="petSex" value="m">남
-	<input type="radio" name="petSex" value="f">여</label><br><br>
+		</select></label><br>
+		
+	<label>펫성별 : <input type="radio" name="petSex" value="m" checked="checked">남
+	<input type="radio" name="petSex" value="f">여</label><br>
 </div>
 
 <div>
 </div>
 
 <div class="form-group">
-	<label>펫 종류 : <input type="text"  name="petType"></label><br><br>
+	<label>펫 종류 : <input type="text"  name="petType"></label><br>
 </div>
 
 <div class="form-group">
-	<label>방문일자 : <input type="date" name="visitDate">
-	<input type="time" name="visitTime"></label><br><br>
+	<label>방문일자 : <input type="date" name="visitDate" id="visitDate">
+	<input type="time" name="visitTime" id="visitTime"></label><br>
 </div>
 
 <div class="form-group">
-	<label>진료내용 : <textarea rows="5" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br><br>
+	<label>진료내용 : <textarea rows="5" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br>
 </div>
 
 <div style="display: none;" class="form-group">
@@ -339,9 +303,4 @@ button {
 
 </div>  <!-- body end -->
 
-<footer>
-<h1>풋터부분</h1>
-</footer>
-
-</body>
-</html>
+<%@ include file="../layout/footer.jsp" %>

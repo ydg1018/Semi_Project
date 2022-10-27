@@ -35,7 +35,7 @@ public interface ReservationDao {
 	 */
 	public int insert(Connection conn, Pet pet);
 
-	public Owner selectOnwerByOnwerid(Connection conn, String ownerid);
+	public Owner selectOnwerByOnwerid(Connection conn, Owner ownerN);
 
 	/**
 	 * reservation_seq의 nextval 조회

@@ -115,17 +115,20 @@ public class ReservationDaoImpl implements ReservationDao {
 	}
 	
 	@Override
-	public Owner selectOnwerByOnwerid(Connection conn, String ownerid) {
+	public Owner selectOnwerByOnwerid(Connection conn, Owner ownerN) {
+		
+		System.out.println("DAO ownerN : " + ownerN);
 		
 		String sql = "";
-		sql += "SELECT * FROM owner";
-		sql += " WHERE owner_id = ?";
+		sql += "SELECT owner_no, owner_id, owner_pw, owner_name, owner_email, owner_call, owner_nick";
+		sql += " FROM owner";
+		sql += " WHERE owner_no = ?";
 		
 		Owner owner = null;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, ownerid);
+			ps.setInt(1, ownerN.getOwnerNo());
 			
 			rs = ps.executeQuery();
 			
@@ -149,6 +152,7 @@ public class ReservationDaoImpl implements ReservationDao {
 			JDBCTemplate.close(ps);
 		}
 		
+		System.out.println("DAO owner : " + owner );
 		return owner;
 	}
 	

@@ -36,7 +36,7 @@ public interface ReservationService {
 	 */
 	public Pet insertPet(Pet pet);
 
-	public Owner getOwnerName(HttpServletRequest req, String ownerid);
+	public Owner getOwnerName(HttpServletRequest req, int ownerNo);
 
 	/**
 	 * reservation 파라미터 가져오기

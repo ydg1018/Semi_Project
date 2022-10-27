@@ -87,11 +87,21 @@ public class ReservationServiceImpl implements ReservationService {
 	}
 	
 	@Override
-	public Owner getOwnerName(HttpServletRequest req, String ownerid) {
+	public Owner getOwnerName(HttpServletRequest req, int ownerNo) {
 		
 		Connection conn = JDBCTemplate.getConnection();
 		
-		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerid);
+		System.out.println("Service ownerNO : " + ownerNo);
+		
+		Owner ownerN = new Owner();
+		
+		ownerN.setOwnerNo(ownerNo);
+		System.out.println("SERVICE ownerN : " + ownerN);
+		
+		
+		Owner owner = reservationDao.selectOnwerByOnwerid(conn, ownerN);
+		
+		System.out.println("Service owner" + owner);
 		
 		return owner;
 	}
