@@ -22,59 +22,42 @@
 <body>
 <h1 style="text-align: center;">
 <%=detailHosInfo.getHos_name() %>
+<button class="btn btn-info" onclick="location.href='../reservation?hosCode=<%=detailHosInfo.getHos_code() %>'">예약하러가기</button>
+
 <button class="btn btn-info" onclick="location.href='../hos/list'">병원 전체 목록</button>
 </h1>
 
 <hr>
 <br>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8dac43c5806fc51358462c78ce0d3a41"></script>
 
 <p style="margin-top:-12px">
-    <em class="link">
-        <a href="javascript:void(0);" onclick="window.open('http://fiy.daum.net/fiy/map/CsGeneral.daum', '_blank', 'width=981, height=650')">
-            혹시 주소 결과가 잘못 나오는 경우에는 여기에 제보해주세요.
-        </a>
-    </em>
-</p>
 <div id="map" style="width:100%;height:350px;"></div>
+
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=8dac43c5806fc51358462c78ce0d3a41&libraries=services"></script>
 <script>
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
-    mapOption = {
-        center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
-        level: 3 // 지도의 확대 레벨
-    };  
+    mapOption = { 
+        center: new kakao.maps.LatLng(37.5351139, 126.863757), // 지도의 중심좌표
+        level: 1 // 지도의 확대 레벨
+    };
 
-// 지도를 생성합니다    
-var map = new kakao.maps.Map(mapContainer, mapOption); 
+var map = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-// 주소-좌표 변환 객체를 생성합니다
-var geocoder = new kakao.maps.services.Geocoder();
+// 마커가 표시될 위치입니다 
+var markerPosition  = new kakao.maps.LatLng(37.5351139, 126.863757); 
 
-// 주소로 좌표를 검색합니다
-geocoder.addressSearch('서울특별시 도봉구 도당로 63', function(result, status) {
+// 마커를 생성합니다
+var marker = new kakao.maps.Marker({
+    position: markerPosition
+});
 
-    // 정상적으로 검색이 완료됐으면 
-     if (status === kakao.maps.services.Status.OK) {
+// 마커가 지도 위에 표시되도록 설정합니다
+marker.setMap(map);
 
-        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-
-        // 결과값으로 받은 위치를 마커로 표시합니다
-        var marker = new kakao.maps.Marker({
-            map: map,
-            position: coords
-        });
-
-        // 인포윈도우로 장소에 대한 설명을 표시합니다
-        var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-        });
-        infowindow.open(map, marker);
-
-        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        map.setCenter(coords);
-    } 
-});    
+// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+// marker.setMap(null);    
 </script>
+
 
 <br><br>
 

@@ -24,6 +24,7 @@ public class DepInfoResultController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/dep/result [GET]");
 		
+		//검색
 		String det_detail = req.getParameter("det_detail");
 		
 		ArrayList<DepInfo> list = depInfoService.searchDepInfo(det_detail);

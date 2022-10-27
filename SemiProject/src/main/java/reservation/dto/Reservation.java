@@ -5,7 +5,7 @@ import java.util.Date;
 public class Reservation {
 
 	private int resNo;
-	private Date resDate;
+	private String resDate;
 	private String resDetail;
 	private int ownerNo;
 	private int petNo;
@@ -13,7 +13,7 @@ public class Reservation {
 	
 	public Reservation() {}
 
-	public Reservation(int resNo, Date resDate, String resDetail, int ownerNo, int petNo, int hosNo) {
+	public Reservation(int resNo, String resDate, String resDetail, int ownerNo, int petNo, int hosNo) {
 		super();
 		this.resNo = resNo;
 		this.resDate = resDate;
@@ -37,11 +37,11 @@ public class Reservation {
 		this.resNo = resNo;
 	}
 
-	public Date getResDate() {
+	public String getResDate() {
 		return resDate;
 	}
 
-	public void setResDate(Date resDate) {
+	public void setResDate(String resDate) {
 		this.resDate = resDate;
 	}
 

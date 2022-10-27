@@ -1,5 +1,14 @@
+<%@page import="reservation.dto.Reservation"%>
+<%@page import="login.dto.Owner"%>
+<%@page import="hosInfo.dto.HosInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%	HosInfo hos = (HosInfo) request.getAttribute("hosInfo"); %>
+<%	Owner owner = (Owner) request.getAttribute("owner"); %>
+<%  Reservation reser = (Reservation) request.getAttribute("reserResult"); %>
+
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,31 +56,31 @@ button {
 <table>
 <tr>
 	<th>병원명 : </th>
-	<td>00병원</td>
+	<td><%=hos.getHos_name() %></td>
 </tr>
 <tr>
 	<th>병원주소 : </th>
-	<td>서울 00시 00동 000-000</td>
+	<td><%=hos.getHos_add() %></td>
 </tr>
 <tr>
 	<th>병원 전화번호 : </th>
-	<td>000-0000-0000</td>
+	<td><%=hos.getHos_call() %></td>
 </tr>
 <tr>
 	<th>예약번호 : </th>
-	<td> 0000</td>
+	<td><%=reser.getResNo() %></td>
 </tr>
 <tr>
 	<th>보호자명 : </th>
-	<td> 000</td>
+	<td><%=owner.getOwnerName() %></td>
 </tr>
 <tr>
 	<th>예약 시간 : </th>
-	<td>00:00~00:00</td>
+	<td><%=reser.getResDate() %></td>
 </tr>
 <tr>
 	<th>진료 내용 : </th>
-	<td>00000000000</td>
+	<td><%=reser.getResDetail() %></td>
 </tr>
 
 </table>
