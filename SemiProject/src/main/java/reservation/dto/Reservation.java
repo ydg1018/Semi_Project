@@ -9,24 +9,24 @@ public class Reservation {
 	private String resDetail;
 	private int ownerNo;
 	private int petNo;
-	private int hosNo;
+	private int hosCode;
 	
 	public Reservation() {}
 
-	public Reservation(int resNo, String resDate, String resDetail, int ownerNo, int petNo, int hosNo) {
+	public Reservation(int resNo, String resDate, String resDetail, int ownerNo, int petNo, int hosCode) {
 		super();
 		this.resNo = resNo;
 		this.resDate = resDate;
 		this.resDetail = resDetail;
 		this.ownerNo = ownerNo;
 		this.petNo = petNo;
-		this.hosNo = hosNo;
+		this.hosCode = hosCode;
 	}
 
 	@Override
 	public String toString() {
 		return "Reservation [resNo=" + resNo + ", resDate=" + resDate + ", resDetail=" + resDetail + ", ownerNo="
-				+ ownerNo + ", petNo=" + petNo + ", hosNo=" + hosNo + "]";
+				+ ownerNo + ", petNo=" + petNo + ", hosCode=" + hosCode + "]";
 	}
 
 	public int getResNo() {
@@ -69,14 +69,12 @@ public class Reservation {
 		this.petNo = petNo;
 	}
 
-	public int getHosNo() {
-		return hosNo;
+	public int getHosCode() {
+		return hosCode;
 	}
 
-	public void setHosNo(int hosNo) {
-		this.hosNo = hosNo;
+	public void setHosCode(int hosCode) {
+		this.hosCode = hosCode;
 	}
-	
-	
 	
 }

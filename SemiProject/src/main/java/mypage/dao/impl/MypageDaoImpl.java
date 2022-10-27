@@ -158,7 +158,7 @@ public class MypageDaoImpl implements MypageDao {
 			//조회 결과 처리
 			while(rs.next()) {
 				result.setResNo(rs.getInt("res_no"));
-				result.setResDate(rs.getDate("res_date"));
+				result.setResDate(rs.getString("res_date"));
 				result.setResDetail(rs.getString("res_detail"));
 				result.setOwnerNo(rs.getInt("owner_no"));
 				result.setPetNo(rs.getInt("pet_no"));
@@ -200,7 +200,7 @@ public class MypageDaoImpl implements MypageDao {
 			//조회 결과 처리
 			while(rs.next()) {
 				result.setResNo(rs.getInt("res_no"));
-				result.setResDate(rs.getDate("res_date"));
+				result.setResDate(rs.getString("res_date"));
 				result.setResDetail(rs.getString("res_detail"));
 				result.setOwnerNo(rs.getInt("owner_no"));
 				result.setPetNo(rs.getInt("pet_no"));
