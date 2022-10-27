@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import common.JDBCTemplate;
+import hosInfo.dto.HosInfo;
 import login.dto.Hospital;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
@@ -331,6 +332,137 @@ public class MypageDaoImpl implements MypageDao {
 			JDBCTemplate.close(ps);
 		}
 		System.out.println("MypageDao deleteHospital() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+//-----------------------------------------------------------
+	@Override
+	public HosInfo getHosInfo(Connection conn, HosInfo param) {
+		System.out.println("MypageDao getHosInfo() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM HosInfo";
+		sql += " WHERE hos_code = ?";
+		
+		//결과 저장할 객체
+		HosInfo result = new HosInfo();
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setInt(1, param.getHos_code());
+			//2.쿼리에 보낼 데이터에 병원꾸러미에 잇는 데이터 넣어주는거지
+			
+			//SQL수행 및 결과 집합 저장
+			rs = ps.executeQuery(); 
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				result.setHos_code(rs.getInt("hos_code"));
+				result.setHos_name(rs.getString("hos_name"));
+				result.setHos_add(rs.getString("hos_add"));
+				result.setHos_zip(rs.getInt("hos_zip"));
+				result.setHos_call(rs.getString("hos_call"));
+				result.setHos_time(rs.getString("hos_time"));
+				result.setHos_trans(rs.getString("hos_trans"));
+				result.setHos_park(rs.getString("hos_park"));
+				result.setHos_price(rs.getInt("hos_price"));
+
+				//1.병원에 데이터 넣어주는거고
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao getHosInfo() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+	@Override
+	public int updateHosInfo(Connection conn, HosInfo param) {
+		System.out.println("MypageDao updateHosInfo() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "UPDATE hosInfo SET ";
+		sql += " hos_name = ?";
+		sql += " ,hos_add = ?";
+		sql += " ,hos_zip = ?";
+		sql += " ,hos_call = ?";
+		sql += " ,hos_time = ?";
+		sql += " ,hos_trans = ?";
+		sql += " ,hos_park = ?";
+		sql += " ,hos_price = ?";
+		sql += " WHERE hos_code = ?";
+		
+		//결과 저정할 객체
+		int result = 0;
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setString(1, param.getHos_name());
+			ps.setString(2, param.getHos_add());
+			ps.setInt(3, param.getHos_zip());
+			ps.setString(4, param.getHos_call());
+			ps.setString(5, param.getHos_time());
+			ps.setString(6, param.getHos_trans());
+			ps.setString(7, param.getHos_park());
+			ps.setInt(8, param.getHos_price());
+
+			//SQL수행 및 결과 집합 저장
+			result = ps.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao updateInfo() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+	@Override
+	public int deleteHosInfo(Connection conn, HosInfo param) {
+		System.out.println("MypageDao deleteHosInfo() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "DELETE FROM HosInfo";
+		sql += " WHERE HosCode = ?";
+		
+		//결과 저정할 객체
+		int result = 0;
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setString(1, param.getHos_name());
+
+
+			//SQL수행 및 결과 집합 저장
+			result = ps.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao deleteHosInfo() - 끝");
 		
 		return result; //최종 결과 반환
 	}

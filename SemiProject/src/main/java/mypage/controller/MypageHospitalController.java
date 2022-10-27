@@ -22,7 +22,7 @@ private MypageService mypageService = new MypageServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/mypage/owner [GET]");
+		System.out.println("/mypage/hospital [GET]");
 
 		//세션정보 객체
 		HttpSession session = req.getSession();
@@ -34,7 +34,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		Hospital param = new Hospital();
 		param.setHosNo(hosNo);
 
-		//로그인한 Owner 정보 조회
+		//로그인한 hospital 정보 조회
 		Hospital data = mypageService.getHospital(param);
 		System.out.println("Hospital 정보 조회 data : " + data);
 		

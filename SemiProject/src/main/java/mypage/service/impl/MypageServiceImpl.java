@@ -3,6 +3,7 @@ package mypage.service.impl;
 import java.sql.Connection;
 
 import common.JDBCTemplate;
+import hosInfo.dto.HosInfo;
 import login.dto.Hospital;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
@@ -107,6 +108,45 @@ public class MypageServiceImpl implements MypageService {
 
 		 //DB조회결과 반환
 		 return mypageDao.deleteHospital(conn, param);
+		 
+	}
+	
+	
+	
+	
+	@Override
+	public HosInfo getHosInfo(HosInfo param) {
+		System.out.println("MypageService getHosInfo()");
+		
+		//DB연결 객체
+		Connection conn = JDBCTemplate.getConnection();
+
+		//DB조회결과 반환
+		return mypageDao.getHosInfo(conn, param);
+		 
+	}
+
+	@Override
+	public int updateHosInfo(HosInfo param) {
+		 System.out.println("MypageService updateHosInfo()");
+
+		 //DB연결 객체
+		 Connection conn = JDBCTemplate.getConnection();
+			
+		 //DB조회결과 반환
+		 return mypageDao.updateHosInfo(conn, param);
+		 
+	}
+
+	@Override
+	public int deleteHosInfo(HosInfo param) {
+		 System.out.println("MypageService deleteHosInfo()");
+		 
+		 //DB연결 객체
+		 Connection conn = JDBCTemplate.getConnection();
+
+		 //DB조회결과 반환
+		 return mypageDao.deleteHosInfo(conn, param);
 		 
 	}
 }
