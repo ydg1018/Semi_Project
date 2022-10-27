@@ -7,7 +7,7 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
    
-<% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %>    
+<% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %> 
 
 <!DOCTYPE html>
 <html>
