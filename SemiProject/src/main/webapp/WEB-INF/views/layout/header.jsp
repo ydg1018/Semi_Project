@@ -64,15 +64,23 @@ span {
 <header id="header">
 	<div class="right">
 		<ul style="display: flex;">
+		<%	if( session.getAttribute("login") == null ) { %>
 			<li>
 				<a href="/login/login">로그인</a>
 			</li>
 			<li>
 				<a href="/login/signup">회원가입</a>
 			</li>
+		<%	} %>
+		
+		<%	if( session.getAttribute("login") != null && (boolean) session.getAttribute("login") ) { %>
+			<li>
+				<a href="/login/logout">로그아웃</a>
+			</li>
 			<li>
 				<a>마이페이지</a>
 			</li>
+		<% } %>
 		</ul>
 	</div>
 
