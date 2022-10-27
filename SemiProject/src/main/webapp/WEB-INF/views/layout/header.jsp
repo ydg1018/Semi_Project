@@ -24,11 +24,11 @@ font-family: 'Nanum Gothic', sans-serif;
 <style type="text/css">
 #header {
 	text-align: center;
-	background: #32a69f;
+	background: #46B4B4;
 }
 
 #footer {
-	background: #b4e8e3;
+	background: #46B4B4;
 }
 
 #header h1 a {
@@ -109,12 +109,12 @@ span {
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="../dep/list">
 						<span>진료과 정보</span>
 					</a>
 				</li>
 				<li>
-					<h5><a href="/">
+					<h5><a href="../hos/list">
 						<span>동물병원을 찾아줘</span>
 					</a></h5>
 				</li>

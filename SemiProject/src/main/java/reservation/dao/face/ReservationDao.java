@@ -4,6 +4,7 @@ import java.sql.Connection;
 
 import hosInfo.dto.HosInfo;
 import login.dto.Owner;
+import reservation.dto.Payment;
 import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
@@ -35,7 +36,7 @@ public interface ReservationDao {
 	 */
 	public int insert(Connection conn, Pet pet);
 
-	public Owner selectOnwerByOnwerid(Connection conn, String ownerid);
+	public Owner selectOnwerByOnwerid(Connection conn, Owner ownerID);
 
 	/**
 	 * reservation_seq의 nextval 조회
@@ -55,5 +56,17 @@ public interface ReservationDao {
 	 * @return
 	 */
 	public int insertreser(Connection conn, Reservation reser, Owner owner, Pet pet, HosInfo hosInfo);
+
+	/**
+	 * DB삽입
+	 * 
+	 * @param conn
+	 * @param pay
+	 * @param reserResult
+	 * @param owner
+	 * @param hosInfo
+	 * @return
+	 */
+	public int insertpay(Connection conn, Payment pay, Reservation reserResult, Owner owner, HosInfo hosInfo);
 
 }

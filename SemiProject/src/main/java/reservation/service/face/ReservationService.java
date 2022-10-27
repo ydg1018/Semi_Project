@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import hosInfo.dto.HosInfo;
 import login.dto.Owner;
+import reservation.dto.Payment;
 import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
@@ -56,6 +57,25 @@ public interface ReservationService {
 	 * @return
 	 */
 	public Reservation insertReser(Reservation reser, Owner owner, Pet pet, HosInfo hosInfo);
+
+	/**
+	 * pay_no으로 쓰일 merchant 가져오기
+	 * 
+	 * @param req
+	 * @return
+	 */
+	public Payment getMerchat(HttpServletRequest req);
+
+	/**
+	 * payment DB 삽입하기
+	 * 
+	 * @param pay
+	 * @param reserResult
+	 * @param owner
+	 * @param hosInfo
+	 * @return
+	 */
+	public Payment insertpay(Payment pay, Reservation reserResult, Owner owner, HosInfo hosInfo);
 
 
 }

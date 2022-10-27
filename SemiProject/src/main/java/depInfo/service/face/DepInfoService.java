@@ -38,5 +38,5 @@ public interface DepInfoService {
 	 * @param dep_detail - 검색어
 	 * @return ArrayList<DepInfo> - 검색어가 포함된 진료과 정보 목록
 	 */
-	public ArrayList<DepInfo> searchDepInfo(String dep_detail);
+	public ArrayList<DepInfo> searchDepInfo(String det_detail);
 }

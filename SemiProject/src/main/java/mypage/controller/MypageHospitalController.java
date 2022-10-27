@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import login.dto.Hospital;
+import login.dto.Hos;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
@@ -22,7 +22,7 @@ private MypageService mypageService = new MypageServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/mypage/owner [GET]");
+		System.out.println("/mypage/hospital [GET]");
 
 		//세션정보 객체
 		HttpSession session = req.getSession();
@@ -31,11 +31,11 @@ private MypageService mypageService = new MypageServiceImpl();
 		int hosNo = 1; //Integer.parseInt(hos_no);
 
 		//서비스로 보낼 파라메터 데이터 셋팅
-		Hospital param = new Hospital();
+		Hos param = new Hos();
 		param.setHosNo(hosNo);
 
-		//로그인한 Owner 정보 조회
-		Hospital data = mypageService.getHospital(param);
+		//로그인한 hospital 정보 조회
+		Hos data = mypageService.getHos(param);
 		System.out.println("Hospital 정보 조회 data : " + data);
 		
 		//조회결과를 MODEL값 전달

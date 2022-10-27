@@ -41,7 +41,7 @@
 			<h1>아이디</h1>
 			<p><%=data.getOwnerId() %></p>
 
-			<h2>이름</h2>
+			<h1>이름</h1>
 			<p><%=data.getOwnerName() %></p>
 
 			<h1>이메일</h1>

@@ -1,4 +1,4 @@
-<%@page import="login.dto.Owner"%>
+<%@page import="hosInfo.dto.HosInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -10,7 +10,7 @@
 	<meta name="author" content="author"/>
 	<link rel="stylesheet" type="text/css" href="/resources/css/mypage/default.css" media="screen"/>
 	
-	<title>마이페이지 회원정보</title>
+	<title>마이페이지 병원회원정보</title>
 	
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 	<script type="text/javascript">
@@ -38,29 +38,39 @@
 	-->
 <%-- <%=request.getAttribute("path") %> --%>
 	<div class="path">
-		<a href="/mypage/owner">마이페이지</a> &#8250; <a href="/mypage/ownerUpdate">회원정보 수정</a>
+		<a href="/mypage/hosInfo">마이페이지</a> &#8250; <a href="/mypage/hosInfoUpdate">회원정보 수정</a>
 	</div>
 
 	<div class="mypage-main">
 		<div class="mypage-content">
-			<form name="mypageForm" action="/mypage/ownerUpdate" method="post">
+			<form name="mypageForm" action="/mypage/hospitalUpdate" method="post">
 				<%-- 모델값 전달받기 --%>
-				<%	Owner data = (Owner) request.getAttribute("data"); %>
-				
-				<h1>아이디</h1>
-				<p><%=data.getOwnerId() %></p>
+				<%	HosInfo data = (HosInfo) request.getAttribute("data"); %>
 	
-				<h1>이름</h1>
-				<input type="text" name="ownerName" value="<%=data.getOwnerName() %>"/>
+				<h1>병원명</h1>
+				<p><%=data.getHos_name() %></p>
 	
-				<h1>이메일</h1>
-				<input type="text" name="ownerEmail" value="<%=data.getOwnerEmail() %>"/>
+				<h1>병원주소</h1>
+				<input type="text" name="hosAdd" value="<%=data.getHos_add() %>"/>
 	
-				<h1>전화번호</h1>
-				<input type="text" name="ownerCall" value="<%=data.getOwnerCall() %>"/>
+				<h1>우편번호</h1>
+				<input type="number" name="hosZip" value="<%=data.getHos_zip() %>"/>
 		
-				<h1>닉네임</h1>
-				<input type="text" name="ownerNick" value="<%=data.getOwnerNick() %>"/>
+				<h1>전화번호</h1>
+				<input type="number" name="hosCall" value="<%=data.getHos_call() %>"/>
+				
+				<h1>진료시간</h1>
+				<input type="number" name="hosTime" value="<%=data.getHos_time() %>"/>
+				
+				<h1>대중교통정보</h1>
+				<input type="number" name="hosTrans" value="<%=data.getHos_trans() %>"/>
+				
+				<h1>주차정보</h1>
+				<input type="number" name="hosPark" value="<%=data.getHos_park() %>"/>
+				
+				<h1>진료가격</h1>
+				<input type="number" name="hosPrice" value="<%=data.getHos_price() %>"/>
+				
 				
 				<br>
 				<input type="submit" value="저장"/>

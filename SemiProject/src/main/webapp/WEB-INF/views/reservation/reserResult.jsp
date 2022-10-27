@@ -8,20 +8,13 @@
 <%	Owner owner = (Owner) request.getAttribute("owner"); %>
 <%  Reservation reser = (Reservation) request.getAttribute("reserResult"); %>
 
-    
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-
 <style type="text/css">
 
 th, td {
 	height: 50px;
 }
 
-button {
+.btn {
     width: 200px;
     height: 100px;
     margin: 10px 140px 10px 140px;
@@ -34,22 +27,18 @@ button {
 }
 
 
-
 </style>
 
-</head>
 <body>
 
-<header>
-<h1>헤더부분</h1>
-</header>
+<%@ include file="../layout/header.jsp" %>
 
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
 
 <h1 style="text-align: center;">예약해주셔서 감사합니다.</h1>
-<h3 style="text-align: center;">예약 완료</h3>
+<h3 style="text-align: center;">예약 완료</h3><br>
 
-<div id="resultDiv">
+<div id="resultDiv" style="border: 10px solid #32a69f;">
 <fieldset>
 <legend style="font-size: 30px; font-weight: bold; text-align: center;">예약 상세</legend>
 
@@ -92,14 +81,12 @@ button {
 <br><br>
 
 <div style="text-align: center;">
-	<button>홈으로</button>
-	<button>마이페이지로 이동</button>
+	<button type="button" class="btn btn-primary">홈으로</button>
+	<button type="button" class="btn btn-primary">마이페이지로 이동</button>
 </div>
 
 </div>  <!-- body end -->
-<footer>
-<h1>풋터부분</h1>
-</footer>
 
-</body>
-</html>
+<br>
+
+<%@ include file="../layout/footer.jsp" %>
