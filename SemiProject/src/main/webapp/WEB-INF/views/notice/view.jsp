@@ -33,6 +33,17 @@ $(document).ready(function () {	//FAQ로 이동
 th, td{
 	text-align: center;
 }
+
+textarea {
+	resize: none;
+	width: 600px;
+	height: 900px;
+	text-align: left;
+	font-size: 20px;
+	border: none;
+	position: relative;
+}
+
 </style>
 
 <h1>고객센터</h1>
@@ -57,9 +68,9 @@ th, td{
 	<td><%=viewNotice.getNoticeHit() %></td>
 </tr>
 
-<tr>
-	<td colspan="6"><%=viewNotice.getNoticeContent() %></td>
-</tr>
+	<tr>
+		<td colspan="6"><textarea><%=viewNotice.getNoticeContent() %></textarea></td>
+	</tr>
 </table>
 
 <div class="text-right">
@@ -67,8 +78,6 @@ th, td{
 </div>
 
 
-
-</div>
 
 
 <%@ include file="../layout/footer.jsp" %>
