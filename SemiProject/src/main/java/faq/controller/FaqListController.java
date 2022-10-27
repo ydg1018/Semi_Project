@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import faq.dto.FaQ;
+import faq.dto.FAQ;
 import faq.service.face.FaqService;
 import faq.service.impl.FaqServiceImpl;
 
@@ -23,8 +23,12 @@ public class FaqListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/faq/list [GET]");
 		
-		List<FaQ> faqList = faqService.getList();
+		List<FAQ> faqList = faqService.getList();
 		
+		//조회결과 MODEL값 전달
+		req.setAttribute("faqList", faqList);
+		
+		//View지정
 		req.getRequestDispatcher("/WEB-INF/views/faq/list.jsp").forward(req, resp);
 	}
 
