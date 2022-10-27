@@ -30,6 +30,6 @@ public interface DepInfoDao {
 	 * @param dep_detail
 	 * @return
 	 */
-	public ArrayList<DepInfo> searchDepInfo(String dep_detail);
+	public ArrayList<DepInfo> searchDepInfo(String det_detail);
 	
 }

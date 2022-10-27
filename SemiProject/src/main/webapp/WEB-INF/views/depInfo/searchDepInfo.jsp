@@ -4,6 +4,7 @@
     pageEncoding="UTF-8"%>
 
 <%@ include file="../layout/header.jsp" %>
+<% request.setCharacterEncoding("utf-8"); %>
 
 <%List<DepInfo> depInfo = (List) request.getAttribute("depInfo");%>
 
@@ -94,9 +95,9 @@ $(document).ready(function() {
 $(function() {
 	$('#menu').click(function() {
 		if($('#det').is(':hidden')) {
-			$('#det').slideDown();
+			$('#det').show();
 		} else {
-			$('#det').slideUp();
+			$('#det').hide();
 		}
 	})
 });
@@ -104,9 +105,9 @@ $(function() {
 $(function() {
 	$('#menu2').click(function() {
 		if($('#det2').is(':hidden')) {
-			$('#det2').slideDown();
+			$('#det2').show();
 		} else {
-			$('#det2').slideUp();
+			$('#det2').hide();
 		}
 	})
 });
@@ -114,9 +115,9 @@ $(function() {
 $(function() {
 	$('#menu5').click(function() {
 		if($('#det5').is(':hidden')) {
-			$('#det5').slideDown();
+			$('#det5').show();
 		} else {
-			$('#det5').slideUp();
+			$('#det5').hide();
 		}
 	})
 });
@@ -124,14 +125,12 @@ $(function() {
 $(function() {
 	$('#menu6').click(function() {
 		if($('#det6').is(':hidden')) {
-			$('#det6').slideDown();
+			$('#det6').show();
 		} else {
-			$('#det6').slideUp();
+			$('#det6').hide();
 		}
 	})
 });
-
-
 </script>
 
 </head>
@@ -146,7 +145,7 @@ $(function() {
 	<form method="get" action="./result">
 		<input id="input" type="text" placeholder="진료 항목을 검색하세요" name="det_detail">
 	  	<img src="https://s3.ap-northeast-2.amazonaws.com/cdn.wecode.co.kr/icon/search.png">
-		<input id="btnsearch" type="image" value="">
+		<input id="btnsearch" type="submit" value="">
 	</form>	
 </div>
 
@@ -155,16 +154,16 @@ $(function() {
 <table class="table table-hover table-condensed">
 
 <tr>
-	<th style="width: 20%;">진료과</th>
-	<th style="width: 80%;">설명</th>
+	<th style="width: 10%;">진료과</th>
+	<th style="width: 90%;">설명</th>
 </tr>
 
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu" class="table table-hover table-condensed">
 
 <tr>
-	<td id="menu" style="width: 10%">
+	<td  style="width: 10%">
 		<%=depInfo.get(0).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(0).getDep_detail() %></td>
@@ -188,9 +187,10 @@ $(function() {
 
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu2" class="table table-hover table-condensed">
+
 <tr>
-	<td id="menu2" style="width: 10%">
+	<td style="width: 10%">
 		<%=depInfo.get(9).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(9).getDep_detail() %></td>
@@ -211,10 +211,10 @@ $(function() {
 <%	} %>
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu3" class="table table-hover table-condensed">
 
 <tr>
-	<td id="menu3" style="width: 10%">
+	<td style="width: 10%">
 		<%=depInfo.get(13).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(13).getDep_detail() %></td>
@@ -222,10 +222,10 @@ $(function() {
 
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu4" class="table table-hover table-condensed">
 
 <tr>
-	<td id="menu4" style="width: 10%">
+	<td style="width: 10%">
 		<%=depInfo.get(14).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(14).getDep_detail() %></td>
@@ -233,10 +233,10 @@ $(function() {
 
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu5" class="table table-hover table-condensed">
 
 <tr>
-	<td id="menu5" style="width: 10%">
+	<td style="width: 10%">
 		<%=depInfo.get(15).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(15).getDep_detail() %></td>
@@ -257,10 +257,10 @@ $(function() {
 <%	} %>
 </table>
 
-<table class="table table-hover table-condensed">
+<table id="menu6" class="table table-hover table-condensed">
 
 <tr>
-	<td id="menu6" style="width: 10%">
+	<td style="width: 10%">
 		<%=depInfo.get(20).getDep_item() %>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(20).getDep_detail() %></td>
