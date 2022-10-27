@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
@@ -32,11 +32,11 @@ private MypageService mypageService = new MypageServiceImpl();
 		int hospitalNo = 1; //Integer.parseInt(owner_no);
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
-		Hospital param = new Hospital();
+		Hos param = new Hos();
 		param.setHosNo(hospitalNo);
 		
 		//로그인한 Owner 정보 조회
-		Hospital data = mypageService.getHospital(param);
+		Hos data = mypageService.getHos(param);
 		System.out.println("Hospital회원 정보 조회 data : " + data);
 
 		//조회결과를 MODEL값 전달
@@ -61,7 +61,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		int hospitalNo = 1; //Integer.parseInt(owner_no);
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
-		Hospital param = new Hospital();
+		Hos param = new Hos();
 		
 		param.setHosNo(hospitalNo);
 //		param.setHosId(req.getParameter("hospitalId"));
@@ -71,7 +71,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//로그인한 hospital 정보 수정
 		System.out.println("Hospital 정보 수정 param : " + param);
-		int updateResult = mypageService.updateHospital(param);
+		int updateResult = mypageService.updateHos(param);
 		System.out.println("Hospital 정보 수정 data : " + updateResult);
 
 		resp.sendRedirect("/mypage/hospital");

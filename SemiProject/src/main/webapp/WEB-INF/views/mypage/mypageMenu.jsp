@@ -9,11 +9,20 @@
 		<li class='<%=request.getAttribute("path").equals("/mypage/ownerUpdate")? "active" : "" %>'>
 			<a href="/mypage/ownerUpdate">회원정보 수정</a>
 		</li>
+		
 		<li class='<%=request.getAttribute("path").equals("/mypage/hospital")? "active" : "" %>'>
 			<a href="/mypage/hospital">병원회원정보 조회</a>
 		</li>
 		<li class='<%=request.getAttribute("path").equals("/mypage/hospitalUpdate")? "active" : "" %>'>
 			<a href="/mypage/hospitalUpdate">병원회원정보 수정</a>
+		</li>
+		
+		<li class='<%=request.getAttribute("path").equals("/mypage/hosInfo")? "active" : "" %>'>
+			<a href="/mypage/hosInfo">병원회원 병원정보 조회</a>
+		</li>
+		<li class='<%=request.getAttribute("path").equals("/mypage/hospInfoUpdate")? "active" : "" %>'>
+			<a href="/mypage/hospInfoUpdate">병원회원 병원정보 수정</a>
+		</li>
 	</ul>
 	
 	

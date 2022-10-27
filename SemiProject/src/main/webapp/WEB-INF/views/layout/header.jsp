@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title> : : : 동물병원을 찾아줘 : : :</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet"><style>
+*{
+font-family: 'Nanum Gothic', sans-serif;
+}
+</style>
 
 <!-- jQuery 2.2.4 -->
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
@@ -17,11 +24,11 @@
 <style type="text/css">
 #header {
 	text-align: center;
-	background: #32a69f;
+	background: #46B4B4;
 }
 
 #footer {
-	background: #b4e8e3;
+	background: #46B4B4;
 }
 
 #header h1 a {
@@ -64,15 +71,23 @@ span {
 <header id="header">
 	<div class="right">
 		<ul style="display: flex;">
+		<%	if( session.getAttribute("login") == null ) { %>
 			<li>
 				<a href="/login/login">로그인</a>
 			</li>
 			<li>
 				<a href="/login/signup">회원가입</a>
 			</li>
+		<%	} %>
+		
+		<%	if( session.getAttribute("login") != null && (boolean) session.getAttribute("login") ) { %>
+			<li>
+				<a href="/login/logout">로그아웃</a>
+			</li>
 			<li>
 				<a>마이페이지</a>
 			</li>
+		<% } %>
 		</ul>
 	</div>
 
@@ -90,12 +105,12 @@ span {
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="../dep/list">
 						<span>진료과 정보</span>
 					</a>
 				</li>
 				<li>
-					<h5><a href="/">
+					<h5><a href="../hos/list">
 						<span>동물병원을 찾아줘</span>
 					</a></h5>
 				</li>

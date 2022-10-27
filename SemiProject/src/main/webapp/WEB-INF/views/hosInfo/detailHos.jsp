@@ -2,6 +2,9 @@
 <%@page import="hosInfo.dto.HosInfo"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+<%@ include file="../layout/header.jsp" %>
+    
 <% HosInfo detailHosInfo = (HosInfo) request.getAttribute("detailHosInfo"); %>
 
 <!DOCTYPE html>
@@ -22,9 +25,9 @@
 <body>
 <h1 style="text-align: center;">
 <%=detailHosInfo.getHos_name() %>
-<button class="btn btn-info" onclick="location.href='../reservation?hosCode=<%=detailHosInfo.getHos_code() %>'">예약하러가기</button>
+<button class="btn btn-primary" onclick="location.href='../reservation?hosCode=<%=detailHosInfo.getHos_code() %>'">예약하러가기</button>
 
-<button class="btn btn-info" onclick="location.href='../hos/list'">병원 전체 목록</button>
+<button class="btn btn-primary" onclick="location.href='../hos/list'">병원 전체 목록</button>
 </h1>
 
 <hr>
@@ -90,4 +93,4 @@ marker.setMap(map);
 
 </table>
 
-</body>
+<%@ include file="../layout/footer.jsp" %>

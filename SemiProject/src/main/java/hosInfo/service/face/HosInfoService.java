@@ -55,6 +55,6 @@ public interface HosInfoService {
 	 * @param hos_name - 검색어
 	 * @return ArrayList<HosInfo> - 검색어가 포함된 병원 정보 목록
 	 */
-	public ArrayList<HosInfo> searchHosInfo(String hos_name);
+	public ArrayList<HosInfo> searchHosInfo(String option, String keyword);
 	
 }
