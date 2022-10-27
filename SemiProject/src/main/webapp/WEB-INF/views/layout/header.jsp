@@ -110,7 +110,7 @@ span {
 					</a>
 				</li>
 				<li>
-					<h5><a href="">
+					<h5><a href="../hos/list">
 						<span>동물병원을 찾아줘</span>
 					</a></h5>
 				</li>
