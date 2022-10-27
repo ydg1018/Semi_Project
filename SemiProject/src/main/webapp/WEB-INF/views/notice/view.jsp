@@ -2,69 +2,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="../layout/header.jsp" %>
+
 <% Notice viewNotice = (Notice) request.getAttribute("viewNotice"); %>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>동물병원을 찾아조</title>
-
-<!-- 부트스트랩 3 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
-$(document).ready(function() {
+$(document).ready(function() { //공지사항으로 이동
 	
 	$("#btnList").click(function() {
 		$(location).attr("href", "./list")
 	})
 	
-})
-
-$(document).ready(function () {
 	$("#btnNotice").click(function () {
 		$(location).attr("href","./list")
+	})
+})
+
+$(document).ready(function () {	//FAQ로 이동
+	$("#btnFaQ").click(function () {
+		$(location).attr("href","../faq/list")
 	})
 })
 
 </script>
 
 <style type="text/css">
-#header, #footer {
-	background-color: mediumaquamarine;
-	height: 70px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-}
 
 th, td{
 	text-align: center;
 }
 </style>
 
-</head>
-
-
-<body>
-
-<header id="header" class="text-center">
-	<h1>동물병원 찾아조</h1>
-</header>
-
-<div class="container">
-
-
-
 <h1>고객센터</h1>
 <hr>
 
-<h2><button id="btnNotice">공지사항</button> <button>FaQ</button></h2>
+<h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
 
 <table class="table table-bordered">
 <tr>
@@ -96,9 +70,5 @@ th, td{
 
 </div>
 
-<footer id="footer" class="text-center">사이트정보</footer>
 
-</head>
-<body>
-</body>
-</html>
+<%@ include file="../layout/footer.jsp" %>

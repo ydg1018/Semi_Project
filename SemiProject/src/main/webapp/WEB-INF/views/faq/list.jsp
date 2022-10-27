@@ -3,21 +3,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@ include file="../layout/header.jsp" %>
+
 <%--모델값 전달받기 --%>    
 <% List<FAQ> faqList = (List) request.getAttribute("faqList"); %>
 
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>동물병원을 찾아조</title>
-
-<!-- 부트스트랩 3 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() { //공지사항으로 이동
+	
+	$("#btnList").click(function() {
+		$(location).attr("href", "../notice/list")
+	})
+	
+	$("#btnNotice").click(function () {
+		$(location).attr("href","../notice/list")
+	})
+})
+
+$(document).ready(function () {	//FAQ로 이동
+	$("#btnFaQ").click(function () {
+		$(location).attr("href","./list")
+	})
+})
+
+</script>
 
 <style type="text/css">
 input[id="answer"]{
@@ -30,7 +41,7 @@ input[id="answer"]+label{
 	border-bottom: 0;
 	color: #fff;
 	font-weight: 900;
-	background: #3634a5;
+	background: #32a68f;
 	cursor: pointer;
 	position: relative;
 }
@@ -63,12 +74,11 @@ input[id="answer"]:checked + label + div {
 }
 </style>
 
-</head>
-<body>
-
-<h1>공지사항</h1>
+<div>
+	<h1>고객센터</h1>
+</div>
 <hr>
-<h2>FAQ</h2>
+<h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
 
 <% for(int i=0; i<faqList.size(); i++) { %>
 <div class="accordion">
@@ -79,11 +89,9 @@ input[id="answer"]:checked + label + div {
 </div>
 <% } %>
 
+<%@ include file="../layout/footer.jsp" %>
 
 
 
 
 
-
-</body>
-</html>
