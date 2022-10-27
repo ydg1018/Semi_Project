@@ -14,7 +14,7 @@ th, td {
 	height: 50px;
 }
 
-button {
+.btn {
     width: 200px;
     height: 100px;
     margin: 10px 140px 10px 140px;
@@ -26,6 +26,7 @@ button {
 	margin: 0 auto;
 }
 
+
 </style>
 
 <body>
@@ -35,9 +36,9 @@ button {
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
 
 <h1 style="text-align: center;">예약해주셔서 감사합니다.</h1>
-<h3 style="text-align: center;">예약 완료</h3>
+<h3 style="text-align: center;">예약 완료</h3><br>
 
-<div id="resultDiv">
+<div id="resultDiv" style="border: 10px solid #32a69f;">
 <fieldset>
 <legend style="font-size: 30px; font-weight: bold; text-align: center;">예약 상세</legend>
 

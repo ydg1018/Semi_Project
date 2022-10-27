@@ -127,9 +127,14 @@ $(document).ready(function() {
 	margin: 0 auto;
 }
 
+#hosLeft {
+	border: 10px solid #32a69f;
+	text-align: center;
+}
+
 #ownerRight {
 
-	border: 1px solid #58C9B9;
+	border: 10px solid #32a69f;
 	text-align: center;
 
 } 
@@ -139,17 +144,16 @@ $(document).ready(function() {
 }
 
 legend {
-/* 	display: inline-block; */
+/*  	display: inline-block;  */
 	text-align: center;
-	font-size: 30px;
 	font-weight: bold;
 }
 
-button {
+.btn {
     margin: 0px 60px 0px 60px;
-    width: 110px;
-    height: 40px;
-    font-size: 20px;
+    width: 150px;
+    height: 60px;
+    font-size: 30px;
 }
 
 .form-group {
@@ -163,14 +167,16 @@ button {
 <%@ include file="../layout/header.jsp" %>
 
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
-
+<br>
 <h1 style="text-align: center;">예약하기</h1>
+<hr style="color: cadetblue;">
+
 
 <div id="hosLeft">
 
 <fieldset>
 
-<legend><%=hos.getHos_name() %> 정보</legend>
+<legend style="font-size: 40px;"><%=hos.getHos_name() %> 정보</legend>
 
 <table class="table">
 
@@ -219,7 +225,7 @@ button {
 
 </fieldset>
 <br>
-
+<hr>
  
 </div><!-- hosLeft -->
 
@@ -229,46 +235,50 @@ button {
 
 <fieldset>
 	
-<legend>예약자 정보</legend>
+<legend style="font-size: 40px;">예약자 정보</legend>
 
 <div class="form-group form-group-lg">
-	<label>보호자명 : <input type="text" name="ownerName"></label><br>
+	<label for="ownerName">보호자명 : </label>
+	<input type="text" id="ownerName" name="ownerName">
 </div>
 
 <div class="form-group form-group-lg">
-<label>전화번호 : <input type="text" name="ownerPhone"></label><br>
+	<label for="">전화번호 : </label>
+	<input type="text" id="ownerPhone" name="ownerPhone">
 </div>
 
 <div class="form-group">
-	<label>주소 : <input type="text"  name="ownerAddress"></label><br>
+	<label for="ownerAddress">주소 : </label>
+	<input type="text" id="ownerAddress" name="ownerAddress">
 </div>
 
 <div class="form-group">
-	<label>이메일 : <input type="text"  name="ownerEmail"></label><br>
+	<label for="ownerEmail">이메일 : </label>
+	<input type="text" id="ownerEmail" name="ownerEmail">
 </div>
 
 <div class="form-group">
-	<label>펫이름 : <input type="text"  name="petName"></label><br>
+	<label for="petName">펫이름 : </label>
+	<input type="text" id="petName" name="petName">
 </div>
 
 <div class="form-group">
-	<label>펫 나이 : <select name="petAge" >
-			<option value="1" selected="selected">1</option>
+	<label for="petAge">펫 나이 : </label>
+	<select id="petAge" name="petAge" >
+		<option value="1" selected="selected">1</option>
 		<% for(int i=2; i<101; i++) { %>
-			<option value="<%=i %>" ><%=i %></option>
+		<option value="<%=i %>" ><%=i %></option>
 		<%	} %>
-			
-		</select></label><br>
+	</select>
 		
-	<label>펫성별 : <input type="radio" name="petSex" value="m" checked="checked">남
-	<input type="radio" name="petSex" value="f">여</label><br>
+	<label> 펫성별 : <input type="radio" name="petSex" value="m" checked="checked">남
+	<input type="radio" name="petSex" value="f">여</label>
 </div>
 
-<div>
-</div>
 
 <div class="form-group">
-	<label>펫 종류 : <input type="text"  name="petType"></label><br>
+	<label for="petType">펫 종류 : </label>
+	<input type="text" id="petType" name="petType">
 </div>
 
 <div class="form-group">
@@ -277,7 +287,8 @@ button {
 </div>
 
 <div class="form-group">
-	<label>진료내용 : <textarea rows="5" cols="50" id="reserDetail" name="reserDetail"></textarea></label><br>
+	<label for="reserDetail">진료내용 : </label>
+	<textarea rows="5" cols="50" id="reserDetail" name="reserDetail"></textarea>
 </div>
 
 <div style="display: none;" class="form-group">
@@ -301,10 +312,10 @@ button {
 	<button type="button" class="btn btn-primary" id="btnBack" onclick="goBack();">뒤로가기</button>
 	<button type="button" class="btn btn-primary" id="btnPay">결제하기</button>
 
+<br><br>
 </div><!-- ownerRight -->
 
 <div style="clear:both;"></div>
-
 </div>  <!-- body end -->
 
 <%@ include file="../layout/footer.jsp" %>
