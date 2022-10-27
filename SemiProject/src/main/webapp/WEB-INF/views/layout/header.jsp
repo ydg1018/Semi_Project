@@ -65,10 +65,10 @@ span {
 	<div class="right">
 		<ul style="display: flex;">
 			<li>
-				<a>로그인</a>
+				<a href="/login/login">로그인</a>
 			</li>
 			<li>
-				<a>회원가입</a>
+				<a href="/login/signup">회원가입</a>
 			</li>
 			<li>
 				<a>마이페이지</a>
