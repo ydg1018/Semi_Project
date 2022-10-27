@@ -24,11 +24,11 @@ font-family: 'Nanum Gothic', sans-serif;
 <style type="text/css">
 #header {
 	text-align: center;
-	background: #32a69f;
+	background: #46B4B4;
 }
 
 #footer {
-	background: #b4e8e3;
+	background: #46B4B4;
 }
 
 #header h1 a {
