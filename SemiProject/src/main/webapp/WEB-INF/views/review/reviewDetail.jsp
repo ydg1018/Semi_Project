@@ -2,13 +2,30 @@
 <%@page import="review.dto.Review"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ include file="../layout/header.jsp" %>
     
  <%	Review viewBoard = (Review) request.getAttribute("viewBoard"); %>
  <%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
     
-<%@ include file="./bHeader.jsp" %>
-
 <style type="text/css">
+
+* {
+	font-family: 나눔고딕코딩;
+}
+
+.top-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 215px;
+	background-color: #e1f4f3;
+} 
+
+.board-container {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0;
+}
 
 table {
 	width: 100%;
@@ -142,6 +159,8 @@ $(document).ready(function() {
 		</div><!-- button end -->
 	</div><!-- board-wrap board-view end -->
 </div><!-- container end -->
+
+<%-- <%@ include file="./reply.jsp" %> --%>
 
 </section>
 </body>

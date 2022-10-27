@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import common.JDBCTemplate;
+import reply.dto.Reply;
 import review.dao.face.ReviewDao;
 import review.dto.Review;
 import util.BoardFile;
@@ -71,63 +72,6 @@ public class ReviewDaoImpl implements ReviewDao {
 		return reviewList;
 	}
 	
-/*	@Override
-	public List<Review> selectAll(Connection conn, Paging paging) {
-		System.out.println("List<Review> selectAll() - 시작");
-		
-		//SQL 작성 
-		String sql = "";	
-		sql += "SELECT * FROM (";
-		sql += "    SELECT rownum rnum, B.* FROM (";
-		sql += "	    SELECT";
-		sql += "	        board_no, board_title, owner.owner_no, owner_nick, board_content, board_hit, insert_dat";
-		sql += "	     FROM board, owner";
-		sql += "		 WHERE board.owner_no = owner.owner_no";
-		sql += "		 ORDER BY board_no DESC";
-		sql += "		) B";
-		sql += "	) BOARD";
-		sql += "	WHERE rnum BETWEEN ? AND ?";
-		
-		//조회 결과 저장할 List 객체
-		List<Review> reviewList = new ArrayList<>();
-		
-		try {
-			
-			ps = conn.prepareStatement(sql); //SQL수행 객체
-			
-			ps.setInt(1, paging.getStartNo());
-			ps.setInt(2, paging.getEndNo());
-			
-			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
-			
-			//조회 결과 처리
-			while( rs.next() ) {
-				Review r = new Review();
-				
-				r.setBoardNo( rs.getInt("board_no") );
-				r.setBoardTitle( rs.getString("board_title") );
-				r.setBoardContent( rs.getString("board_content") );
-				r.setOwnerNo(rs.getInt("owner_no"));
-				r.setOwnerNick( rs.getString("owner_nick") );
-				r.setBoardHit( rs.getInt("board_hit") );
-				r.setInsertDat( rs.getDate("insert_dat") );
-				
-				//리스트에 결과값 저장
-				reviewList.add(r);
-				
-			}
-			
- 		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			//자원 해제
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		
-		//최종 결과 반환
-		return reviewList;
-	} */
 
 	@Override
 	public List<Review> selectAll(Connection conn, Paging paging, String field, String query) {
@@ -141,10 +85,18 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "	        board_no, board_title, owner.owner_no, owner_nick, board_content, board_hit, insert_dat";
 		sql += "	     FROM board, owner";
 		sql += "		 WHERE board.owner_no = owner.owner_no";
+
+		if(field!=null) {
+
+		sql += "			AND "+field+" LIKE ? ";
+		}
 		sql += "		 ORDER BY board_no DESC";
 		sql += "		) B";
 		sql += "	) BOARD";
-		sql += "	WHERE "+field+" LIKE ? AND rnum BETWEEN ? AND ?";
+		sql += "	WHERE 1=1";
+		sql += "		AND rnum BETWEEN ? AND ?";
+		
+		System.out.println( sql );
 		
 		//조회 결과 저장할 List 객체
 		List<Review> searchList = new ArrayList<>();
@@ -153,9 +105,12 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
-			ps.setString(1, "%"+query+"%");
-			ps.setInt(2, paging.getStartNo());
-			ps.setInt(3, paging.getEndNo());
+			int idx = 1;
+			if(field!=null) {
+				ps.setString(idx++, "%"+query+"%");
+			}
+			ps.setInt(idx++, paging.getStartNo());
+			ps.setInt(idx++, paging.getEndNo());
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
 			
@@ -206,6 +161,38 @@ public class ReviewDaoImpl implements ReviewDao {
 			}
 			
  		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
+	}
+	@Override
+	public int selectCntAll(Connection conn, String field, String query) {
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM board";
+		if(field!=null) {
+			sql += "	WHERE "+field+" LIKE ?";
+		}
+		
+		//총 게시글 수 변수
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			if(field!=null) {
+				ps.setString(1, "%"+query+"%");
+			}
+
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);
@@ -480,6 +467,88 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return res;
 		
+	}
+
+	@Override
+	public int insertReply(Connection conn, Reply reply) {
+
+		String sql = "";
+		sql += "INSERT INTO reply ( reply_no, board_no, owner_no, reply_content, owner_nick )";
+		sql += " VALUES ( reply_seq.nextval, ?, ?, ?, ? )";
+		sql += " WHERE board.board_no = reply.board_no";
+		sql += " AND board_no = ?";
+		
+		int res = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setInt(1, reply.getBoardNo());
+			ps.setInt(2, reply.getOwnerNo());
+			ps.setString(3, reply.getReplyContent());
+			ps.setString(4, reply.getOwnerNick());
+			ps.setInt(5, reply.getBoardNo());
+			
+			res = ps.executeUpdate();
+
+ 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return res;
+	}
+
+	@Override
+	public ArrayList<Reply> selectReplyList(Connection conn, Review viewBoard) {
+
+		//--- SQL 작성 ---
+		String sql = "";
+		sql += "SELECT";
+		sql += " 	reply_no, reply_content, board_no, insert_dat, owner_no, owner_nick";
+		sql += " FROM reply, owner, board";
+		sql += " WHERE reply.board_no = board.board_no";
+		sql += 		" AND reply.owner_no = owner.owner_no";
+		sql += " ORDER BY reply_no DESC";
+		
+		ArrayList<Reply> replyList = new ArrayList<>();
+		
+		try {
+			//--- SQL 수행 객체 생성 ---
+			ps = conn.prepareStatement(sql);
+			
+			//--- SQL 수행 및 결과 저장 ---
+			rs = ps.executeQuery();
+			
+			//--- 조회 결과 처리 ---
+			while( rs.next() ) {
+				Reply r = new Reply();
+				
+				r.setReplyNo(rs.getInt("reply_no"));
+				r.setReplyContent(rs.getString("reply_content"));
+				r.setBoardNo(rs.getInt("board_no"));
+				r.setInsertDat(rs.getDate("insert_dat"));
+				r.setOwnerNo(rs.getInt("owner_no"));
+				r.setOwnerNick(rs.getString("owner_nick"));
+				
+						
+				//리스트에 결과값 저장
+				replyList.add(r);
+				
+			}
+			
+ 		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			//--- 자원 해제 ---
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		//--- 최종 결과 반환 ---
+		return replyList;
 	}
 
 

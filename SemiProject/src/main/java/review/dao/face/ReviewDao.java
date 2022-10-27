@@ -1,8 +1,10 @@
 package review.dao.face;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
+import reply.dto.Reply;
 import review.dto.Review;
 import util.BoardFile;
 import util.Paging;
@@ -45,6 +47,7 @@ public interface ReviewDao {
 	 * @return - 테이블의 전체 행 수
 	 */
 	int selectCntAll(Connection conn);
+	int selectCntAll(Connection conn, String field, String query);
 
 	/**
 	 * 조회된 게시글의 조회수 증가시키기
@@ -125,5 +128,20 @@ public interface ReviewDao {
 	 */
 	public int delete(Connection conn, Review review);
 
+	/**
+	 * 
+	 * @param conn
+	 * @param r
+	 * @return
+	 */
+	public int insertReply(Connection conn, Reply reply);
+
+	/**
+	 * 
+	 * @param conn - DB연결 객체
+	 * @param viewBoard - 답글 목록 조회할 게시글 번호
+	 * @return reply - 답글 목록
+	 */
+	public ArrayList<Reply> selectReplyList(Connection conn, Review viewBoard);
 }
 

@@ -1,6 +1,7 @@
 package review.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
+import reply.dto.Reply;
 import review.dto.Review;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
@@ -42,6 +46,7 @@ public class ReviewViewController extends HttpServlet {
 		
 		//첨부파일 정보를 MODEL값 전달
 		req.setAttribute("boardFile", boardFile);
+		
 		
 		//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
