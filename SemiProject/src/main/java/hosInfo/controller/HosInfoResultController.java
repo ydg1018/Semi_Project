@@ -40,16 +40,17 @@ public class HosInfoResultController extends HttpServlet {
 		req.setAttribute("hosInfo", hosInfo);
 				
 		//검색
-		String hos_name = req.getParameter("hos_name");
-		
-		ArrayList<HosInfo> list = hosInfoService.searchHosInfo(hos_name);
-		
+		String option = req.getParameter("option");
+		String keyword = req.getParameter("keyword");
+				
+		ArrayList<HosInfo> list = hosInfoService.searchHosInfo(option, keyword);
+				
 		req.setAttribute("list", list);
 		
-
 		//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/hosInfo/resultHos.jsp").forward(req, resp);
 		
 	}
+	
 }
 	

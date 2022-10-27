@@ -49,6 +49,8 @@ public interface HosInfoDao {
 	 * @param hos_name
 	 * @return
 	 */
-	public ArrayList<HosInfo> searchHosInfo(String hos_name);
+	public ArrayList<HosInfo> searchHosInfo(String option, String keword);
+	
+	//public ArrayList<HosInfo> searchHosInfo(String hos_add);
 	
 }

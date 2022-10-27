@@ -80,12 +80,12 @@ public class HosInfoServiceImpl implements HosInfoService {
 	}
 	
 	@Override
-	public ArrayList<HosInfo> searchHosInfo(String hos_name) {
+	public ArrayList<HosInfo> searchHosInfo(String option, String keyword) {
 
 		ArrayList<HosInfo> list = new ArrayList<HosInfo>();
 		
 		try {
-			list = hosInfoDao.searchHosInfo(hos_name);
+			list = hosInfoDao.searchHosInfo(option, keyword);
 		} catch (Exception e) {
 			list = null;
 		}
