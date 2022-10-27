@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import common.JDBCTemplate;
 import hosInfo.dto.HosInfo;
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
 import reservation.dto.Reservation;
@@ -45,7 +45,7 @@ public class MypageDaoImpl implements MypageDao {
 				result.setOwnerId(rs.getString("owner_id"));
 				result.setOwnerName(rs.getString("owner_name"));
 				result.setOwnerEmail(rs.getString("owner_email"));
-				result.setOwnerCall(rs.getInt("owner_call"));
+				result.setOwnerCall(rs.getString("owner_call"));
 				result.setOwnerNick(rs.getString("owner_nick"));
 			}
 		} catch (SQLException e) {
@@ -82,7 +82,7 @@ public class MypageDaoImpl implements MypageDao {
 			//SQL 파라메터 셋팅
 			ps.setString(1, param.getOwnerName());
 			ps.setString(2, param.getOwnerEmail());
-			ps.setInt(3, param.getOwnerCall());
+			ps.setString(3, param.getOwnerCall());
 			ps.setString(4, param.getOwnerNick());
 			ps.setInt(5, param.getOwnerNo());
 
@@ -163,7 +163,7 @@ public class MypageDaoImpl implements MypageDao {
 				result.setResDetail(rs.getString("res_detail"));
 				result.setOwnerNo(rs.getInt("owner_no"));
 				result.setPetNo(rs.getInt("pet_no"));
-				result.setHosNo(rs.getInt("hos_no"));
+				result.setHosCode(rs.getInt("hos_code"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -193,7 +193,7 @@ public class MypageDaoImpl implements MypageDao {
 			ps = conn.prepareStatement(sql); 
 			
 			//SQL 파라메터 셋팅
-			ps.setInt(1, param.getHosNo());
+			ps.setInt(1, param.getHosCode());
 			
 			//SQL수행 및 결과 집합 저장
 			rs = ps.executeQuery(); 
@@ -205,7 +205,7 @@ public class MypageDaoImpl implements MypageDao {
 				result.setResDetail(rs.getString("res_detail"));
 				result.setOwnerNo(rs.getInt("owner_no"));
 				result.setPetNo(rs.getInt("pet_no"));
-				result.setHosNo(rs.getInt("hos_no"));
+				result.setHosCode(rs.getInt("hos_code"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,7 +220,7 @@ public class MypageDaoImpl implements MypageDao {
 	
 //----------------------------------------------------------------------
 	@Override
-	public Hospital getHospital(Connection conn, Hospital param) {
+	public Hos getHospital(Connection conn, Hos param) {
 		System.out.println("MypageDao getHospital() - 시작");
 		
 		//SQL작성
@@ -229,7 +229,7 @@ public class MypageDaoImpl implements MypageDao {
 		sql += " WHERE hos_no = ?";
 		
 		//결과 저장할 객체
-		Hospital result = new Hospital();
+		Hos result = new Hos();
 		
 		try {
 			//SQL수행 객체
@@ -263,7 +263,7 @@ public class MypageDaoImpl implements MypageDao {
 	}
 	
 	@Override
-	public int updateHospital(Connection conn, Hospital param) {
+	public int updateHospital(Connection conn, Hos param) {
 		System.out.println("MypageDao updateHospital() - 시작");
 		
 		//SQL작성
@@ -304,7 +304,7 @@ public class MypageDaoImpl implements MypageDao {
 	}
 	
 	@Override
-	public int deleteHospital(Connection conn, Hospital param) {
+	public int deleteHospital(Connection conn, Hos param) {
 		System.out.println("MypageDao deleteHospital() - 시작");
 		
 		//SQL작성
