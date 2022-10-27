@@ -47,10 +47,10 @@
 				<%-- 모델값 전달받기 --%>
 				<%	Hospital data = (Hospital) request.getAttribute("data"); %>
 				
-				<h1>병원회원번호</h1>
-				<p><%=data.getHosNo() %></p>
+<!-- 			<h1>병원회원번호</h1>
+				<p><%=data.getHosNo() %></p> -->	
 	
-				<h2>아이디</h2>
+				<h1>아이디</h1>
 				<p><%=data.getHosId() %>"</p>
 	
 				<h1>패스워드</h1>

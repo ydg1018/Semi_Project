@@ -107,5 +107,10 @@ public class HosInfo {
 		this.hos_price = hos_price;
 	}
 
+	public void setHosZip(int int1) {
+		// TODO Auto-generated method stub
+		
+	}
+
 	
 }
