@@ -113,11 +113,13 @@ $(document).ready(function() {
 	$('#visitTime').val(new Date().toISOString().slice(11, 16));
 
 	
+	
 })
 
 </script>
 
 <script>
+
 </script>
 
 <style type="text/css">
@@ -319,14 +321,21 @@ legend {
 
 <div style="clear:both;"></div>
 </div>  <!-- body end -->
+
+<%@ include file="../layout/footer.jsp" %>
 <%	} %>
 
 <% 	if( session.getAttribute("login") == null || !(Boolean) session.getAttribute("login") ) { %>
-<div>
-<h1> 로그인이 필요한 페이지 입니다</h1>
+<div id="nonePage">
+
+<script type="text/javascript">
+alert('로그인필요')
+
+location.href='/login/login';
+</script>
+
 </div>
 
 <% } %>
 
 
-<%@ include file="../layout/footer.jsp" %>
