@@ -151,8 +151,8 @@ public class ReservationServiceImpl implements ReservationService {
 		Payment pay = new Payment();
 		
 		String merchat = req.getParameter("merchant_uid");
-		String money = req.getParameter("payMoney");
 		pay.setPayNo(merchat);
+		String money = req.getParameter("payMoney");
 		if( null !=money && !"".equals(money) ) {
 			pay.setPayMoney( Integer.parseInt(money));
 		}

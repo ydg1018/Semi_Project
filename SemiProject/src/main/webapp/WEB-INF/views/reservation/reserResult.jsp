@@ -26,8 +26,11 @@ th, td {
 	margin: 0 auto;
 }
 
-
 </style>
+
+<script>
+
+</script>
 
 <body>
 
@@ -81,8 +84,8 @@ th, td {
 <br><br>
 
 <div style="text-align: center;">
-	<button type="button" class="btn btn-primary">홈으로</button>
-	<button type="button" class="btn btn-primary">마이페이지로 이동</button>
+	<button type="button" class="btn btn-primary" onclick="location.href='/hos/list'">홈으로</button>
+	<button type="button" class="btn btn-primary" onclick="location.href='/mypage/ownerReservation'">마이페이지로 이동</button>
 </div>
 
 </div>  <!-- body end -->
