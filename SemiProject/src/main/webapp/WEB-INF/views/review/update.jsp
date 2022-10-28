@@ -65,10 +65,6 @@ $(document).ready(function() {
 
 <style type="text/css">
 
-* {
-	font-family: 나눔고딕코딩;
-}
-
 .top-container {
 	display: flex;
 	align-items: center;

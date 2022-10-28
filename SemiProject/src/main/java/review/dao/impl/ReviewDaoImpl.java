@@ -169,6 +169,7 @@ public class ReviewDaoImpl implements ReviewDao {
 		
 		return count;
 	}
+	
 	@Override
 	public int selectCntAll(Connection conn, String field, String query) {
 		String sql = "";

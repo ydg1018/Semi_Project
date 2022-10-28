@@ -1,17 +1,17 @@
 package review.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-import com.google.gson.Gson;
-
-import reply.dto.Reply;
+import login.dto.Owner;
+import login.service.face.LoginService;
+import login.service.impl.LoginServiceImpl;
 import review.dto.Review;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
@@ -22,6 +22,9 @@ public class ReviewViewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private ReviewService reviewService = new ReviewServiceImpl();
+	private LoginService loginService = new LoginServiceImpl();
+	
+
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -48,8 +51,17 @@ public class ReviewViewController extends HttpServlet {
 		req.setAttribute("boardFile", boardFile);
 		
 		
-		//View 지정 및 응답
+		//로그인 인증
+//		Owner owner = loginService.getLoginOwner(req);
+//		
+//		boolean ownerLogin = loginService.OwnerLogin(owner);
+//		
+//		// 로그인 인증 성공
+//		if( ownerLogin ) {)
+			
+			//View 지정 및 응답
 		req.getRequestDispatcher("/WEB-INF/views/review/reviewDetail.jsp").forward(req, resp);
+		
 	}
 	
 	

@@ -6,10 +6,6 @@
 
 <style type="text/css">
 
-* {
-	font-family: 나눔고딕코딩;
-}
-
 .top-container {
 	display: flex;
 	align-items: center;
@@ -153,7 +149,7 @@ $(document).ready(function() {
 <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
 
 <!-- 로그인상태 -->
-<% Boolean login = (Boolean) session.getAttribute("login"); %>
+<% Boolean isLogin = (Boolean) session.getAttribute("login"); %>
 
 <div class="sub-contents wrap">
 	<div class="top-container">
@@ -185,9 +181,9 @@ $(document).ready(function() {
 				<td><%=reviewList.get(i).getBoardNo() %></td>
 				
 				<td>
-					<% if( login ) { %>
+					<% if( null != isLogin && isLogin ) { %>
 					<a href="/review/view?boardno=<%=reviewList.get(i).getBoardNo() %>">
-					<% } else  {%>
+					<% } else {%>
 					<a href="javascript:isLogin();"> 
 					<% } %>
 					<%=reviewList.get(i).getBoardTitle() %></a>

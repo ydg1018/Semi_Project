@@ -252,10 +252,10 @@ public class ReviewServiceImpl implements ReviewService {
 		review.setBoardNo(boardno);
 
 		//작성자 ID 처리
-		String owner_no = ( (String) req.getSession().getAttribute("owner_no") );
+//		String owner_no = ( (String) req.getSession().getAttribute("owner_no") );
 		
 		//테스트 owner_no -> 로그인 구현되면 삭제할 것
-		review.setOwnerNo(1);
+//		review.setOwnerNo(1);
 		
 		if( reviewDao.insert(conn, review) > 0 ) {
 			JDBCTemplate.commit(conn);
