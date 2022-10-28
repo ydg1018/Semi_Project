@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
 
-import reply.dto.Reply;
 import review.dto.Review;
 import util.BoardFile;
 import util.Paging;
@@ -128,20 +127,6 @@ public interface ReviewDao {
 	 */
 	public int delete(Connection conn, Review review);
 
-	/**
-	 * 
-	 * @param conn
-	 * @param r
-	 * @return
-	 */
-	public int insertReply(Connection conn, Reply reply);
 
-	/**
-	 * 
-	 * @param conn - DB연결 객체
-	 * @param viewBoard - 답글 목록 조회할 게시글 번호
-	 * @return reply - 답글 목록
-	 */
-	public ArrayList<Reply> selectReplyList(Connection conn, Review viewBoard);
 }
 
