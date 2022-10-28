@@ -29,20 +29,19 @@
 
 <table class="table table-striped table-hover table-condensed">
 <tr>
-	<th style="width: 30%;">병원명</th>
+	<th style="width: 20%;">병원명</th>
+	<th style="width: 20%;">상세 정보</th>
 	<th style="width: 30%;">주소</th>
 	<th style="width: 30%;">전화번호</th>
 </tr>
 
 <%	for(int i=0; i<list.size(); i++) { %>
-	<%	for(int j=0; j<1; j++) { %>
 <tr>
-	<td><a href="./detail?hos_name=<%=hosInfo.get(j).getHos_name() %>">
-	<%=list.get(i).getHos_name() %></a></td>
+	<td><%=list.get(i).getHos_name() %></td>
+	<td><button class="btn btn-primary" onclick="location.href='../hos/detail?hos_name=<%=list.get(i).getHos_name() %>'">상세 정보</button></td>
 	<td><%=list.get(i).getHos_add() %></td>
 	<td><%=list.get(i).getHos_call() %></td>
 </tr>
-	<%	} %>
 <%	} %>
 
 </table>
