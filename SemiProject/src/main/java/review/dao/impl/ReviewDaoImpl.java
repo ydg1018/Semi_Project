@@ -71,63 +71,6 @@ public class ReviewDaoImpl implements ReviewDao {
 		return reviewList;
 	}
 	
-/*	@Override
-	public List<Review> selectAll(Connection conn, Paging paging) {
-		System.out.println("List<Review> selectAll() - 시작");
-		
-		//SQL 작성 
-		String sql = "";	
-		sql += "SELECT * FROM (";
-		sql += "    SELECT rownum rnum, B.* FROM (";
-		sql += "	    SELECT";
-		sql += "	        board_no, board_title, owner.owner_no, owner_nick, board_content, board_hit, insert_dat";
-		sql += "	     FROM board, owner";
-		sql += "		 WHERE board.owner_no = owner.owner_no";
-		sql += "		 ORDER BY board_no DESC";
-		sql += "		) B";
-		sql += "	) BOARD";
-		sql += "	WHERE rnum BETWEEN ? AND ?";
-		
-		//조회 결과 저장할 List 객체
-		List<Review> reviewList = new ArrayList<>();
-		
-		try {
-			
-			ps = conn.prepareStatement(sql); //SQL수행 객체
-			
-			ps.setInt(1, paging.getStartNo());
-			ps.setInt(2, paging.getEndNo());
-			
-			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
-			
-			//조회 결과 처리
-			while( rs.next() ) {
-				Review r = new Review();
-				
-				r.setBoardNo( rs.getInt("board_no") );
-				r.setBoardTitle( rs.getString("board_title") );
-				r.setBoardContent( rs.getString("board_content") );
-				r.setOwnerNo(rs.getInt("owner_no"));
-				r.setOwnerNick( rs.getString("owner_nick") );
-				r.setBoardHit( rs.getInt("board_hit") );
-				r.setInsertDat( rs.getDate("insert_dat") );
-				
-				//리스트에 결과값 저장
-				reviewList.add(r);
-				
-			}
-			
- 		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			//자원 해제
-			JDBCTemplate.close(rs);
-			JDBCTemplate.close(ps);
-		}
-		
-		//최종 결과 반환
-		return reviewList;
-	} */
 
 	@Override
 	public List<Review> selectAll(Connection conn, Paging paging, String field, String query) {
@@ -141,10 +84,18 @@ public class ReviewDaoImpl implements ReviewDao {
 		sql += "	        board_no, board_title, owner.owner_no, owner_nick, board_content, board_hit, insert_dat";
 		sql += "	     FROM board, owner";
 		sql += "		 WHERE board.owner_no = owner.owner_no";
+
+		if(field!=null) {
+
+		sql += "			AND "+field+" LIKE ? ";
+		}
 		sql += "		 ORDER BY board_no DESC";
 		sql += "		) B";
 		sql += "	) BOARD";
-		sql += "	WHERE "+field+" LIKE ? AND rnum BETWEEN ? AND ?";
+		sql += "	WHERE 1=1";
+		sql += "		AND rnum BETWEEN ? AND ?";
+		
+		System.out.println( sql );
 		
 		//조회 결과 저장할 List 객체
 		List<Review> searchList = new ArrayList<>();
@@ -153,9 +104,12 @@ public class ReviewDaoImpl implements ReviewDao {
 			
 			ps = conn.prepareStatement(sql); //SQL수행 객체
 			
-			ps.setString(1, "%"+query+"%");
-			ps.setInt(2, paging.getStartNo());
-			ps.setInt(3, paging.getEndNo());
+			int idx = 1;
+			if(field!=null) {
+				ps.setString(idx++, "%"+query+"%");
+			}
+			ps.setInt(idx++, paging.getStartNo());
+			ps.setInt(idx++, paging.getEndNo());
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
 			
@@ -206,6 +160,39 @@ public class ReviewDaoImpl implements ReviewDao {
 			}
 			
  		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		
+		return count;
+	}
+	
+	@Override
+	public int selectCntAll(Connection conn, String field, String query) {
+		String sql = "";
+		sql += "SELECT count(*) cnt FROM board";
+		if(field!=null) {
+			sql += "	WHERE "+field+" LIKE ?";
+		}
+		
+		//총 게시글 수 변수
+		int count = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			if(field!=null) {
+				ps.setString(1, "%"+query+"%");
+			}
+
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				count = rs.getInt("cnt");
+			}
+			
+		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			JDBCTemplate.close(rs);

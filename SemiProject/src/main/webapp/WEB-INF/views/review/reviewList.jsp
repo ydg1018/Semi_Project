@@ -2,9 +2,23 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="./bHeader.jsp" %>
+<%@ include file="../layout/header.jsp" %>
 
 <style type="text/css">
+
+.top-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 215px;
+	background-color: #e1f4f3;
+} 
+
+.board-container {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0;
+}
 
 /* 커뮤니티 하단 메뉴 */
 ul.tab-list {
@@ -113,24 +127,29 @@ select {
 
 <script type="text/javascript">
 
-//activate Enterkey for Search
-    var query = document.getElementById('query');
-    var searchBtnImg = document.getElementsById('searchBtnImg');
-    query.addEventListener('keyup', function(event) {
-        
-//         if (event.keyCode === null) {
-//             event.preventDefault();
-//         }
-        
-        if (event.keyCode === 13) {
-            window.location.href = searchBtnImg.href;
-        }
-    });
+$(document).ready(function() {
+	
+	//검색어 입력창에 엔터키 입력 시 submit
+	$("input").eq(1).keydown(function(e) {
+		if( e.keyCode == 13 ) { //엔터키
+			$("#searchBtnImg").click();
+		}
+	})
 
+})
+
+	function isLogin() {
+		alert('로그인이 필요합니다')
+		
+		$(location).attr('href', '/login/loginowner')
+	}
 </script>
 
 <!-- 서블릿이 전달한 데이터 꺼내기 (모델값 전달받기)  -->
 <% List<Review> reviewList = (List) request.getAttribute("reviewList"); %>
+
+<!-- 로그인상태 -->
+<% Boolean isLogin = (Boolean) session.getAttribute("login"); %>
 
 <div class="sub-contents wrap">
 	<div class="top-container">
@@ -147,7 +166,7 @@ select {
 
 <br><br>
 <section class="section-bbs">
-	<div class="container">
+	<div class="board-container">
 		<table id="bbs">
 			<tr>
 				<th style="width: 10%;">번호</th>
@@ -162,14 +181,18 @@ select {
 				<td><%=reviewList.get(i).getBoardNo() %></td>
 				
 				<td>
+					<% if( null != isLogin && isLogin ) { %>
 					<a href="/review/view?boardno=<%=reviewList.get(i).getBoardNo() %>">
+					<% } else {%>
+					<a href="javascript:isLogin();"> 
+					<% } %>
 					<%=reviewList.get(i).getBoardTitle() %></a>
 				</td>
 				<td><%=reviewList.get(i).getOwnerNick() %></td>
 				<td><%=reviewList.get(i).getInsertDat() %></td>
 				<td><%=reviewList.get(i).getBoardHit() %></td>
-			</tr>
 			<%	} %>	 
+			</tr>
 		
 		</table>
 		
@@ -199,4 +222,7 @@ select {
 	</div><!-- container end -->
 </section>
 </body>
+
+<br><br><br>
+<%@ include file="../layout/footer.jsp" %>
 </html>

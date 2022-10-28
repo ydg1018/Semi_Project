@@ -63,6 +63,12 @@ span {
 	font-size: 12px;
 	color: white;
 }
+
+.container {
+	width: 100%; 
+}
+
+
 </style>
 
 </head>
@@ -100,7 +106,7 @@ span {
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="/review/list">
 						<span>병원 후기</span>
 					</a>
 				</li>
