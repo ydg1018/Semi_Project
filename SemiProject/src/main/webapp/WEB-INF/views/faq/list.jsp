@@ -28,7 +28,13 @@ $(document).ready(function () {	//FAQ로 이동
 	})
 })
 
+//메뉴 리스트 함수
+$()
+
+
 </script>
+
+
 
 
 <div>
@@ -37,14 +43,51 @@ $(document).ready(function () {	//FAQ로 이동
 <hr>
 <h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
 
-<% for(int i=0; i<faqList.size(); i++) { %>
 <div class="accordion">
-	<input type="checkbox" id="answer01">
-	<label for="answer01"><%=faqList.get(i).getFaqIdx() %> <%=faqList.get(i).getFaqQuestion() %></label>
+<% for(int i=0; i<faqList.size(); i++) { %>
+
+<style type="text/css">
+input[id="answer<%=i%>"]{
+display: none;
+}
+
+input[id="answer<%=i%>"]+label{
+	display: block;
+	padding: 20px;
+	border: 1px solid #009999;
+	border-bottom: 0;
+	font-weight: 900;
+	color: #009999;
+	background: #fff;
+	cursor: pointer;
+	position: relative;
+}
+
+input[id="answer<%=i%>"]+label+div{
+	max-height: 0;
+	transition: all, 3ss;
+	overflow: hidden;
+	background: #ebf8ff;
+	font-size: 11px;
+}
+
+input[id="answer<%=i%>"]+label+div p{
+	display: inline-block;
+	padding: 20px;
+}
+
+input[id="answer<%=i%>"]:checked + label + div {
+	max-height: 100px;
+}
+
+</style>
+	<input type="checkbox" id="answer<%=i%>">
+	<label for="answer<%=i%>"><%=faqList.get(i).getFaqIdx() %> <%=faqList.get(i).getFaqQuestion() %></label>
 	<div><p><%=faqList.get(i).getFaqAnswer() %></p></div>
 
-</div>
 <% } %>
+</div>
+
 
 <%@ include file="../layout/footer.jsp" %>
 

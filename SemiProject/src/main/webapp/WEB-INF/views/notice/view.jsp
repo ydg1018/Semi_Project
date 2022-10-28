@@ -30,19 +30,14 @@ $(document).ready(function () {	//FAQ로 이동
 
 <style type="text/css">
 
+
+.thead{background-color: #46B4B4}
+
 th, td{
 	text-align: center;
 }
 
-textarea {
-	resize: none;
-	width: 600px;
-	height: 900px;
-	text-align: left;
-	font-size: 20px;
-	border: none;
-	position: relative;
-}
+
 
 </style>
 
@@ -51,25 +46,25 @@ textarea {
 
 <h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
 
-<table class="table table-bordered">
+<table class="table table-bordered  table-hover">
 <tr>
-	<td class="success">제목</td>
+	<td class="thead">제목</td>
 	<td colspan="5"><%=viewNotice.getNoticeTitle() %></td>
 </tr>
 
 <tr>
-	<td class="success">글번호</td>
+	<td class="thead">글번호</td>
 	<td><%=viewNotice.getNoticeIdx() %></td>
 	
-	<td class="success">작성일</td>
+	<td class="thead">작성일</td>
 	<td><%=viewNotice.getNoticeDate() %></td>
 	
-	<td class="success">조회수</td>
+	<td class="thead">조회수</td>
 	<td><%=viewNotice.getNoticeHit() %></td>
 </tr>
 
 	<tr>
-		<td colspan="6"><textarea><%=viewNotice.getNoticeContent() %></textarea></td>
+		<td colspan="6"><%=viewNotice.getNoticeContent() %></td>
 	</tr>
 </table>
 

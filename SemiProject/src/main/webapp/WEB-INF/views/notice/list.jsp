@@ -36,9 +36,10 @@ th, td{
 <h1>고객센터</h1>
 <hr>
 
-<h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
+<div class="">
+<div><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></div>
 
-<table class="table .table-condensed">
+<table class="table .table-condensed table-hover">
 	<tr>
 		<th style="width: 15%;">번호</th>
 		<th style="width: 50%">제목</th>
