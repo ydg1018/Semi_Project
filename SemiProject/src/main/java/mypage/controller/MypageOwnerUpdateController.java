@@ -28,9 +28,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String owner_no = (String) session.getAttribute("owner_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int ownerNo = 1; //Integer.parseInt(owner_no);
+		int ownerNo = (int) session.getAttribute("owner_no");
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Owner param = new Owner();
@@ -57,9 +55,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String owner_no = (String) session.getAttribute("owner_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int ownerNo = 1; //Integer.parseInt(owner_no);
+		int ownerNo = (int) session.getAttribute("owner_no");
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Owner param = new Owner();
@@ -69,6 +65,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		param.setOwnerEmail(req.getParameter("ownerEmail"));
 		param.setOwnerCall(req.getParameter("ownerCall"));
 		param.setOwnerNick(req.getParameter("ownerNick"));
+		param.setOwnerPw(req.getParameter("ownerPw"));
 		
 		//로그인한 Owner 정보 수정
 		System.out.println("Owner 정보 수정 param : " + param);
