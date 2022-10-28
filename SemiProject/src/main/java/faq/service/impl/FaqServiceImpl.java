@@ -5,7 +5,7 @@ import java.util.List;
 import common.JDBCTemplate;
 import faq.dao.face.FaqDao;
 import faq.dao.impl.FaqDaoImpl;
-import faq.dto.FaQ;
+import faq.dto.FAQ;
 import faq.service.face.FaqService;
 
 public class FaqServiceImpl implements FaqService {
@@ -13,7 +13,7 @@ public class FaqServiceImpl implements FaqService {
 	private FaqDao faqDao = new FaqDaoImpl();
 	
 	@Override
-	public List<FaQ> getList() {
+	public List<FAQ> getList() {
 		System.out.println("FaqServiceList getList() - 시작");
 
 		System.out.println("FaqServiceList getList() - 끝");

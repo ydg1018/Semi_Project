@@ -1,14 +1,14 @@
 package faq.dto;
 
-public class FaQ {
+public class FAQ {
 	
 	private int faqIdx;
 	private String faqQuestion;
 	private String faqAnswer;
 	
-	public FaQ() {}
+	public FAQ() {}
 
-	public FaQ(int faqIdx, String faqQuestion, String faqAnswer) {
+	public FAQ(int faqIdx, String faqQuestion, String faqAnswer) {
 		super();
 		this.faqIdx = faqIdx;
 		this.faqQuestion = faqQuestion;

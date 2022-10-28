@@ -54,5 +54,67 @@ public class NoticeServiceImpl implements NoticeService {
 			 return paging;
 		}
 		 
+		 @Override
+		public Notice getNoticeIdx(HttpServletRequest req) {
 		
+			 //전달파라미터를 저장할 객체 생성
+			 Notice notice = new Notice();
+			 
+			 //전달파라미터 noticeIdx 추출(피싱)
+			 String param = req.getParameter("noticeIdx");
+			 if(param != null && !"".equals(param)) {
+				 notice.setNoticeIdx( Integer.parseInt(param));
+			 }
+			 
+		return notice;
+		
+		}
+		 
+		@Override
+		public Notice view(Notice noticeIdx) {
+
+			// DB연결 객체
+			Connection conn = JDBCTemplate.getConnection();
+			
+			//조회수 증가
+			if(noticeDao.updateHit(conn, noticeIdx) > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
+			
+			//게시글 조회
+			Notice notice = noticeDao.selectNoticeByNoticeIdx(conn, noticeIdx);
+			
+			//조회된 게시글 리턴
+			return notice;
+		}
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
+		 
 }
