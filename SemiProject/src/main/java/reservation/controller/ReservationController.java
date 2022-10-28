@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import javax.servlet.jsp.PageContext;
 
 import hosInfo.dto.HosInfo;
 import login.dto.Owner;
@@ -27,9 +28,6 @@ public class ReservationController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/reservation [GET]");
 		
-		//회원정보에서 예약시 미리 정보를 사용할 수 있게 처리
-		
-		
 		//선택된 병원 이름,(hos_no)를 이용해서 정보 조회한 후 병원 정보 보여주기
 		String hosCode = req.getParameter("hosCode");
 		System.out.println("/reservation [GET] hosCode : " + hosCode);
@@ -43,11 +41,6 @@ public class ReservationController extends HttpServlet {
 		
 		req.setAttribute("hosInfo", hosInfo);
 		
-		HttpSession session = req.getSession();
-		String id = session.getId();
-		
-		System.out.println("getsession : " + id);
-		
 		req.getRequestDispatcher("/WEB-INF/views/reservation/reservation.jsp").forward(req, resp);
 		
 	}
@@ -60,12 +53,12 @@ public class ReservationController extends HttpServlet {
 		
 		//세션통해서 유저 정보 가져오기 
 		//세션 객체
-//		HttpSession session = req.getSession();
+		HttpSession session = req.getSession();
 		
-//		String ownerid = session.getId();
+		String ownerid = (String) session.getAttribute("owner_id");
 		
 		//세션처리되면 삭제하기
-		String ownerid = "testid";
+//		String ownerid = "testid";
 		
 		//세션번호를 이용해서 owner 정보 받아오기
 		Owner owner = reservationService.getOwnerName(req, ownerid);

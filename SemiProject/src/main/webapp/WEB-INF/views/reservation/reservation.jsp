@@ -164,6 +164,8 @@ legend {
 
 <body>
 
+<% 	if( session.getAttribute("login") != null && (Boolean) session.getAttribute("login") ) { %>
+
 <%@ include file="../layout/header.jsp" %>
 
 <div id="mainDiv" style="position:relative;width:1130px;margin:0 auto;z-index:11">	<!-- body start -->
@@ -317,5 +319,14 @@ legend {
 
 <div style="clear:both;"></div>
 </div>  <!-- body end -->
+<%	} %>
+
+<% 	if( session.getAttribute("login") == null || !(Boolean) session.getAttribute("login") ) { %>
+<div>
+<h1> 로그인이 필요한 페이지 입니다</h1>
+</div>
+
+<% } %>
+
 
 <%@ include file="../layout/footer.jsp" %>
