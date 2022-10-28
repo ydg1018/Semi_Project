@@ -10,6 +10,7 @@ import hosInfo.dto.HosInfo;
 import login.dto.Hos;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
+import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
 public class MypageDaoImpl implements MypageDao {
@@ -43,6 +44,7 @@ public class MypageDaoImpl implements MypageDao {
 			while(rs.next()) {
 				result.setOwnerNo(rs.getInt("owner_no"));
 				result.setOwnerId(rs.getString("owner_id"));
+				result.setOwnerPw(rs.getString("owner_pw"));
 				result.setOwnerName(rs.getString("owner_name"));
 				result.setOwnerEmail(rs.getString("owner_email"));
 				result.setOwnerCall(rs.getString("owner_call"));
@@ -70,6 +72,7 @@ public class MypageDaoImpl implements MypageDao {
 		sql += " ,owner_email = ?";
 		sql += " ,owner_call = ?";
 		sql += " ,owner_nick = ?";
+		sql += " ,owner_pw = ?";
 		sql += " WHERE owner_no = ?";
 		
 		//결과 저정할 객체
@@ -84,11 +87,17 @@ public class MypageDaoImpl implements MypageDao {
 			ps.setString(2, param.getOwnerEmail());
 			ps.setString(3, param.getOwnerCall());
 			ps.setString(4, param.getOwnerNick());
-			ps.setInt(5, param.getOwnerNo());
+			ps.setString(5, param.getOwnerPw());
+			ps.setInt(6, param.getOwnerNo());
 
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -122,6 +131,11 @@ public class MypageDaoImpl implements MypageDao {
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -135,8 +149,8 @@ public class MypageDaoImpl implements MypageDao {
 //----------------------------------------------------------------------
 
 	@Override
-	public Reservation getReservationOnwner(Connection conn, Reservation param) {
-		System.out.println("MypageDao getReservationOnwner() - 시작");
+	public Reservation getOwnerReservation(Connection conn, Reservation param) {
+		System.out.println("MypageDao getOwnerReservation() - 시작");
 		
 		//SQL작성
 		String sql = "";
@@ -171,19 +185,19 @@ public class MypageDaoImpl implements MypageDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-		System.out.println("MypageDao getReservationOnwner() - 끝");
+		System.out.println("MypageDao getOwnerReservation() - 끝");
 		
 		return result; //최종 결과 반환
 	}
 	
 	@Override
-	public Reservation getReservationHospital(Connection conn, Reservation param) {
-		System.out.println("MypageDao getReservationHospital() - 시작");
+	public Reservation getHosReservation(Connection conn, Reservation param) {
+		System.out.println("MypageDao getHosReservation() - 시작");
 		
 		//SQL작성
 		String sql = "";
 		sql += "SELECT * FROM reservation";
-		sql += " WHERE hosNo = ?";
+		sql += " WHERE hos_code = ?";
 		
 		//결과 저정할 객체
 		Reservation result = new Reservation();
@@ -213,7 +227,7 @@ public class MypageDaoImpl implements MypageDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-		System.out.println("MypageDao getReservationHospital() - 끝");
+		System.out.println("MypageDao getHosReservation() - 끝");
 		
 		return result; //최종 결과 반환
 	}
@@ -225,7 +239,7 @@ public class MypageDaoImpl implements MypageDao {
 		
 		//SQL작성
 		String sql = "";
-		sql += "SELECT * FROM hospital";
+		sql += "SELECT * FROM hos";
 		sql += " WHERE hos_no = ?";
 		
 		//결과 저장할 객체
@@ -246,6 +260,7 @@ public class MypageDaoImpl implements MypageDao {
 			while(rs.next()) {
 				result.setHosNo(rs.getInt("hos_no"));
 				result.setHosId(rs.getString("hos_id"));
+				result.setHosName(rs.getString("hos_name"));
 				result.setHosPw(rs.getString("hos_pw"));
 				result.setHosLic(rs.getInt("hos_lic"));
 				result.setHosCode(rs.getInt("hos_code"));
@@ -268,10 +283,11 @@ public class MypageDaoImpl implements MypageDao {
 		
 		//SQL작성
 		String sql = "";
-		sql += "UPDATE hospital SET ";
+		sql += "UPDATE hos SET ";
 //		sql += "  hos_id = ?";
 		sql += " hos_pw = ?";
 		sql += " ,hos_lic = ?";
+		sql += " ,hos_name = ?";
 		sql += " ,hos_code = ?";
 		sql += " WHERE hos_no = ?";
 		
@@ -285,13 +301,19 @@ public class MypageDaoImpl implements MypageDao {
 			//SQL 파라메터 셋팅
 			ps.setString(1, param.getHosPw());
 			ps.setInt(2, param.getHosLic());
-			ps.setInt(3, param.getHosCode());
-			ps.setInt(4, param.getHosNo());
+			ps.setString(3, param.getHosName());
+			ps.setInt(4, param.getHosCode());
+			ps.setInt(5, param.getHosNo());
 //			ps.setString(2, param.getHosId());
 
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -309,8 +331,8 @@ public class MypageDaoImpl implements MypageDao {
 		
 		//SQL작성
 		String sql = "";
-		sql += "DELETE FROM hospital";
-		sql += " WHERE hospital_no = ?";
+		sql += "DELETE FROM hos";
+		sql += " WHERE hos_no = ?";
 		
 		//결과 저정할 객체
 		int result = 0;
@@ -325,6 +347,11 @@ public class MypageDaoImpl implements MypageDao {
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -418,10 +445,16 @@ public class MypageDaoImpl implements MypageDao {
 			ps.setString(6, param.getHos_trans());
 			ps.setString(7, param.getHos_park());
 			ps.setInt(8, param.getHos_price());
+			ps.setInt(9, param.getHos_code());
 
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -456,6 +489,11 @@ public class MypageDaoImpl implements MypageDao {
 			//SQL수행 및 결과 집합 저장
 			result = ps.executeUpdate(); 
 			
+			if(result > 0) {
+				JDBCTemplate.commit(conn);
+			} else {
+				JDBCTemplate.rollback(conn);
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -463,6 +501,47 @@ public class MypageDaoImpl implements MypageDao {
 			JDBCTemplate.close(ps);
 		}
 		System.out.println("MypageDao deleteHosInfo() - 끝");
+		
+		return result; //최종 결과 반환
+	}
+	
+	@Override
+	public Pet getPet(Connection conn, Pet param) {
+		System.out.println("MypageDao getPet() - 시작");
+		
+		//SQL작성
+		String sql = "";
+		sql += "SELECT * FROM pet";
+		sql += " WHERE pet_no = ?";
+		
+		//결과 저정할 객체
+		Pet result = new Pet();
+		
+		try {
+			//SQL수행 객체
+			ps = conn.prepareStatement(sql); 
+			
+			//SQL 파라메터 셋팅
+			ps.setInt(1, param.getPetNo());
+			
+			//SQL수행 및 결과 집합 저장
+			rs = ps.executeQuery(); 
+			
+			//조회 결과 처리
+			while(rs.next()) {
+				result.setPetNo(rs.getInt("pet_no"));
+				result.setPetName(rs.getString("pet_name"));
+				result.setPetAge(rs.getInt("pet_age"));
+				result.setPetSex(rs.getString("pet_sex"));
+				result.setPetType(rs.getString("pet_type"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		System.out.println("MypageDao getOwner() - 끝");
 		
 		return result; //최종 결과 반환
 	}

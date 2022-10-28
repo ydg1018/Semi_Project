@@ -3,6 +3,7 @@ package mypage.service.face;
 import hosInfo.dto.HosInfo;
 import login.dto.Hos;
 import login.dto.Owner;
+import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
 public interface MypageService {
@@ -40,7 +41,7 @@ public interface MypageService {
 	 * @return Owner - 회원 예약 조회
 	 */
 	
-	public Reservation getReservationOnwner(Reservation param);
+	public Reservation getOwnerReservation(Reservation param);
 	
 	
 	/**
@@ -49,7 +50,7 @@ public interface MypageService {
 	 * @return Owner - 병원 예약 조회
 	 */
 	
-	public Reservation getReservationHospital(Reservation param);
+	public Reservation getHosReservation(Reservation param);
 	
 	
 	
@@ -108,4 +109,12 @@ public interface MypageService {
 	 */
 	
 	public int deleteHosInfo(HosInfo param);
+	
+	/**
+	 * 마이페이지 펫 조회
+	 * 
+	 * @return Pet - 펫 단건 조회
+	 */
+	
+	public Pet getPet(Pet param);
 }

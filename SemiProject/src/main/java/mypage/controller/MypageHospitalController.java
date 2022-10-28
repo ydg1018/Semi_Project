@@ -14,7 +14,7 @@ import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
 
-@WebServlet("/mypage/hospital")
+@WebServlet("/mypage/hos")
 public class MypageHospitalController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
@@ -22,13 +22,11 @@ private MypageService mypageService = new MypageServiceImpl();
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/mypage/hospital [GET]");
+		System.out.println("/mypage/hos [GET]");
 
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hos_no = (String) session.getAttribute("hos_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hosNo = 1; //Integer.parseInt(hos_no);
+		int hosNo = (int) session.getAttribute("hos_no");
 
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
@@ -43,6 +41,6 @@ private MypageService mypageService = new MypageServiceImpl();
 		req.setAttribute("path", req.getServletPath());
 
 		//View지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/mypage/hospital.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/mypage/hos.jsp").forward(req, resp);
 	}
 }

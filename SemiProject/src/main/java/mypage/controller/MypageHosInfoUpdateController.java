@@ -28,13 +28,11 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hos_no = (String) session.getAttribute("hos_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hospitalNo = 1; //Integer.parseInt(owner_no);
-		
+		int hosNo = (int) session.getAttribute("hos_no");
+
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
-		param.setHosNo(hospitalNo);
+		param.setHosNo(hosNo);
 
 		//로그인한 병원회원 정보 조회
 		Hos data = mypageService.getHos(param);
@@ -66,29 +64,39 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hospital_no = (String) session.getAttribute("hospital_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hospitalNo = 1; //Integer.parseInt(owner_no);
+		int hosNo = (int) session.getAttribute("hos_no");
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
+		param.setHosNo(hosNo);
+
+		//로그인한 병원회원 정보 조회
+		Hos data = mypageService.getHos(param);
+		System.out.println("Hospital 정보 조회 data : " + data);
+		
 		HosInfo infoparam = new HosInfo();
 	
-		
-		infoparam.setHos_name(req.getParameter("HosName"));
+		infoparam.setHos_code(data.getHosCode());
+		infoparam.setHos_name(req.getParameter("hosName"));
 		infoparam.setHos_add(req.getParameter("hosAdd"));
 		infoparam.setHos_zip(Integer.parseInt(req.getParameter("hosZip")));
 		infoparam.setHos_call(req.getParameter("hosCall"));
 		infoparam.setHos_time(req.getParameter("hosTime"));
 		infoparam.setHos_trans(req.getParameter("hosTrans"));
 		infoparam.setHos_park(req.getParameter("hosPark"));
-		infoparam.setHos_price(Integer.parseInt(req.getParameter("hosPrice")));
+		infoparam.setHos_park(req.getParameter("hosPark"));
+		
+		String hosPrice = req.getParameter("hosPrice");
+		if(hosPrice.equals("")) {
+			hosPrice = "0";
+		}
+		infoparam.setHos_price(Integer.parseInt(hosPrice));
 
 		//로그인한 병원회원 병원정보 수정
 		System.out.println("병원회원 병원정보 수정 param : " + param);
 		int updateResult = mypageService.updateHosInfo(infoparam);
 		System.out.println("병원회원 병원정보 수정 data : " + updateResult);
 
-		resp.sendRedirect("/mypage/hosInfoUpdate");
+		resp.sendRedirect("/mypage/hosInfo");
 	}
 }

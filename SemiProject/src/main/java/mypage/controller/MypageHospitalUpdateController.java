@@ -15,7 +15,7 @@ import mypage.service.face.MypageService;
 import mypage.service.impl.MypageServiceImpl;
 
 
-@WebServlet("/mypage/hospitalUpdate")
+@WebServlet("/mypage/hosUpdate")
 public class MypageHospitalUpdateController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -23,17 +23,15 @@ private MypageService mypageService = new MypageServiceImpl();
 	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/mypage/hospitalUpdate [GET]");
+		System.out.println("/mypage/hosUpdate [GET]");
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hos_no = (String) session.getAttribute("hos_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hospitalNo = 1; //Integer.parseInt(owner_no);
-		
+		int hosNo = (int) session.getAttribute("hos_no");
+
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
-		param.setHosNo(hospitalNo);
+		param.setHosNo(hosNo);
 		
 		//로그인한 Owner 정보 조회
 		Hos data = mypageService.getHos(param);
@@ -44,7 +42,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		req.setAttribute("path", req.getServletPath());
 		
 		//View지정 및 응답
-		req.getRequestDispatcher("/WEB-INF/views/mypage/hospitalUpdate.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/mypage/hosUpdate.jsp").forward(req, resp);
 	}
 	
 	@Override
@@ -56,17 +54,15 @@ private MypageService mypageService = new MypageServiceImpl();
 		
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hospital_no = (String) session.getAttribute("hospital_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hospitalNo = 1; //Integer.parseInt(owner_no);
+		int hosNo = (int) session.getAttribute("hos_no");
 		
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
 		
-		param.setHosNo(hospitalNo);
-//		param.setHosId(req.getParameter("hospitalId"));
+		param.setHosNo(hosNo);
 		param.setHosPw(req.getParameter("hosPw"));
 		param.setHosLic(Integer.parseInt(req.getParameter("hosLic").toString()));
+		param.setHosName(req.getParameter("hosName"));
 		param.setHosCode(Integer.parseInt(req.getParameter("hosCode").toString()));
 		
 		//로그인한 hospital 정보 수정
@@ -74,6 +70,6 @@ private MypageService mypageService = new MypageServiceImpl();
 		int updateResult = mypageService.updateHos(param);
 		System.out.println("Hospital 정보 수정 data : " + updateResult);
 
-		resp.sendRedirect("/mypage/hospital");
+		resp.sendRedirect("/mypage/hos");
 	}
 }
