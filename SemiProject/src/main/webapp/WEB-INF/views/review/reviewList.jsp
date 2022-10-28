@@ -197,7 +197,9 @@ $(document).ready(function() {
 		</table>
 		
 		<div class="btn">
+		<% if( null != isLogin && isLogin ) { %>
 		<a class="btn btn-default" href="./insert" role="button">글쓰기</a>
+		<%	} %>	
 		</div>
 
 	<br><br>
