@@ -329,7 +329,7 @@ legend {
 <div id="nonePage">
 
 <script type="text/javascript">
-alert('로그인필요')
+alert('로그인필요한 페이지입니다.')
 
 location.href='/login/login';
 </script>

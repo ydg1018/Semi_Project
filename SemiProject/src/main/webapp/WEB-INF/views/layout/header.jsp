@@ -103,7 +103,7 @@ span {
 		<div class="menu1">
 			<ul class="menu2" style="display: flex; justify-content: center;">
 				<li>
-					<a href="">
+					<a href="/hos/list">
 						<span style="font-size: 20px;">병원 예약</span>
 					</a>
 				</li>
