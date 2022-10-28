@@ -30,49 +30,6 @@ $(document).ready(function () {	//FAQ로 이동
 
 </script>
 
-<style type="text/css">
-input[id="answer"]{
-display: none;
-}
-input[id="answer"]+label{
-	display: block;
-	padding: 20px;
-	border: 1px solid #232188;
-	border-bottom: 0;
-	color: #fff;
-	font-weight: 900;
-	background: #32a68f;
-	cursor: pointer;
-	position: relative;
-}
-
-input[id="answer"]+label em {
-	position: absolute;
-	top:50%;
-	right: 10px;
-	width: 30px;
-	height: 30px;
-	margin-top: -15px;
-	display: inline-block;
-}
-
-input[id="answer"]+label+div{
-	max-height: 0;
-	transition: all, 3ss;
-	overflow: hidden;
-	background: #ebf8ff;
-	font-size: 11px;
-}
-
-input[id="answer"]+label+div p{
-	display: inline-block;
-	padding: 20px;
-}
-
-input[id="answer"]:checked + label + div {
-	max-height: 100px;
-}
-</style>
 
 <div>
 	<h1>고객센터</h1>
@@ -82,8 +39,8 @@ input[id="answer"]:checked + label + div {
 
 <% for(int i=0; i<faqList.size(); i++) { %>
 <div class="accordion">
-	<input type="checkbox" id=answer>
-	<label for="answer"><%=faqList.get(i).getFaqIdx() %> <%=faqList.get(i).getFaqQuestion() %><em></em></label>
+	<input type="checkbox" id="answer01">
+	<label for="answer01"><%=faqList.get(i).getFaqIdx() %> <%=faqList.get(i).getFaqQuestion() %></label>
 	<div><p><%=faqList.get(i).getFaqAnswer() %></p></div>
 
 </div>
