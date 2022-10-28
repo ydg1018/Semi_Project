@@ -51,7 +51,7 @@ ul {
 
 .menu1 {
 	width: 50%;
-	height: 50px;
+	height: 55px;
 	margin: auto;
 }
 
@@ -116,14 +116,14 @@ span {
 					</a>
 				</li>
 				<li>
-					<h5><a href="../hos/list">
-						<span>동물병원을 찾아줘</span>
-					</a></h5>
+					<h5><strong><a href="../hos/list" style="color: white;">
+						동물병원을<br>찾아줘
+					</a></strong></h5>
 				</li>
 				<li>
 					<a href="">
 						<span>반려동물 행사</span>
-					</a>
+					</a> 
 				</li>
 				<li>
 					<a href="">
