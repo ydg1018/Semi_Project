@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.UnsupportedEncodingException;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -17,6 +18,7 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 
 import common.JDBCTemplate;
+import reply.dto.Reply;
 import review.dao.face.ReviewDao;
 import review.dao.impl.ReviewDaoImpl;
 import review.dto.Review;
@@ -50,8 +52,27 @@ public class ReviewServiceImpl implements ReviewService {
 	@Override
 	public Paging getPaging(HttpServletRequest req) {
 		
-		//총 게시글 수 조회하기
+		//총 게시글 수 조회하기 
 		int totalCount = reviewDao.selectCntAll(JDBCTemplate.getConnection());
+		
+		//전달파라미터 curPage 추출하기
+		String param = req.getParameter("curPage");
+		int curPage = 0;
+		if ( param != null && !"".equals(param) ) {
+			curPage = Integer.parseInt(param);
+		}
+		
+		//Paging객체 생성
+		Paging paging = new Paging(totalCount, curPage);
+		
+		return paging;
+	}
+	
+	@Override
+	public Paging getPaging(HttpServletRequest req, String field, String query) {
+		
+		//총 게시글 수 조회하기 - 검색어가 반영된 게시글 개수 조회로 바꾼다
+		int totalCount = reviewDao.selectCntAll(JDBCTemplate.getConnection(), field, query);
 		
 		//전달파라미터 curPage 추출하기
 		String param = req.getParameter("curPage");
@@ -231,10 +252,10 @@ public class ReviewServiceImpl implements ReviewService {
 		review.setBoardNo(boardno);
 
 		//작성자 ID 처리
-		String owner_no = ( (String) req.getSession().getAttribute("owner_no") );
+//		String owner_no = ( (String) req.getSession().getAttribute("owner_no") );
 		
 		//테스트 owner_no -> 로그인 구현되면 삭제할 것
-		review.setOwnerNo(1);
+//		review.setOwnerNo(1);
 		
 		if( reviewDao.insert(conn, review) > 0 ) {
 			JDBCTemplate.commit(conn);
@@ -438,5 +459,5 @@ public class ReviewServiceImpl implements ReviewService {
 			}
 			
 		}
-
+		
 }

@@ -107,7 +107,7 @@ public class DepInfoDaoImpl implements DepInfoDao {
 		
 		try {
 			ps = conn.prepareStatement
-				("SELECT dep_item, det_item, det_detail FROM AllInfo WHERE det_detail like '%" + det_detail + "%'");
+				("SELECT dep_item, det_item, det_detail, trt_item FROM AllInfo WHERE det_detail like '%" + det_detail + "%'");
 			
 			rs = ps.executeQuery(); //SQL수행 및 결과 집합 저장
 			
@@ -120,6 +120,7 @@ public class DepInfoDaoImpl implements DepInfoDao {
 				dt.setDep_item(rs.getString("dep_item"));
 				dt.setDet_item(rs.getString("det_item"));
 				dt.setDet_detail(rs.getString("det_detail"));
+				dt.setTrt_item(rs.getString("trt_item"));
 				
 				//리스트에 결과값 저장하기
 				list.add(dt);

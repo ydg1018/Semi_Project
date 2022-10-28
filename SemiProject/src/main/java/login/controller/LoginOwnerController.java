@@ -39,7 +39,7 @@ public class LoginOwnerController extends HttpServlet {
 		System.out.println("LoginController doPost() - owner : " + owner);
 
 		// 로그인 인증
-		boolean ownerLogin = loginService.Ownerlogin(owner);
+		boolean ownerLogin = loginService.OwnerLogin(owner);
 		
 		// 로그인 인증 성공
 		if( ownerLogin ) {

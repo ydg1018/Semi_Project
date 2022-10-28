@@ -8,7 +8,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
-<%@ include file="./bHeader.jsp" %>
+<%@ include file="../layout/header.jsp" %>
 
 <%	Review updateBoard = (Review) request.getAttribute("updateBoard"); %>
 <%	BoardFile boardFile = (BoardFile) request.getAttribute("boardFile"); %>
@@ -64,6 +64,20 @@ $(document).ready(function() {
 
 
 <style type="text/css">
+
+.top-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 215px;
+	background-color: #e1f4f3;
+} 
+
+.board-container {
+	max-width: 1200px;
+	margin: auto;
+	padding: 0;
+}
 
 input {
 	border: 2px solid #ddd;
@@ -125,6 +139,10 @@ table {
 </form>
 </div>
 </body>
+
+<br><br><br>
+<%@ include file="../layout/footer.jsp" %>
+
 </html>
 
 

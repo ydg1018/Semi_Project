@@ -67,7 +67,7 @@ private MypageService mypageService = new MypageServiceImpl();
 		param.setOwnerNo(ownerNo);
 		param.setOwnerName(req.getParameter("ownerName"));
 		param.setOwnerEmail(req.getParameter("ownerEmail"));
-		param.setOwnerCall(Integer.parseInt(req.getParameter("ownerCall").toString()));
+		param.setOwnerCall(req.getParameter("ownerCall"));
 		param.setOwnerNick(req.getParameter("ownerNick"));
 		
 		//로그인한 Owner 정보 수정

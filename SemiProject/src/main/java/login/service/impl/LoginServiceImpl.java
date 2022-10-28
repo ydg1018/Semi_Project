@@ -37,7 +37,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean Ownerlogin(Owner owner) {
+	public boolean OwnerLogin(Owner owner) {
 
 		//로그인 인증 성공
 		if( loginDao.selectCntOwnerByUseridUserpw(conn, owner) > 0 ) {

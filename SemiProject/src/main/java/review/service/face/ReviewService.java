@@ -1,9 +1,11 @@
 package review.service.face;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import reply.dto.Reply;
 import review.dto.Review;
 import util.BoardFile;
 import util.Paging;
@@ -43,6 +45,7 @@ public interface ReviewService {
 	 * @return Paging - 페이징 계산이 완료된 객체
 	 */
 	Paging getPaging(HttpServletRequest req);
+	Paging getPaging(HttpServletRequest req, String field, String query);
 
 
 	/**

@@ -7,7 +7,7 @@
 
 <% request.setCharacterEncoding("UTF-8"); %>
    
-<% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %>    
+<% List<HosInfo> hosInfo = (List) request.getAttribute("hosInfo"); %> 
 
 <!DOCTYPE html>
 <html>
@@ -22,7 +22,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-
 <style type="text/css">
 .search {
   position: relative;
@@ -105,13 +104,13 @@ $(document).ready(function() {
 			<option value="hos_add">병원 주소</option>
 		</select>
 		<input id="input" type="text" placeholder="병원 정보를 검색하세요" name="keyword">
-		<input id="btnsearch" type="image" value="">
+		<input id="btnsearch" type="submit" value="">
 	</form>	
 </div>
 
 <br><br>
 
-<button onclick="add()" class="btn btn-info" style="float: left; margin-left: 100px;">주소 선택</button>
+<button onclick="add()" class="btn btn-primary" style="float: left; margin-left: 100px;">주소 선택</button>
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -156,7 +155,7 @@ if (navigator.geolocation) {
             lon = position.coords.longitude; // 경도
         
         var locPosition = new kakao.maps.LatLng(lat, lon), // 마커가 표시될 위치를 geolocation으로 얻어온 좌표로 생성합니다
-            message = '<div style="padding:5px;">여기에 계신가요?!</div>'; // 인포윈도우에 표시될 내용입니다
+            message = '<div style="padding:5px;">현재 위치</div>'; // 인포윈도우에 표시될 내용입니다
         
         // 마커와 인포윈도우를 표시합니다
         displayMarker(locPosition, message);
