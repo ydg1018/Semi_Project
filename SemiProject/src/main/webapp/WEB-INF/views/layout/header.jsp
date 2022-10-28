@@ -22,9 +22,10 @@ font-family: 'Nanum Gothic', sans-serif;
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <style type="text/css">
-#header {
+header {
 	text-align: center;
 	background: #46B4B4;
+	height: 100px;
 }
 
 #footer {
@@ -38,6 +39,7 @@ font-family: 'Nanum Gothic', sans-serif;
 
 .right {
 	background: #e1f3f3;
+	
 }
 
 ul {
@@ -51,7 +53,7 @@ ul {
 
 .menu1 {
 	width: 50%;
-	height: 55px;
+	height: 76px;
 	margin: auto;
 }
 
@@ -74,9 +76,9 @@ span {
 </head>
 <body>
 
-<header id="header">
+<header>
 	<div class="right">
-		<ul style="display: flex;">
+		<ul style="display: flex; justify-content: flex-end";>
 		<%	if( session.getAttribute("login") == null ) { %>
 			<li>
 				<a href="/login/login">로그인</a>
@@ -103,43 +105,44 @@ span {
 		<% } %>
 		</ul>
 	</div>
-
+	
 	<div class="menu">
 		<div class="menu1">
-			<ul class="menu2" style="display: flex;">
+			<ul class="menu2" style="display: flex; justify-content: center;">
 				<li>
-					<a href="">
-						<span>병원 예약</span>
+					<a href="/hos/list">
+						<span style="font-size: 20px;">병원 예약</span>
 					</a>
 				</li>
 				<li>
 					<a href="/review/list">
-						<span>병원 후기</span>
+						<span style="font-size: 20px;">병원 후기</span>
 					</a>
 				</li>
+
 				<li>
-					<a href="../dep/list">
-						<span>진료과 정보</span>
-					</a>
-				</li>
-				<li>
-					<h5><strong><a href="../hos/list" style="color: white;">
+					<h5><strong><a href="../hos/list" style="color: white; font-size: 20px;">
 						동물병원을<br>찾아줘
 					</a></strong></h5>
 				</li>
+<!-- 				<li> -->
+<!-- 					<a href=""> -->
+<!-- 						<span>반려동물 행사</span> -->
+<!-- 					</a>  -->
+<!-- 				</li> -->
+<!-- 				<li> -->
+<!-- 					<a href=""> -->
+<!-- 						<span>유기동물 공고</span> -->
+<!-- 					</a> -->
+<!-- 				</li> -->
 				<li>
-					<a href="">
-						<span>반려동물 행사</span>
-					</a> 
-				</li>
-				<li>
-					<a href="">
-						<span>유기동물 공고</span>
+					<a href="../dep/list">
+						<span style="font-size: 20px;">진료과 정보</span>
 					</a>
 				</li>
 				<li>
 					<a href="">
-						<span>고객센터</span>
+						<span style="font-size: 20px;">고객센터</span>
 					</a>
 				</li>
 			</ul>
