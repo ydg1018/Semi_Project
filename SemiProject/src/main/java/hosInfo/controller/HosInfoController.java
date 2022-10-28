@@ -42,4 +42,6 @@ public class HosInfoController extends HttpServlet {
 		
 		req.getRequestDispatcher("/WEB-INF/views/hosInfo/searchHos.jsp").forward(req, resp);
 	}
+	
+	//1028
 }
