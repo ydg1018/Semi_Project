@@ -26,13 +26,15 @@
 </head>
 <body>
 <br>
-<%	for(int i=0; i<list.size(); i++) { %>
-	
-	<button class="btn btn-success"><h4><%=list.get(i).getDep_item() %></h4></button>
-	<hr>
 
-	<h3><strong><%=list.get(i).getDet_item() %></strong></h3>
+<button class="btn btn-info btn-xs"><h4>검색 결과</h4></button>
+	
+<%	for(int i=0; i<list.size(); i++) { %>
+	<h3><strong><%=list.get(i).getDep_item() %>: <%=list.get(i).getDet_item() %></strong></h3>
+	<hr>
 	<h3><%=list.get(i).getDet_detail() %></h3>
+	<hr>
+	<h3><%=list.get(i).getTrt_item() %></h3>
 
 	<hr>
 	<br>

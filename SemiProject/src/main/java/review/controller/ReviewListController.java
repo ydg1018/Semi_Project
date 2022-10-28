@@ -8,7 +8,10 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
+import login.dto.Owner;
+import login.service.face.LoginService;
 import review.dto.Review;
 import review.service.face.ReviewService;
 import review.service.impl.ReviewServiceImpl;
@@ -24,21 +27,20 @@ public class ReviewListController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/review/list [GET]");
 		
-		//임시변수
-		String field_ = req.getParameter("f");
-		String query_ = req.getParameter("q");
+		String field = req.getParameter("f");
+		String query = req.getParameter("q");
 		
-		String field = "board_title";
-		if(field_ != null) 
-			field = field_;
+		Owner owner = new Owner();
+		
+		// 세션정보 객체
+		HttpSession session = req.getSession();
+		
+		String ownerNick = (String) session.getAttribute("owner_nick");
 			
-		String query = "";
-		if(query_ != null) 
-			query = query_;			
-		
-		
 		//페이징객체 생성
-		Paging paging = reviewService.getPaging(req);
+//		Paging paging = reviewService.getPaging(req);
+		Paging paging = reviewService.getPaging(req, field, query);
+		System.out.println(paging);
 		
 		//페이징 객체를 MODEL값 전달
 		req.setAttribute("paging", paging);
@@ -47,7 +49,7 @@ public class ReviewListController extends HttpServlet {
 		List<Review> reviewList = reviewService.getList( paging, field, query );
 		
 		//test
-//		for(Review r : reviewList)	System.out.println(r);
+		for(Review r : reviewList)	System.out.println(r);
 		
 		//MODEL값 전달
 		req.setAttribute("reviewList", reviewList);

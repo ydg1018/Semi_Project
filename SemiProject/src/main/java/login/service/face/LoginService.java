@@ -21,7 +21,7 @@ public interface LoginService {
 	 * @param owner - 로그인 정보 (owenr_id, owner_pw)
 	 * @return boolean - true : 인증성공, false : 인증실패
 	 */
-	public boolean Ownerlogin(Owner owner);
+	public boolean OwnerLogin(Owner owner);
 
 	/**
 	 * 유저 정보 가져오기
