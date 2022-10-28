@@ -9,6 +9,7 @@ import login.dto.Owner;
 import mypage.dao.face.MypageDao;
 import mypage.dao.impl.MypageDaoImpl;
 import mypage.service.face.MypageService;
+import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
 public class MypageServiceImpl implements MypageService {
@@ -53,25 +54,25 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public Reservation getReservationOnwner(Reservation param) {
-		 System.out.println("MypageService getReservationOnwner()");
+	public Reservation getOwnerReservation(Reservation param) {
+		 System.out.println("MypageService getOwnerReservation()");
 
 		 //DB연결 객체
 		 Connection conn = JDBCTemplate.getConnection();
 		 
 		 //DB조회결과 반환
-		 return mypageDao.getReservationOnwner(conn, param);	 
+		 return mypageDao.getOwnerReservation(conn, param);	 
 	}
 	
 	@Override
-	public Reservation getReservationHospital(Reservation param) {
-		 System.out.println("MypageService getReservationHospital()");
+	public Reservation getHosReservation(Reservation param) {
+		 System.out.println("MypageService getHosReservation()");
 
 		 //DB연결 객체
 		 Connection conn = JDBCTemplate.getConnection();
 		 
 		 //DB조회결과 반환
-		 return mypageDao.getReservationHospital(conn, param);	 
+		 return mypageDao.getHosReservation(conn, param);	 
 	}
 	
 	
@@ -147,6 +148,19 @@ public class MypageServiceImpl implements MypageService {
 
 		 //DB조회결과 반환
 		 return mypageDao.deleteHosInfo(conn, param);
+		 
+	}
+	
+
+	@Override
+	public Pet getPet(Pet param) {
+		System.out.println("MypageService getPet()");
+		
+		//DB연결 객체
+		Connection conn = JDBCTemplate.getConnection();
+
+		//DB조회결과 반환
+		return mypageDao.getPet(conn, param);
 		 
 	}
 }

@@ -27,9 +27,7 @@ private MypageService mypageService = new MypageServiceImpl();
 
 		//세션정보 객체
 		HttpSession session = req.getSession();
-		String hos_no = (String) session.getAttribute("hos_no");
-		//숫자형으로 변환 (임시로 1번 씀)
-		int hosNo = 1; //Integer.parseInt(hos_no);
+		int hosNo = (int) session.getAttribute("hos_no");
 
 		//서비스로 보낼 파라메터 데이터 셋팅
 		Hos param = new Hos();
