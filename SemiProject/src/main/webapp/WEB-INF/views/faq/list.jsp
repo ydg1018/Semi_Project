@@ -31,19 +31,46 @@ $(document).ready(function () {	//FAQ로 이동
 //메뉴 리스트 함수
 $()
 
-
 </script>
 
+<style type="text/css">
+.wrapper{
+	padding: 100px;
+}
+.fmenu{
+	background-color: #e1f3f3
+}
+h1, h2{text-align: center;
+ }
+.content{
+	left: 50%;
+	top: 50%;
+	
+}
+button {
+	font-size:30px; padding:20px 100px;
+	background-color: #339999;
+	border-radius: 10px;
+	color: #fff;
+
+}
 
 
+</style>
+
+<div class="wrapper">
+<div class="fmenu">
+<h1>고객센터</h1>
+
+<hr>
 
 <div>
-	<h1>고객센터</h1>
+	<h2><button id="btnNotice">공지사항</button>  <button id="btnFaQ">FaQ</button></h2>
 </div>
-<hr>
-<h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
-
+</div>
+<div class = "content">
 <div class="accordion">
+
 <% for(int i=0; i<faqList.size(); i++) { %>
 
 <style type="text/css">
@@ -87,7 +114,8 @@ input[id="answer<%=i%>"]:checked + label + div {
 
 <% } %>
 </div>
-
+</div>
+</div>
 
 <%@ include file="../layout/footer.jsp" %>
 
