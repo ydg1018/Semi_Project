@@ -1,4 +1,4 @@
-<%@page import="login.dto.Hospital"%>
+<%@page import="login.dto.Hos"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -36,7 +36,7 @@
 	<div class="mypage-main">
 		<div class="mypage-content">
 			<%-- 모델값 전달받기 --%>
-			<%	Hospital data = (Hospital) request.getAttribute("data"); %>
+			<%	Hos data = (Hos) request.getAttribute("data"); %>
 			
 <!--  			<h1>병원회원번호</h1> 
 			<p><%=data.getHosNo() %></p> -->
