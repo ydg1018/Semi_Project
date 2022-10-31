@@ -164,7 +164,7 @@ $(function() {
 
 <tr>
 	<td  style="width: 10%">
-		<%=depInfo.get(0).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(0).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(0).getDep_detail() %></td>
 </tr>
@@ -191,7 +191,7 @@ $(function() {
 
 <tr>
 	<td style="width: 10%">
-		<%=depInfo.get(9).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(9).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(9).getDep_detail() %></td>
 </tr>
@@ -215,7 +215,7 @@ $(function() {
 
 <tr>
 	<td style="width: 10%">
-		<%=depInfo.get(13).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(13).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(13).getDep_detail() %></td>
 </tr>
@@ -226,7 +226,7 @@ $(function() {
 
 <tr>
 	<td style="width: 10%">
-		<%=depInfo.get(14).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(14).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(14).getDep_detail() %></td>
 </tr>
@@ -237,7 +237,7 @@ $(function() {
 
 <tr>
 	<td style="width: 10%">
-		<%=depInfo.get(15).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(15).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(15).getDep_detail() %></td>
 </tr>
@@ -261,7 +261,7 @@ $(function() {
 
 <tr>
 	<td style="width: 10%">
-		<%=depInfo.get(20).getDep_item() %>
+		<button class="btn btn-info"><%=depInfo.get(20).getDep_item() %></button>
 	</td>
 	<td style="width: 90%"><%=depInfo.get(20).getDep_detail() %></td>
 </tr>
@@ -281,5 +281,5 @@ $(function() {
 <%	} %>
 
 </table>
-
+<br>
 <%@ include file="../layout/footer.jsp" %>

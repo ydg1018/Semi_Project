@@ -30,7 +30,7 @@ public class NoticeViewController extends HttpServlet {
 		
 		//게시글 상세보기 조회 결과 얻어오기
 		Notice viewNoitce = noticeService.view(noticeIdx);
-		System.out.println("NoticeViewContrller doGet() - viewNotice : " + viewNoitce);
+//		System.out.println("NoticeViewContrller doGet() - viewNotice : " + viewNoitce);
 		
 		//조회결과를 MODEL값으로 전달
 		req.setAttribute("viewNotice", viewNoitce);

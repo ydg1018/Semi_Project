@@ -140,7 +140,7 @@ span {
 					</a>
 				</li>
 				<li>
-					<a href="">
+					<a href="../notice/list">
 						<span style="font-size: 20px;">고객센터</span>
 					</a>
 				</li>
