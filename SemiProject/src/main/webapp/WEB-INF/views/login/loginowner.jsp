@@ -19,32 +19,6 @@ $(document).ready(function() {
 		}
 	})
 	
-	/* $("btnLogin").click(function() {
-		console.log("#btnLogin 클릭")
-		
-		$.ajax({
-			type: "post"
-			, url: "./loginOk.jsp"
-			, data {
-				id: $("#owner_id").val()
-				, pw: $("#owner_pw").val()
-			}
-			, dateType: "script"
-			, success: function(res) {
-				console.log("AJAX 성공")
-				
-				$("result").html(res)
-			}
-			, error: function() {
-				console.log("AJAX 실패")
-			}
-		})
-	}) */
-/* 	// 로그인 버튼
-	$("#btnLogin").click(function() {
-		$(this).parents("form").submit();
-	}) */
-	
 	// 회원가입 버튼
 	$("#btnSignup").click(function() {
 		console.log("#btnSignup 클릭")
