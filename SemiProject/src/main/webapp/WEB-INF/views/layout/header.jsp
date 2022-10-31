@@ -71,6 +71,9 @@ span {
 			<li>
 				<a href="/login/signup">회원가입</a>
 			</li>
+			<li>
+				<a href="/login/find">아이디*비밀번호찾기</a>			
+			</li>
 		<%	} %>
 		
 		<%	if( session.getAttribute("login") != null && (boolean) session.getAttribute("login") ) { %>
@@ -78,7 +81,7 @@ span {
 				<a href="/login/logout">로그아웃</a>
 			</li>
 			<li>
-				<a>마이페이지</a>
+				<a href="/mypage/owner">마이페이지</a>
 			</li>
 		<% } %>
 		</ul>

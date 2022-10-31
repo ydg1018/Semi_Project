@@ -1,54 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
-<%@ include file="../layout/header.jsp" %>
-
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>비밀번호 찾기</title>
 
 <script type="text/javascript" src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
 <script type="text/javascript">
-
 $(document).ready(function() {
 	
 	// 아이디 입력창에 포커스주기
 	$("input").eq(0).focus()
 	
-	// 패스워드 입력창에 엔터키 입력 시 submit
-	$("input").eq(1).keydown(function(e) {
+	// 이메일 입력창에 엔터키 입력 시 submit
+	$("input").eq(2).keydown(function(e) {
 		if( e.keyCode == 13 ) { // 엔터키
-			$("#btnLogin").click();
+			$("#btnFindPw").click();
 		}
 	})
 
-	// 회원가입 버튼
-	$("#btnSignup").click(function() {
-		console.log("#btnSignup 클릭")
-		// history.go(-1) // 뒤로가기
-		$(location).attr('href', '/login/signup') // 회원가입으로 가기
-	})
-	
-	// 아이디·비밀번호 찾기 버튼
-	$("#btnFind").click(function() {
-		console.log("#btnFind 클릭")
-		// history.go(-1) // 뒤로가기
-		$(location).attr('href', '/login/find') // 아이디·비밀번호찾기로 가기
+	// 취소 버튼
+	$("#btnCancel").click(function() {
+		$(location).attr('href', '/login/login') // 로그인 화면으로 가기
 	})
 })
 
-// 아이디 비밀번호 입력 안 한 경우
-function loginCheck(){
+// 입력 안 한 경우
+function loginCheck() {
 	let loginForm = document.loginForm;
-	let hos_id = document.getElementById('hos_id').value;
-	let hos_pw = document.getElementById('hos_pw').value;
+	let owner_id = document.getElementById('owner_id').value;
+	let owner_name = document.getElementById('owner_name').value;
+	let owner_nick = document.getElementById('owner_nick').value;
 	
-	if(hos_id == ""){
-		alert("아이디를 입력해주세요.");
-	} else if (hos_pw == ""){
-		alert("비밀번호를 입력해주세요.");
-	} else {
-		loginForm.submit();
-	}
-}	
+	if(owner_id == "" && owner_name == "" && owner_nick == "") {
+		alert("모든 정보를 입력해주세요.");
+	} loginForm.submit();
+}
 
 </script>
 
@@ -102,7 +91,6 @@ button {
 
 .form-control {
 	width: 50%;
-	margin: 0 auto;
 }
 
 .login_btn_wrap {
@@ -133,29 +121,32 @@ button {
 </head>
 <body>
 
+<header>header</header>
+<hr>
+
 <div id="container">
-	<h1>펫병원 로그인</h1>	
+	<h1>비밀번호 찾기</h1>	
 	<div id="content">
 		<div class="login_wrap">
-			<form action="/login/loginhos" method="post" name="loginForm"class="form-horizontal">
+			<form action="/login/findpw" method="post" name="loginForm"class="form-horizontal">
 				<div class="login_inner">
 					<div class="id_pw_wrap">
 						<div class="login_row">
-							<input type="text" id="hos_id" name="hos_id" class="form-control" placeholder="아이디" title="아이디">
+							<input type="text" id="owner_id" name="owner_id" class="form-control" placeholder="아이디" title="아이디">
 						</div>
 						<div class="login_row">
-							<input type="password" id="hos_pw" name="hos_pw" class="form-control" placeholder="비밀번호" title="비밀번호">
+							<input type="text" id="owner_name" name="owner_name" class="form-control" placeholder="이름" title="이름">
+						</div>
+						<div class="login_row">
+							<input type="text" id="owner_nick" name="owner_nick" class="form-control" placeholder="닉네임" title="닉네임">
 						</div>
 					</div>
 					<div class="login_btn_wrap">
-						<p><button type="button" class="btn btn-primary" id="btnLogin" onclick="loginCheck()">
-							<span>로그인</span>
+						<p><button type="button" class="btn btn-primary" id="btnFindPw" onclick="loginCheck()">
+							<span>비밀번호 찾기</span>
 						</button></p>
-						<p><button type="button" class="btn btn-primary" id="btnSignup">
-							<span>회원가입</span>
-						</button></p>
-						<p><button type="button" class="btn btn-primary" id="btnFind">
-							<span>아이디·비밀번호 찾기</span>
+						<p><button type="button" class="btn btn-primary" id="btnCancel" onclick="history.back()">
+							<span>취소</span>
 						</button><p>
 					</div>
 				</div>
@@ -164,4 +155,8 @@ button {
 	</div>
 </div>
 
-<%@ include file="../layout/footer.jsp" %>
+<hr>
+<footer>footer</footer>
+
+</body>
+</html>

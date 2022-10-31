@@ -54,7 +54,7 @@ public interface LoginService {
 	 * 로그인 정보 추출하기
 	 * 
 	 * @param req - 요청 정보 객체
-	 * @return Hospital - 로그인 정보(hos_id, hos_pw)
+	 * @return Hos - 로그인 정보(hos_id, hos_pw)
 	 */
 	public Hos getLoginHos(HttpServletRequest req);
 	
@@ -70,14 +70,14 @@ public interface LoginService {
 	 * 유저 정보 가져오기
 	 * 
 	 * @param hos - 조회할 회원 아이디를 가진 객체
-	 * @return Hospital - 조회된 회원 정보(hos_id, hos_pw, hos_lic)
+	 * @return Hos - 조회된 회원 정보(hos_id, hos_pw, hos_lic)
 	 */
 	public Hos HosInfo(Hos hos);
 	/**
 	 * 회원가입 정보 추출하기
 	 * 
 	 * @param req - 요청 정보 객체
-	 * @return Hospital - 회원가입 정보 객체 (hos_id, hos_pw, hos_lic)
+	 * @return Hos - 회원가입 정보 객체 (hos_id, hos_pw, hos_lic)
 	 */
 	public Hos getJoinHos(HttpServletRequest req);
 
@@ -87,4 +87,53 @@ public interface LoginService {
 	 * @param hos - 회원가입 정보 객체
 	 */
 	public void HosJoin(Hos hos);
+
+	/**
+	 * 오너 아이디 찾기
+	 * 
+	 * @param req
+	 * @return
+	 */
+	public Owner getFindOwnerId(HttpServletRequest req);
+
+	/**
+	 * 오너 아이디 찾기
+	 * 
+	 * @param owner
+	 * @return
+	 */
+	public Owner findId(Owner owner);
+
+	/**
+	 * 오너 비밀번호 찾기
+	 * 
+	 * @param req
+	 * @return
+	 */
+	public Owner getFindOwnerPw(HttpServletRequest req);
+
+	/**
+	 * 오너 비밀번호 찾기
+	 * 
+	 * @param owner
+	 * @return
+	 */
+	public Owner findPw(Owner owner);
+
+	/**
+	 * 아이디 중복 체크
+	 * 
+	 * @param owner_id
+	 * @return
+	 */
+	public Owner selectOne(String owner_id);
+
+	/**
+	 * 추가
+	 * 
+	 * @param owner_id
+	 * @param owner_pw
+	 * @return
+	 */
+	public Owner ownerLogin(String owner_id, String owner_pw);
 }

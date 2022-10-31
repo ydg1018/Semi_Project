@@ -137,7 +137,7 @@ public class ReservationDaoImpl implements ReservationDao {
 				owner.setOwnerPw( rs.getString("owner_pw"));
 				owner.setOwnerName( rs.getString("owner_name"));
 				owner.setOwnerEmail( rs.getString("owner_email"));
-				owner.setOwnerCall( rs.getInt("owner_call"));
+				owner.setOwnerCall( rs.getString("owner_call"));
 				owner.setOwnerNick( rs.getString("owner_nick"));
 				
 			}

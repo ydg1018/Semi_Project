@@ -53,20 +53,21 @@ public class LoginDaoImpl implements LoginDao {
 		System.out.println("LoginDaoImpl() : selectOwnerByUserid - 시작");
 		
 		String sql = "";
-		sql += "SELECT owner_id, owner_pw, owner_nick FROM owner";
+		sql += "SELECT owner_no, owner_id, owner_pw, owner_nick FROM owner";
 		sql += " WHERE owner_id = ?";
 		
 		Owner oresult = null;
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setString(1, owner.getOwnerId());
+			ps.setInt(1, owner.getOwnerNo());
 			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				oresult = new Owner();
 				
+				oresult.setOwnerNo( rs.getInt("owner_no") );
 				oresult.setOwnerId( rs.getString("owner_id") );
 				oresult.setOwnerPw( rs.getString("owner_pw") );
 				oresult.setOwnerNick( rs.getString("owner_nick") );
@@ -120,6 +121,8 @@ public class LoginDaoImpl implements LoginDao {
 	@Override
 	public int selectCntHosByUseridUserpw(Connection conn, Hos hos) {
 		
+		System.out.println("LoginDaoImpl() : selectCntHosByUseridUserpw - 시작");
+		
 		String sql = "";
 		sql += "SELECT count(*) cnt FROM hos";
 		sql += " WHERE hos_id = ? AND hos_pw = ?";
@@ -128,6 +131,7 @@ public class LoginDaoImpl implements LoginDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
+			
 			ps.setString(1, hos.getHosId());
 			ps.setString(2, hos.getHosPw());
 			
@@ -142,14 +146,17 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+		System.out.println("LoginDaoImpl() : selectCntHosByUseridUserpw - 끝");
 		return hcnt;
 	}
 
 	@Override
 	public Hos selectHosByUserid(Connection conn, Hos hos) {
 
+		System.out.println("LoginDaoImpl() : selectHosByUserid - 시작");
+		
 		String sql = "";
-		sql += "SELECT hos_id, hos_pw, hos_lic FROM hos";
+		sql += "SELECT hos_no, hos_id, hos_pw, hos_lic FROM hos";
 		sql += " WHERE hos_id = ?";
 		
 		Hos hresult = null;
@@ -163,9 +170,9 @@ public class LoginDaoImpl implements LoginDao {
 			while(rs.next()) {
 				hresult = new Hos();
 				
+				hresult.setHosNo( rs.getInt("hos_no") );
 				hresult.setHosId( rs.getString("hos_id") );
 				hresult.setHosPw( rs.getString("hos_pw") );
-				hresult.setHosName( rs.getString("hos_name") );
 				hresult.setHosNo( rs.getInt("hos_lic") );
 			}
 		} catch (SQLException e) {
@@ -174,6 +181,7 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+		System.out.println("LoginDaoImpl() : selectHosByUserid - 끝");
 		return hresult;
 	}
 
@@ -181,8 +189,8 @@ public class LoginDaoImpl implements LoginDao {
 	public int HosInsert(Connection conn, Hos hos) {
 		
 		String sql = "";
-		sql += "INSERT INTO hos ( hos_no, hos_id, hos_pw, hos_lic, hos_code )";
-		sql += " VALUES ( hos_seq.nextval, ?, ?, ?, ? )";
+		sql += "INSERT INTO hos ( hos_no, hos_id, hos_pw, hos_lic, hos_name, hos_code )";
+		sql += " VALUES ( hos_seq.nextval, ?, ?, ?, ?, ? )";
 		
 		int hres = 0;
 		
@@ -192,7 +200,8 @@ public class LoginDaoImpl implements LoginDao {
 			ps.setString(1, hos.getHosId());
 			ps.setString(2, hos.getHosPw());
 			ps.setInt(3, hos.getHosLic());
-			ps.setInt(4, hos.getHosCode());
+			ps.setString(4, hos.getHosName());
+			ps.setInt(5, hos.getHosCode());
 			
 			hres = ps.executeUpdate();
 			
@@ -202,5 +211,169 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(ps);
 		}
 		return hres;
+	}
+
+	//--------------------------------------------------
+	
+	@Override
+	public Owner selectOwnerIdByOwnerNameOwnerEmail(Connection conn, Owner owner) {
+		
+		String sql = "";
+		sql += "SELECT owner_id FROM owner WHERE owner_name = ? AND owner_nick = ?";
+		
+		Owner result = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner.getOwnerName());
+			ps.setString(2, owner.getOwnerNick());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				result = new Owner();
+				
+				result.setOwnerId( rs.getString("owner_id") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return result;
+	}
+
+	@Override
+	public Owner selectOwnerPwByOwnerIdOwnerNameOwnerEmail(Connection conn, Owner owner) {
+		
+		String sql = "";
+		sql += "SELECT owner_pw FROM owner WHERE owner_id = ?";
+		sql += " AND owner_name = ? AND owner_nick = ?";
+		
+		Owner result = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner.getOwnerId());
+			ps.setString(2, owner.getOwnerName());
+			ps.setString(3, owner.getOwnerNick());
+			
+			rs = ps.executeQuery();
+			
+			while( rs.next() ) {
+				result = new Owner();
+				
+				result.setOwnerPw( rs.getString("owner_pw") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return result;
+	}
+
+	@Override
+	public Owner selectOne(Connection conn, String owner_id) {
+		
+		String sql = "";
+		sql += "SELECT * FROM owner WHERE owenr_id = ?";
+		
+		Owner owner = null;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner_id);
+			
+			rs = ps.executeQuery();
+			
+			if( rs.next() ) {
+				owner = new Owner();
+				
+				owner.setOwnerId( rs.getString("owenr_id") );
+				owner.setOwnerPw( rs.getString("owenr_pw") );
+				owner.setOwnerName( rs.getString("owenr_name") );
+				owner.setOwnerEmail( rs.getString("owenr_email") );
+				owner.setOwnerCall( rs.getString("owenr_call") );
+				owner.setOwnerNick( rs.getString("owenr_nick") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return null;
+	}
+
+	@Override
+	public Owner ownerLogin(Connection conn, String owner_id, String owner_pw) {
+		
+		Owner owner = null;
+		
+		String sql = "";
+		sql += "SELECT * FROM owner WHERE owner_id = ? AND owner_pw = ?";
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner_id);
+			ps.setString(2, owner_pw);
+			
+			rs = ps.executeQuery();
+			
+			if( rs.next() ) {
+				owner = new Owner();
+				
+				owner.setOwnerNo( rs.getInt("owner_no") );
+				owner.setOwnerId( rs.getString("owner_id") );
+				owner.setOwnerPw( rs.getString("owner_pw") );
+				owner.setOwnerName( rs.getString("owner_name") );
+				owner.setOwnerEmail( rs.getString("owner_email") );
+				owner.setOwnerCall( rs.getString("owner_call") );
+				owner.setOwnerNick( rs.getString("owner_nick") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(rs);
+			JDBCTemplate.close(ps);
+		}
+		return owner;
+	}
+
+	@Override
+	public int IdCheck(String owner_id) {
+
+		Connection conn = JDBCTemplate.getConnection();
+		
+		String sql = "";
+		sql += "SELECT * FROM owner WEHRE owner_id = ?";
+		
+		int idcheck = 0;
+		
+		try {
+			ps = conn.prepareStatement(sql);
+			
+			ps.setString(1, owner_id);
+			
+			rs = ps.executeQuery();
+			
+			if( rs.next() || owner_id.equals("") ) {
+				idcheck = 0;
+			} else {
+				idcheck = 1;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			JDBCTemplate.close(ps);
+		}
+		return idcheck;
 	}
 }

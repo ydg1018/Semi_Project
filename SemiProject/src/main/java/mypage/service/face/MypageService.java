@@ -1,6 +1,6 @@
 package mypage.service.face;
 
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import reservation.dto.Reservation;
 
@@ -57,7 +57,7 @@ public interface MypageService {
 	 * @return Owner - 회원 단건 조회
 	 */
 	
-	public Hospital getHospital(Hospital param);
+	public Hos getHospital(Hos param);
 
 	
 	/**
@@ -66,7 +66,7 @@ public interface MypageService {
 	 * @return Owner - 회원 수정
 	 */
 	
-	public int updateHospital(Hospital param);
+	public int updateHospital(Hos param);
 	
 	
 	/**
@@ -75,5 +75,5 @@ public interface MypageService {
 	 * @return Owner - 회원 삭제
 	 */
 	
-	public int deleteHospital(Hospital param);
+	public int deleteHospital(Hos param);
 }

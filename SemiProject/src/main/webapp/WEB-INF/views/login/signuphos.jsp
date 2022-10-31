@@ -18,158 +18,131 @@ $(document).ready(function() {
 			$("#btnJoin").click();
 		}
 	})
-	
-	// 회원가입 버튼
-	$("#btnJoin").click(function() {
-		$(this).parents("form").submit();
-	})
-	
 	// 취소 버튼
 	$("#btnCancel").click(function() {
 		// history.go(-1) // 뒤로가기
 		$(location).attr('href', '/hos/list') // 메인으로 가기
 	})
-/* 
-	$("form").submit(function() { 
+
+	$("#btnJoin").click(function() { 
 		console.log("submit event")
 		
 		// 유효성 검증 후 submit
 		if( validate() ) {
-			$(this).submit();
+			$("form").submit();
 		}
 		
 		// submit 중단시키기
 		return false;
-	}) */
+	})
 
 	//----- 유효성 검증 에러 메시지 초기화 ------
 	
 	// 아이디 입력 시도할 때 아이디 메시지 삭제
-	$('#hosid').focus(function() {
-		$('#hosid_msg').html("")
+	$('#hos_id').focus(function() {
+		$('#hos_id_msg').html("")
 	})
 	
 	// 패스워드 입력 시도할 때 패스워드 메시지 삭제
-	$("#hospw").focus(function() {
-		$("#hospw_msg").html("")
-	})
-	// 패스워드 확인 입력 시도할 때 패스워드 체크 메시지 삭제
-	$("#hospw_check").focus(function() {
-		$("#hospw_check_msg").html("")
+	$("#hos_pw").focus(function() {
+		$("#hos_pw_msg").html("")
 	})
 	
-	// 이름 입력 시도할 때 이름 메시지 삭제
-	$("#hosname").focus(function() {
-		$("#hosname_msg").html("")
+	// 패스워드 확인 입력 시도할 때 패스워드 체크 메시지 삭제
+	$("#hos_pw_check").focus(function() {
+		$("#hos_pw_check_msg").html("")
 	})
 
-	// 이메일 입력 시도할 때 이름 메시지 삭제
-	$("#hosemail").focus(function() {
-		$("#hosemail_msg").html("")
+	// 사업자번호 입력 시도할 때 이름 메시지 삭제
+	$("#hos_lic").focus(function() {
+		$("#hos_lic_msg").html("")
 	})
 
-	// 전화번호 입력 시도할 때 이름 메시지 삭제
-	$("#hoscall").focus(function() {
-		$("#hoscall_msg").html("")
+	// 병원명 입력 시도할 때 이름 메시지 삭제
+	$("#hos_name").focus(function() {
+		$("#hos_name_msg").html("")
 	})
 
-	// 닉네임 입력 시도할 때 이름 메시지 삭제
-	$("#hosnick").focus(function() {
-		$("#hosnick_msg").html("")
+	// 병원등록번호 입력 시도할 때 이름 메시지 삭제
+	$("#hos_code").focus(function() {
+		$("#hos_code_msg").html("")
 	})
 })
 
 // input 데이터의 유효성 검증
 function validate() {
-	//----- ID 유효성 검증 -----
 	
 	// 아이디를 입력했는지 검증
-	if( $("#hosid").val() == '' ) {
-		$('#hosid_msg').html("아이디를 입력해주세요.");
+	if( $("#hos_id").val() == '' ) {
+		$('#hos_id_msg').html("아이디를 입력해주세요.");
 		return false;
 	}
 	
 	// 아이디 입력값 검증
-	if( !/^[a-z0-9]{6,12}$/.test( $("#hosid").val() ) ) {
-		$('#hosid_msg').html("아이디는 영어 소문자, 숫자 포함 6~12 글자만 가능합니다.")
+	if( !/^[a-z0-9]{6,12}$/.test( $("#hos_id").val() ) ) {
+		$('#hos_id_msg').html("아이디는 영어 소문자, 숫자 포함 6~12 글자만 가능합니다.")
 		return false;
 	}
 	
 	//--------------------
 	
-	//----- PASSWORD 유효성 검증 -----
-	
 	// 패스워드를 입력하지 않았을 때
-	if( $("#hospw").val() == '' ) {
-		$("#hospw_msg").html("패스워드를 입력해주세요.")
+	if( $("#hos_pw").val() == '' ) {
+		$("#hos_pw_msg").html("패스워드를 입력해주세요.")
 		return false;
 	}
 	
 	// 패스워드 입력값 검증
-	if( !/^[a-zA-z0-9]{8,16}$/.test( $("#hospw").val() ) ) {
-		$("#hospw_msg").html("패스워드는 영어 대소문자, 숫자 포함 8~16 글자만 가능합니다.")
+	if( !/^[a-zA-z0-9]{8,16}$/.test( $("#hos_pw").val() ) ) {
+		$("#hos_pw_msg").html("패스워드는 영어 대소문자, 숫자 포함 8~16 글자만 가능합니다.")
 		return false;
 	}
 	
 	// 패스워드와 확인 입력값이 같은지 검증
-	if( $("#hospw").val() != $("#hospw_check").val() ) {
-		$("#hospw_check_msg").html("비밀번호 확인 입력이 동일하지 않습니다.")
+	if( $("#hos_pw").val() != $("#hos_pw_check").val() ) {
+		$("#hos_pw_check_msg").html("비밀번호 확인 입력이 동일하지 않습니다.")
 		return false;
 	}
 	
 	//--------------------
 	
-	// 이름 입력하지 않았을 때
-	if( $("#hosname").val() == '' ) {
-		$("#hosname_msg").html("이름을 입력해주세요.")
+	// 사업자번호 입력하지 않았을 때
+	if( $("#hos_lic").val() == '' ) {
+		$("#hos_lic_msg").html("사업자 번호를 입력해주세요.")
 		return false;
 	}
 	
-	// 이름 입력값 검증
-	if( !/^[가-힣]{2,10}$/.test( $("#hosname").val() ) ) {
-		$("#hosname_msg").html("이름은 한글만 가능합니다.")
-		return false;
-	}
-	
-	//--------------------
-	
-	// 이메일 입력하지 않았을 때
-	if( $("#hosemail").val() == '' ) {
-		$("#hosemail_msg").html("이메일을 입력해주세요.")
-		return false;
-	}
-	
-	// 이메일 입력값 검증
-	if( !/^[a-z0-9]@[a-z0-9]$/.test( $("#hosemail").val() ) ) {
-		$("#hosemail_msg").html("이메일 형식이 맞지 않습니다.")
+	// 사업자번호 입력값 검증
+	if( !/^[0-9]$/.test( $("#hos_lic").val() ) ) {
+		$("#hos_lic_msg").html("사업자 번호는 숫자만 가능합니다.")
 		return false;
 	}
 	
 	//--------------------
 	
-	// 전화번호 입력하지 않았을 때
-	if( $("#hoscall").val() == '' ) {
-		$("#hoscall_msg").html("전화번호를 입력해주세요.")
+	// 병원명 입력하지 않았을 때
+	if( $("#hos_name").val() == '' ) {
+		$("#hos_name_msg").html("병원이름을 입력해주세요.")
 		return false;
 	}
 	
-	// 전화번호 입력값 검증
-	if( !/^01[0-9]{1}-[0-9]{4}-[0-9]{4}$/.test( $("#hoscall").val() ) ) {
-		$("#hoscall_msg").html("전화번호 형식이 맞지 않습니다.")
+	// 병원명 입력값 검증
+	if( !/^[a-zA-z0-9가-힣]$/.test( $("#hos_name").val() ) ) {
+		$("#hos_name_msg").html("병원명 형식이 맞지 않습니다.")
 		return false;
 	}
-
+	
 	//--------------------
 	
-	// 닉네임 입력하지 않았을 때
-	if( $("#hosnick").val() == '' ) {
-		$("#hosnick_msg").html("닉네임을 입력해주세요.")
+	// 병원등록번호 입력하지 않았을 때
+	if( $("#hos_code").val() == '' ) {
+		$("#hos_code_msg").html("병원등록번호를 입력해주세요.")
 		return false;
 	}
 	
-	// 전화번호 입력값 검증
-	if( !/^[a-zA-z가-힣]$/.test( $("#hosnick").val() ) ) {
-		$("#hosnick_msg").html("닉네임은 한글과 영어만 가능합니다.")
+	// 병원등록번호 입력값 검증
+	if( !/^[0-9]$/.test( $("#hos_code").val() ) ) {
+		$("#hos_code_msg").html("병원등록번호 형식이 맞지 않습니다.")
 		return false;
 	}
 	return true;
@@ -253,11 +226,6 @@ button {
 	float: left;
 }
 
-#hos_name {
-	width: 300px;
-	float: left;
-}
-
 </style>
 
 </head>
@@ -268,85 +236,63 @@ button {
 	<h1>펫병원 회원가입</h1>
 		<div id="content">
 			<div class="join_content">
-				<div class="join_row" style="border-top: 1px solid #f4e4e5; margin-bottom: 30px;">
+				<div class="join_row" style="border-top: 1px solid #f4e4e5">
 					<h3 class="join_title">
 						<label for="hos_id" class="col-xs-2 control-label">아이디</label>
 					</h3>
 					<span>
-						<input type="text" id="hos_id" name="hos_id" class="form-control">
-						<input type="button" value="중복확인" onclick="onpenIdChk()" class="btn_check">
+						<input type="text" id="hos_id" name="hos_id" class="form-control" placeholder="아이디">
+						<input type="button" value="중복확인" class="btn_check" onclick="winopen()">
 					</span>
 					<span id="hos_id_msg" class=msg></span>
 				</div>
 
 				<div class="join_row">
 					<h3 class="join_title">
-						<label for="hos_pw" class="col-xs-2 control-label">패스워드</label>
+						<label for="hos_pw" class="col-xs-2 control-label">비밀번호</label>
 					</h3>
 					<span>
-						<input type="password" id="hos_pw" name="hos_pw" class="form-control">
+						<input type="password" id="hos_pw" name="hos_pw" class="form-control" placeholder="비밀번호">
 					</span>
 					<span id="hos_pw_msg" class=msg></span>
 
 					<h3 class="join_title">
-						<label for="hos_pw_check" class="col-xs-2 control-label">패스워드 확인</label>
+						<label for="hos_pw_check" class="col-xs-2 control-label">비밀번호 확인</label>
 					</h3>
 					<span>
-						<input type="password" id="hos_pw_check" name="hos_pw_check" class="form-control">
+						<input type="password" id="hos_pw_check" name="hos_pw_check" class="form-control" placeholder="비밀번호 확인">
 					</span>
 					<span id="hos_pw_check_msg" class=msg></span>
 				</div>
 
-
 				<div class="join_row">
 					<h3 class="join_title">
-						<label for="hos_add" class="col-xs-2 control-label">병원주소</label>
+						<label for="hos_lic" class="col-xs-2 control-label">사업자번호</label>
 					</h3>
 					<span>
-						<input type="text" id="hos_add" name="hos_add" class="form-control">
+						<input type="text" id="hos_lic" name="hos_lic" class="form-control" placeholder="사업자번호">
 					</span>
-					<span id="hos_email_msg" class=msg></span>
+					<span id="hos_lic_msg" class=msg></span>
 				</div>
 
 				<div class="join_row">
 					<h3 class="join_title">
-						<label for="hos_call" class="col-xs-2 control-label">전화번호</label>
+						<label for="hos_name" class="col-xs-2 control-label">병원명</label>
 					</h3>
 					<span>
-						<input type="number" id="hos_call" name="hos_call" class="form-control">
-					</span>
-					<span id="hos_call_msg" class=msg></span>
-				</div>
-
-				<div class="join_row">
-					<h3 class="join_title">
-						<label for="hos_lic" class="col-xs-2 control-label">사업자 번호</label>
-					</h3>
-					<span>
-						<input type="text" id="hos_lic" name="hos_lic" class="form-control">
-					</span>
-					<span id="hos_msg" class=msg></span>
-				</div>
-
-				<div class="join_row">
-					<h3 class="join_title">
-						<label for="hos_name" class="col-xs-2 control-label" style="margin-bottom: 30px;">병원명</label>
-					</h3>
-					<span>
-						<input type="text" id="hos_name" name="hos_name" class="form-control">
-						<input type="button" value="중복확인" onclick="onpenIdChk()" class="btn_check">
+						<input type="text" id="hos_name" name="hos_name" class="form-control" placeholder="병원명">
 					</span>
 					<span id="hos_name_msg" class=msg></span>
 				</div>
 				
-				<div class="join_row" style="margin-top: 30px;">
+				<div class="join_row">
 					<h3 class="join_title">
-						<label for="hos_code" class="col-xs-2 control-label">등록번호</label>
+						<label for="hos_code" class="col-xs-2 control-label">병원등록번호</label>
 					</h3>
 					<span>
-						<input type="text" id="hos_code" name="hos_code" class="form-control">
+						<input type="text" id="hos_code" name="hos_code" class="form-control" placeholder="병원등록번호">
 					</span>
-					<span id="hos_msg" class=msg></span>
+					<span id="hos_code_msg" class=msg></span>
 				</div>
 
 				<div class="btn_type">

@@ -3,7 +3,7 @@ package mypage.service.impl;
 import java.sql.Connection;
 
 import common.JDBCTemplate;
-import login.dto.Hospital;
+import login.dto.Hos;
 import login.dto.Owner;
 import mypage.dao.face.MypageDao;
 import mypage.dao.impl.MypageDaoImpl;
@@ -75,19 +75,19 @@ public class MypageServiceImpl implements MypageService {
 	
 	
 	@Override
-	public Hospital getHospital(Hospital param) {
+	public Hos getHospital(Hos param) {
 		System.out.println("MypageService getOwner()");
 		
 		//DB연결 객체
 		Connection conn = JDBCTemplate.getConnection();
 
 		//DB조회결과 반환
-		return mypageDao.getHospital(conn, param);
+		return mypageDao.getHos(conn, param);
 		 
 	}
 
 	@Override
-	public int updateHospital(Hospital param) {
+	public int updateHospital(Hos param) {
 		 System.out.println("MypageService updateHospital()");
 
 		 //DB연결 객체
@@ -99,7 +99,7 @@ public class MypageServiceImpl implements MypageService {
 	}
 
 	@Override
-	public int deleteHospital(Hospital param) {
+	public int deleteHospital(Hos param) {
 		 System.out.println("MypageService deleteHospital()");
 		 
 		 //DB연결 객체

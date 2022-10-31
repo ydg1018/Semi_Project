@@ -25,6 +25,7 @@ public class LoginServiceImpl implements LoginService {
 
 		Owner owner = new Owner();
 
+		owner.setOwnerNo( Integer.parseInt( req.getParameter("owner_no") ) );
 		owner.setOwnerId( req.getParameter("owner_id") );
 		owner.setOwnerPw( req.getParameter("owner_pw") );
 		owner.setOwnerName( req.getParameter("owner_name") );
@@ -52,8 +53,8 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public Owner OwnerInfo(Owner owner) {
-		System.out.println("LoginServiceImpl() : OwnerInfo");
-		return loginDao.selectOwnerByUserid(JDBCTemplate.getConnection(), owner);
+		System.out.println("LoginServiceImpl() : OwnerInfo - 시작");
+		return loginDao.selectOwnerByUserid(conn, owner);
 	}
 	
 	@Override
@@ -63,11 +64,12 @@ public class LoginServiceImpl implements LoginService {
 
 		Owner owner = new Owner();
 
+		owner.setOwnerNo( Integer.parseInt( req.getParameter("owner_no") ) );
 		owner.setOwnerId( req.getParameter("owner_id") );
 		owner.setOwnerPw( req.getParameter("owner_pw") );
 		owner.setOwnerName( req.getParameter("owner_name") );
 		owner.setOwnerEmail( req.getParameter("owner_email") );
-		owner.setOwnerCall( req.getParameter("owner_call" ) );
+		owner.setOwnerCall( req.getParameter("owner_call") );
 		owner.setOwnerNick( req.getParameter("owner_nick") );
 
 		System.out.println("LoginServiceImpl() : getJoinOwner - 끝");
@@ -98,8 +100,12 @@ public class LoginServiceImpl implements LoginService {
 		
 		Hos hos = new Hos();
 
+//		hos.setHosNo( Integer.parseInt( req.getParameter("hos_no") ) );
 		hos.setHosId( req.getParameter("hos_id") );
 		hos.setHosPw( req.getParameter("hos_pw") );
+//		hos.setHosLic( Integer.parseInt( req.getParameter("hos_lic") ) );
+//		hos.setHosName( req.getParameter("hos_pw") );
+//		hos.setHosCode( Integer.parseInt( req.getParameter("hos_code") ) );
 		
 		System.out.println("LoginServiceImpl() : getLoginHos - 끝");
 		return hos;
@@ -121,7 +127,6 @@ public class LoginServiceImpl implements LoginService {
 	
 	@Override
 	public Hos HosInfo(Hos hos) {
-		System.out.println("LoginServiceImpl() : HosInfo");
 		return loginDao.selectHosByUserid(conn, hos);
 	}
 	
@@ -129,9 +134,10 @@ public class LoginServiceImpl implements LoginService {
 	public Hos getJoinHos(HttpServletRequest req) {
 
 		System.out.println("LoginServiceImpl() : getJoinHos - 시작");
-		
+
 		Hos hos = new Hos();
 
+//		hos.setHosNo( Integer.parseInt( req.getParameter("hos_no") ) );
 		hos.setHosId( req.getParameter("hos_id") );
 		hos.setHosPw( req.getParameter("hos_pw") );
 		hos.setHosLic( Integer.parseInt( req.getParameter("hos_lic") ) );
@@ -144,14 +150,73 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public void HosJoin(Hos hos) {
-		
-		System.out.println("LoginDaoImpl() : OwnerHos - 시작");
-		
+
+		System.out.println("LoginServiceImpl() : HosJoin - 시작");
+
 		if( loginDao.HosInsert(conn, hos) > 0 ) {
 			JDBCTemplate.commit(conn);
 		} else {
 			JDBCTemplate.rollback(conn);
 		}
-		System.out.println("LoginDaoImpl() : OwnerHos - 끝");
+		System.out.println("LoginServiceImpl() : HosJoin - 끝");
+	}
+
+	//--------------------------------------------------
+	
+	@Override
+	public Owner getFindOwnerId(HttpServletRequest req) {
+		
+		Owner owner = new Owner();
+		
+		owner.setOwnerName( req.getParameter("owenr_name") );
+		owner.setOwnerNick( req.getParameter("owenr_nick") );
+		
+		return owner;
+	}
+
+	@Override
+	public Owner findId(Owner owner) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return loginDao.selectOwnerIdByOwnerNameOwnerEmail(conn, owner);
+	}
+
+	@Override
+	public Owner getFindOwnerPw(HttpServletRequest req) {
+		
+		Owner owner = new Owner();
+		
+		owner.setOwnerId( req.getParameter("owner_id") );
+		owner.setOwnerName( req.getParameter("owner_name") );
+		owner.setOwnerNick( req.getParameter("owner_nick") );
+		
+		return owner;
+	}
+
+	@Override
+	public Owner findPw(Owner owner) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return loginDao.selectOwnerPwByOwnerIdOwnerNameOwnerEmail(conn, owner);
+	}
+
+	@Override
+	public Owner selectOne(String owner_id) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		return loginDao.selectOne(conn, owner_id);
+	}
+
+	@Override
+	public Owner ownerLogin(String owner_id, String owner_pw) {
+		
+		Connection conn = JDBCTemplate.getConnection();
+		
+		Owner owner = loginDao.ownerLogin(conn, owner_id, owner_pw);
+		
+		return owner;
 	}
 }

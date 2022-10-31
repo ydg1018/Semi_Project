@@ -54,7 +54,7 @@ public interface LoginDao {
 	 * 
 	 * @param conn - DB연결 객체
 	 * @param hos - 조회할 hos_id를 가진 객체
-	 * @return Hospital - 조회된 회원 정보
+	 * @return Hos - 조회된 회원 정보
 	 */
 	public Hos selectHosByUserid(Connection conn, Hos hos);
 
@@ -66,4 +66,49 @@ public interface LoginDao {
 	 * @return int - INSERT 수행 결과
 	 */
 	public int HosInsert(Connection conn, Hos hos);
+
+	/**
+	 * 오너 아이디 찾기
+	 * 
+	 * @param conn
+	 * @param owner
+	 * @return
+	 */
+	public Owner selectOwnerIdByOwnerNameOwnerEmail(Connection conn, Owner owner);
+
+	/**
+	 * 오너 비밀번호 찾기
+	 * 
+	 * @param conn
+	 * @param owner
+	 * @return
+	 */
+	public Owner selectOwnerPwByOwnerIdOwnerNameOwnerEmail(Connection conn, Owner owner);
+
+	/**
+	 * 아이디 중복체크
+	 * 
+	 * @param conn
+	 * @param owner_id
+	 * @return
+	 */
+	public Owner selectOne(Connection conn, String owner_id);
+
+	/**
+	 * 추가
+	 * 
+	 * @param conn
+	 * @param owner_id
+	 * @param owner_pw
+	 * @return
+	 */
+	public Owner ownerLogin(Connection conn, String owner_id, String owner_pw);
+
+	/**
+	 * 아이디 중복
+	 * 
+	 * @param owner_id
+	 * @return
+	 */
+	public int IdCheck(String owner_id);
 }
