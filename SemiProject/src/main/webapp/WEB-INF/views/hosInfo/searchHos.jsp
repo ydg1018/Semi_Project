@@ -110,7 +110,7 @@ $(document).ready(function() {
 
 <br><br>
 
-<button onclick="add()" class="btn btn-primary" style="float: left; margin-left: 100px;">주소 선택</button>
+<button onclick="add()" class="btn btn-primary" style="float: left; margin-left: 110px;">주소 선택</button>
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>

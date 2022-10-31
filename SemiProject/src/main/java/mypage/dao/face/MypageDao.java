@@ -5,6 +5,7 @@ import java.sql.Connection;
 import hosInfo.dto.HosInfo;
 import login.dto.Hos;
 import login.dto.Owner;
+import reservation.dto.Pet;
 import reservation.dto.Reservation;
 
 public interface MypageDao {
@@ -39,7 +40,7 @@ public interface MypageDao {
 	 * @param conn - DB 연결 객체
 	 * @return Owner - 회원 예약 조회
 	 */
-	public Reservation getReservationOnwner(Connection conn, Reservation param);
+	public Reservation getOwnerReservation(Connection conn, Reservation param);
 	
 	/**
 	 * 마이페이지 병원 예약 조회
@@ -47,7 +48,7 @@ public interface MypageDao {
 	 * @param conn - DB 연결 객체
 	 * @return Owner - 병원 예약 조회
 	 */
-	public Reservation getReservationHospital(Connection conn, Reservation param);
+	public Reservation getHosReservation(Connection conn, Reservation param);
 	
 	/**
 	 * 마이페이지 병원회원 조회
@@ -100,4 +101,12 @@ public interface MypageDao {
 	 * @return Owner - 회원 단건 삭제
 	 */
 	public int deleteHosInfo(Connection conn, HosInfo param);
+	
+	/**
+	 * 마이페이지 펫 조회
+	 * 
+	 * @param conn - DB 연결 객체
+	 * @return Pet - 펫 단건 조회
+	 */
+	public Pet getPet(Connection conn, Pet param);
 }

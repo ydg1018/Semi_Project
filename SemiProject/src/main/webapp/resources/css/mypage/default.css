@@ -1,40 +1,15 @@
-/*
-Template name: Dirtylicious
-Template URI: https://vikpe.org/archive/arcsin-web-templates/dirtylicious-website-template/
-Release date: 2007-03-10
-Description: A soft-colored, bright and somewhat dirty two-column template.
-Author: Viktor Persson
-Author URI: https://vikpe.org/
-*/
+#mypage-container .inner-container a {color: #048;}
+#mypage-container .inner-container a:hover {color: #06C;}
 
-/* standard elements */
-html {min-height: 100%;}
+#mypage-container .inner-container li {list-style: none;}
 
-* {
-	margin: 0;
-	padding: 0;
-}
+#mypage-container .inner-container h1 {font: normal 1.8em Tahoma,sans-serif;}
+#mypage-container .inner-container h2 {font: bold 1.4em sans-serif;}
+#mypage-container .inner-container h3 {font: bold 1em Tahoma,sans-serif;}
 
-#mypage-container a {color: #048;}
-#mypage-container a:hover {color: #06C;}
+#mypage-container .inner-container form,input {margin: 0; padding: 0; display: inline;}
 
-body {
-	color: #444;
-	font: normal 62.5% Tahoma,sans-serif;
-	padding-top: 64px;
-}
-
-#mypage-container p,code,ul {padding-bottom: 1.2em;}
-
-#mypage-container li {list-style: none;}
-
-#mypage-container h1 {font: normal 1.8em Tahoma,sans-serif;}
-#mypage-container h2 {font: bold 1.4em sans-serif;}
-#mypage-container h3 {font: bold 1em Tahoma,sans-serif;}
-
-#mypage-container form,input {margin: 0; padding: 0; display: inline;}
-
-#mypage-container code {
+#mypage-container .inner-container code {
 	background: #FFF;
 	border: 1px solid #EEE;
 	border-left: 6px solid #CCC;
@@ -47,19 +22,19 @@ body {
 	white-space: pre;
 }
 
-#mypage-container blockquote {
+#mypage-container .inner-container blockquote {
 	background: url(../../img/mypage/quote.gif) no-repeat;
 	display: block;
 	font-weight: bold;
 	padding-left: 28px;
 }
 
-#mypage-container h1,h2,h3 {padding-top: 6px; color: #553; margin-bottom: 4px;}
+#mypage-container .inner-container h1,h2,h3 {padding-top: 6px; color: #553; margin-bottom: 4px;}
 
 /* misc */
-#mypage-container .clearer {clear: both; font-size: 0;}
-#mypage-container .left {float: left;}
-#mypage-container .right {float: right;}
+#mypage-container .inner-container .clearer {clear: both; font-size: 0;}
+#mypage-container .inner-container .left {float: left;}
+#mypage-container .inner-container .right {float: right;}
 
 /* structure */
 #mypage-container .inner-container {
@@ -69,99 +44,79 @@ body {
 	margin: 0 auto;
 	padding: 10px;
 	min-width: 780px;
+	min-height: 550px;
 	width: 90%;
+	color: #444;
+	font: normal 62.5% Tahoma,sans-serif;
 }
 
 #mypage-container {
-	padding-bottom: 64px;
-}
-
-/* headere & title */
-#mypage-container .header {
-	background: #222 url('../../img/mypage/header.jpg') no-repeat;
-	height: 160px;
-	margin-bottom: 5px;
-	text-align: center;
-}
-#mypage-container .header .title {
-	color: #FFF;
-	padding-top: 50px;
-}
-#mypage-container .header .title .sitename a {
-	border-bottom: 1px dashed #657382;
-	color: #FFF;
-	font: normal 3em sans-serif;
-	padding-bottom: 2px;
-	text-decoration: none;
-}
-#mypage-container .header .title a:hover {border-color: #F60;}
-#mypage-container .header .title .slogan {
-	font: normal 1.1em Verdana,sans-serif;
-	padding-top: 6px;
+	padding-bottom: 30px;
+	padding-top: 30px;
 }
 
 /* path */
-#mypage-container .path {
-	background: #949490;
+#mypage-container .inner-container .path {
+	background: #46B4B4;
 	color: #FFF;
 	font: normal 1.1em Verdana,sans-serif;
 	padding: 8px 12px;
 }
-#mypage-container .path a {
+#mypage-container .inner-container .path a {
 	color: #FAFAFA;
 	text-decoration: none;
 }
-#mypage-container .path a:hover {
+#mypage-container .inner-container .path a:hover {
 	color: #FFE;
 	text-decoration: underline;
 }
 
 /* mypage-main */
-#mypage-container .mypage-main {
+#mypage-container .inner-container .mypage-main {
 	border-top: 4px solid #FFF;
 	padding: 8px 12px 0 0;
 }
 
 /* mypage-content */
-#mypage-container .mypage-content {
+#mypage-container .inner-container .mypage-content {
 	float: right;
 	min-width: 538px;
 	width: 80%;
 }
-#mypage-container .mypage-content .descr {
+#mypage-container .inner-container .mypage-content .descr {
 	color: #664;
 	font-size: 0.9em;
 	margin-bottom: 6px;
 }
-#mypage-container .mypage-content li {
+#mypage-container .inner-container .mypage-content li {
 	list-style: url(../../img/mypage/li.gif);
 	margin-left: 18px;
 }
-#mypage-container .mypage-content p {font-family: "Lucida Sans Unicode",sans-serif;}
+#mypage-container .inner-container .mypage-content p {font-family: "Lucida Sans Unicode",sans-serif;}
 
 /* navigation */
-#mypage-container .navigation {
+#mypage-container .inner-container .navigation {
 	float: left;
 	min-width: 210px;
 	width: 15%;
 }
-#mypage-container .navigation h2 {
+#mypage-container .inner-container .navigation h2 {
 	color: #5A5A43;
 	font: bold 1.1em Tahoma,sans-serif;
 	line-height: 30px;
 	margin: 0;
 	padding-left: 12px;
 }
-#mypage-container .navigation ul {
+#mypage-container .inner-container .navigation ul {
 	padding: 0;
 	border-top: 1px solid #EAEADA;
 }
-#mypage-container .navigation li {border-bottom: 1px solid #EAEADA;}
+#mypage-container .inner-container .navigation li {border-bottom: 1px solid #EAEADA;}
 
 /* 선택된 메뉴 */
-#mypage-container .navigation li.active {font-weight: bold;}
+#mypage-container .inner-container .navigation li.active {font-weight: bold;}
 
-#mypage-container .navigation li a {
+#mypage-container .inner-container .navigation li a {
 	font-size: 1.1em;
 	color: #554;
 	display: block;
@@ -169,23 +124,7 @@ body {
 	text-decoration: none;
 	width: 95%;
 }
-#mypage-container .navigation li a:hover {
+#mypage-container .inner-container .navigation li a:hover {
 	background: #F0F0EB;
 	color: #654;
 }
-
-/* footer */
-#mypage-container .footer {
-	background: #949490;
-	color: #F7F7F2;
-	font: bold 1em sans-serif;
-	margin-top: 5px;
-	padding: 10px 12px;
-}
-#mypage-container .footer a {
-	color: #F7F7F2;
-	text-decoration: none;
-}
-#mypage-container .footer a:hover {color: #FFC;}
-#mypage-container .footer .right, .footer .right a {color: #C8C8C3;}
-#mypage-container .footer .right a:hover {color: #F7F7F2;}

@@ -132,6 +132,8 @@ $(document).ready(function() {
 #hosLeft {
 	border: 10px solid #32a69f;
 	text-align: center;
+	height: 693;
+	width: 50%;
 }
 
 #ownerRight {
@@ -176,7 +178,7 @@ legend {
 <hr style="color: cadetblue;">
 
 
-<div id="hosLeft">
+<div id="hosLeft" class="pull-left">
 
 <fieldset>
 
@@ -233,7 +235,7 @@ legend {
  
 </div><!-- hosLeft -->
 
-<div id="ownerRight">
+<div id="ownerRight" class="pull-right">
 
 <form action="<%=request.getContextPath() %>/reservation" method="post" id="reservationForm" >
 

@@ -92,9 +92,16 @@ span {
 			<li>
 				<a href="/login/logout">로그아웃</a>
 			</li>
+			<%	if(session.getAttribute("owner_no") != null && (int)session.getAttribute("owner_no") != 0) { %>
 			<li>
-				<a>마이페이지</a>
+				<a href="/mypage/owner">마이페이지</a>
 			</li>
+			<% } %>
+			<%	if(session.getAttribute("hos_no") != null && (int)session.getAttribute("hos_no") != 0) { %>
+			<li>
+				<a href="/mypage/hos">마이페이지</a>
+			</li>
+			<% } %>
 		<% } %>
 		</ul>
 	</div>
