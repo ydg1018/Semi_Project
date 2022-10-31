@@ -118,9 +118,6 @@ button {
 </head>
 <body>
 
-<header>header</header>
-<hr>
-
 <div id="container">
 	<h1>아이디 찾기</h1>	
 	<div id="content">

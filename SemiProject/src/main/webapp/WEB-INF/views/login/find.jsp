@@ -6,7 +6,6 @@
 <style type="text/css">
 
 body {
-	width: 800px;
 	margin: 0 auto;
 }
 
@@ -138,9 +137,6 @@ button {
 
 </head>
 <body>
-
-<header>header</header>
-<hr>
 
 <div class="choice-btns">
 	<div class="title-box1">

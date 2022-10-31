@@ -25,7 +25,6 @@ public class LoginServiceImpl implements LoginService {
 
 		Owner owner = new Owner();
 
-		owner.setOwnerNo( Integer.parseInt( req.getParameter("owner_no") ) );
 		owner.setOwnerId( req.getParameter("owner_id") );
 		owner.setOwnerPw( req.getParameter("owner_pw") );
 		owner.setOwnerName( req.getParameter("owner_name") );
@@ -38,7 +37,8 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public boolean OwnerLogin(Owner owner) {
+	public boolean Ownerlogin(Owner owner) {
+
 		//로그인 인증 성공
 		if( loginDao.selectCntOwnerByUseridUserpw(conn, owner) > 0 ) {
 			System.out.println("LoginServiceImpl() : OwnerLogin - 로그인 성공");
@@ -63,7 +63,6 @@ public class LoginServiceImpl implements LoginService {
 
 		Owner owner = new Owner();
 
-		owner.setOwnerNo( Integer.parseInt( req.getParameter("owner_no") ) );
 		owner.setOwnerId( req.getParameter("owner_id") );
 		owner.setOwnerPw( req.getParameter("owner_pw") );
 		owner.setOwnerName( req.getParameter("owner_name") );
@@ -99,12 +98,23 @@ public class LoginServiceImpl implements LoginService {
 		
 		Hos hos = new Hos();
 
-//		hos.setHosNo( Integer.parseInt( req.getParameter("hos_no") ) );
 		hos.setHosId( req.getParameter("hos_id") );
 		hos.setHosPw( req.getParameter("hos_pw") );
 //		hos.setHosLic( Integer.parseInt( req.getParameter("hos_lic") ) );
-//		hos.setHosName( req.getParameter("hos_pw") );
+		
+		String param = req.getParameter("hos_lic");
+		if( null !=param && !"".equals(param) ) {
+			hos.setHosLic( Integer.parseInt(param));
+		}
+		
+		hos.setHosName( req.getParameter("hos_pw") );
+		
 //		hos.setHosCode( Integer.parseInt( req.getParameter("hos_code") ) );
+
+		String parame = req.getParameter("hos_code");
+		if (null != parame && !"".equals(parame) ) {
+			hos.setHosCode(Integer.parseInt(parame));
+		}
 		
 		System.out.println("LoginServiceImpl() : getLoginHos - 끝");
 		return hos;
@@ -136,7 +146,6 @@ public class LoginServiceImpl implements LoginService {
 
 		Hos hos = new Hos();
 
-//		hos.setHosNo( Integer.parseInt( req.getParameter("hos_no") ) );
 		hos.setHosId( req.getParameter("hos_id") );
 		hos.setHosPw( req.getParameter("hos_pw") );
 		hos.setHosLic( Integer.parseInt( req.getParameter("hos_lic") ) );
