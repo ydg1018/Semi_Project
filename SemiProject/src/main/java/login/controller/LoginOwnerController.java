@@ -52,9 +52,12 @@ public class LoginOwnerController extends HttpServlet {
 			HttpSession session = req.getSession();
 			
 			session.setAttribute("login", ownerLogin);
-			session.setAttribute("owner_id", owner.getOwnerId());
+//			session.setAttribute("owner_id", owner.getOwnerId());
+			session.setAttribute("owner_no", owner.getOwnerNo());
 			session.setAttribute("owner_pw", owner.getOwnerPw());
 			session.setAttribute("owner_nick", owner.getOwnerNick());
+			
+			System.out.println("로그인 세션 " +  session.getAttribute("owner_no") );
 			
 			resp.sendRedirect("/hos/list");
 		}
