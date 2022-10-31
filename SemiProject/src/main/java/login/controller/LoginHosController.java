@@ -53,7 +53,7 @@ public class LoginHosController extends HttpServlet {
 			session.setAttribute("hos_id", hos.getHosId());
 			session.setAttribute("hos_pw", hos.getHosPw());
 			session.setAttribute("hos_lic", hos.getHosLic());
-			session.setAttribute("hos_name", hos.getHosName());
+//			session.setAttribute("hos_name", hos.getHosName());
 			
 			resp.sendRedirect("/hos/list");
 		}

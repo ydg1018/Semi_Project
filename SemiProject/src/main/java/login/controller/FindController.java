@@ -14,7 +14,7 @@ public class FindController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		System.out.println("/find/find [GET]");
+		System.out.println("/login/find [GET]");
 		
 		req.getRequestDispatcher("/WEB-INF/views/login/find.jsp").forward(req, resp);
 	}
