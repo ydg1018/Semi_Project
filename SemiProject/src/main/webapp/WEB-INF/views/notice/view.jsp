@@ -30,53 +30,82 @@ $(document).ready(function () {	//FAQ로 이동
 
 <style type="text/css">
 
+<style type="text/css">
+.wrapper{
+	padding-bottom: 150px;
+}
+.fmenu{
+	background-color: #e1f3f3
+	
+}
+h1, h2{text-align: center;
+ }
+.content{
+	left: 50%;
+	top: 50%;
+	width: 1200px;
+	margin: auto;
+	padding-bottom: 150px;
+}
+button {
+	font-size:30px; padding:20px 100px;
+	background-color: #339999;
+	border-radius: 10px;
+	color: #fff;
+
+}
+
+.thead{background-color: #46B4B4}
+
 th, td{
 	text-align: center;
 }
 
-textarea {
-	resize: none;
-	width: 600px;
-	height: 900px;
-	text-align: left;
-	font-size: 20px;
-	border: none;
-	position: relative;
-}
+
+
 
 </style>
-
+<div class="wrapper">
+<div class="nmenu">
 <h1>고객센터</h1>
 <hr>
 
+<div>
 <h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2>
+</div>
+</div>
 
-<table class="table table-bordered">
+<div class = "content">
+<table class="table table-bordered  table-hover">
 <tr>
-	<td class="success">제목</td>
+	<td class="thead">제목</td>
 	<td colspan="5"><%=viewNotice.getNoticeTitle() %></td>
 </tr>
 
 <tr>
-	<td class="success">글번호</td>
+	<td class="thead">글번호</td>
 	<td><%=viewNotice.getNoticeIdx() %></td>
 	
-	<td class="success">작성일</td>
+	<td class="thead">작성일</td>
 	<td><%=viewNotice.getNoticeDate() %></td>
 	
-	<td class="success">조회수</td>
+	<td class="thead">조회수</td>
 	<td><%=viewNotice.getNoticeHit() %></td>
 </tr>
 
 	<tr>
-		<td colspan="6"><textarea><%=viewNotice.getNoticeContent() %></textarea></td>
+		<td colspan="6"><p><%=viewNotice.getNoticeContent() %></p></td>
 	</tr>
 </table>
 
 <div class="text-right">
 	<button id="btnList" class="btn">목록</button>
 </div>
+</div>
 
+
+
+</div>
 
 
 
