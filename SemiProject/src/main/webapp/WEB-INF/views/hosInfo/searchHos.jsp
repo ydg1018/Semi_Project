@@ -110,7 +110,7 @@ $(document).ready(function() {
 
 <br><br>
 
-<button onclick="add()" class="btn btn-primary" style="float: left; margin-left: 110px;">주소 선택</button>
+<!-- <button onclick="add()" class="btn btn-primary" style="float: left; margin-left: 110px;">주소 선택</button> -->
 
 
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -130,7 +130,6 @@ $(document).ready(function() {
 <button class="btn btn-info" onclick="hide()" style="float: right; margin-right: 250px;">전체목록 숨기기</button>
 <button class="btn btn-info" onclick="show()" style="float: right; margin-right: 10px">전체목록 보기</button>
 -->
-<br><br>
 
 <div id="map" style="width:80%; height:350px; margin: 0 auto;"></div>
 
