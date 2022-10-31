@@ -29,13 +29,15 @@ public class LoginHosController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		System.out.println("/login/loginhos [POST]");
-		
+
 		// 전달 파라미터에 대한 한글 인코딩 설정
 		req.setCharacterEncoding("UTF-8");
 		
 		// 전달파라미터 로그인 정보 얻어오기
 		Hos hos = loginService.getLoginHos(req);
 	
+		System.out.println("LoginController doPost() - owner : " + hos);
+		
 		// 로그인 인증
 		boolean hosLogin = loginService.Hoslogin(hos);
 		
@@ -46,16 +48,23 @@ public class LoginHosController extends HttpServlet {
 			// 로그인 사용자 정보 조회
 			hos = loginService.HosInfo(hos);
 			
+			System.out.println("hos : " + hos);
+			
 			// 세션정보 객체
 			HttpSession session = req.getSession();
 			
 			session.setAttribute("login", hosLogin);
+			session.setAttribute("hos_no", hos.getHosNo());
 			session.setAttribute("hos_id", hos.getHosId());
 			session.setAttribute("hos_pw", hos.getHosPw());
+			session.setAttribute("hos_code", hos.getHosCode());
 			session.setAttribute("hos_lic", hos.getHosLic());
-//			session.setAttribute("hos_name", hos.getHosName());
+			session.setAttribute("hos_name", hos.getHosName());
 			
-			resp.sendRedirect("/hos/list");
+			req.getRequestDispatcher("/WEB-INF/views/login/loginsuccess.jsp").forward(req, resp);
+		} else {
+			System.out.println("LoginController doPost() - 로그인 실패");
+			req.getRequestDispatcher("/WEB-INF/views/login/loginfail.jsp").forward(req, resp);
 		}
 	}
 }

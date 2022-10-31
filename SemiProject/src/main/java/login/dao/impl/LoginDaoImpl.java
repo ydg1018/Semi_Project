@@ -43,9 +43,6 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
-		
-		System.out.println( ocnt );
-		
 		System.out.println("LoginDaoImpl() : selectCntOwnerByUseridUserpw - 끝");
 		return ocnt;
 	}
@@ -63,14 +60,14 @@ public class LoginDaoImpl implements LoginDao {
 		
 		try {
 			ps = conn.prepareStatement(sql);
-			ps.setInt(1, owner.getOwnerNo());
+			ps.setString(1, owner.getOwnerId());
 			
 			rs = ps.executeQuery();
 			
 			while(rs.next()) {
 				oresult = new Owner();
 				
-				oresult.setOwnerNo( rs.getInt("owner_no") );
+				oresult.setOwnerNo( rs.getInt("owner_no"));
 				oresult.setOwnerId( rs.getString("owner_id") );
 				oresult.setOwnerPw( rs.getString("owner_pw") );
 				oresult.setOwnerNick( rs.getString("owner_nick") );
