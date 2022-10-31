@@ -35,17 +35,19 @@ $()
 
 <style type="text/css">
 .wrapper{
-	padding: 100px;
+	padding-bottom: 150px;
 }
 .fmenu{
 	background-color: #e1f3f3
+	
 }
 h1, h2{text-align: center;
  }
 .content{
 	left: 50%;
 	top: 50%;
-	
+	width: 1200px;
+	margin: auto;
 }
 button {
 	font-size:30px; padding:20px 100px;
@@ -56,12 +58,13 @@ button {
 }
 
 
+
+
 </style>
 
 <div class="wrapper">
 <div class="fmenu">
 <h1>고객센터</h1>
-
 <hr>
 
 <div>
@@ -82,7 +85,6 @@ input[id="answer<%=i%>"]+label{
 	display: block;
 	padding: 20px;
 	border: 1px solid #009999;
-	border-bottom: 0;
 	font-weight: 900;
 	color: #009999;
 	background: #fff;

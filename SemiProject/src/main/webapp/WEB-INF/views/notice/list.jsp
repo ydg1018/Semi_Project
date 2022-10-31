@@ -26,19 +26,44 @@ $(document).ready(function () {	//FAQ로 이동
 </script>
 
 <style type="text/css">
+.wrapper{
+	
+}
+.nmenu{
+	background-color: #e1f3f3
+}
+h1, h2{text-align: center;
+ }
+.content{
+	left: 50%;
+	top: 50%;	
+	width: 1200px;
+	margin: auto;
+}
+button {
+	font-size:30px; padding:20px 100px;
+	background-color: #339999;
+	border-radius: 10px;
+	color: #fff;
 
+}
 
 th, td{
 	text-align: center;
 }
 </style>
 
+<div class="wrapper">
+<div class="nmenu">
 <h1>고객센터</h1>
 <hr>
 
-<div class="">
-<div><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></div>
 
+<div><h2><button id="btnNotice">공지사항</button> <button id="btnFaQ">FaQ</button></h2></div>
+</div>
+
+
+<div class="content">
 <table class="table .table-condensed table-hover">
 	<tr>
 		<th style="width: 15%;">번호</th>
@@ -59,7 +84,7 @@ th, td{
 	<% } %>
 	</tr>
 </table>
-
+</div>
 </div>
 
 <%@ include file="./paging.jsp" %>
