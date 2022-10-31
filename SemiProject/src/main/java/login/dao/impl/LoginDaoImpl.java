@@ -43,6 +43,9 @@ public class LoginDaoImpl implements LoginDao {
 			JDBCTemplate.close(rs);
 			JDBCTemplate.close(ps);
 		}
+		
+		System.out.println( ocnt );
+		
 		System.out.println("LoginDaoImpl() : selectCntOwnerByUseridUserpw - 끝");
 		return ocnt;
 	}

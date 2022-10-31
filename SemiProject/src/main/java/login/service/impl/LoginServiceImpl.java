@@ -38,7 +38,6 @@ public class LoginServiceImpl implements LoginService {
 
 	@Override
 	public boolean OwnerLogin(Owner owner) {
-
 		//로그인 인증 성공
 		if( loginDao.selectCntOwnerByUseridUserpw(conn, owner) > 0 ) {
 			System.out.println("LoginServiceImpl() : OwnerLogin - 로그인 성공");
