@@ -112,7 +112,7 @@ $(document).ready(function() {
 	
 <br><br>
 <section class="section-content">
-<div class="container">
+<div class="board-container">
 	<div class="board-wrap board-view">
 		<div class="board-table">
 		<table>

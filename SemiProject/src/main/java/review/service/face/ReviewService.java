@@ -1,11 +1,9 @@
 package review.service.face;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
-import reply.dto.Reply;
 import review.dto.Review;
 import util.BoardFile;
 import util.Paging;
